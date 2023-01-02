@@ -1,0 +1,178 @@
+/****************************************************************/
+/****************************************************************/
+/******************** responsive Web CSS  ***********************/
+/****************************************************************/
+/****************************************************************/
+
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Abril+Fatface&family=Fjalla+One&family=Nanum+Gothic&display=swap');
+
+@media screen and (max-width : 420px) {
+
+    nav {
+        padding : 0 10px 0 10px;
+    }
+
+    .plan_box {
+        padding : 7.5px 7.5px 7.5px 7.5px;
+        margin-right: -5px;
+    }
+
+    .plan_popup_contents_header {
+        font-size : 30px;
+        /* padding : 15px; */
+        font-family: 'Abril Fatface', cursive;
+    }
+
+    .plan_popup_contents {
+        width:75%;
+        height:75%;
+    }
+
+    .sms_popup_contents {
+        width : 75%;
+        height: 19%;
+    }
+
+    .sms_popup_contents_header_box {
+        padding : 10px 7.5px 10px 7.5px;
+    }
+        
+
+    .main_container{
+        padding : 0 10px 0 10px;
+        box-sizing : border-box;
+        width : 100%;
+        max-width : 550px;
+    }
+
+    .header_pseudo_box {
+        height : 55px;
+    }
+
+    .header_container {
+        padding : 0 10px 0 20px;
+    }
+
+    .header_box {
+        font-size: 50px;
+        margin-bottom : 10px;
+    }
+
+    .login_box {
+        padding : 8px 10px 0 10px;
+    }
+
+    .login_box form input {
+        font-size : 11px;
+        margin : 3px 0;
+    }
+
+    .login_box p{
+        font-size : 10px;
+        text-align : center;
+    }
+
+    .login_box_buttons {
+        flex-direction : column;
+    }
+
+    .login_box_buttons button{
+        font-size : 10px;
+        margin : 2.5px 0;
+    }
+
+    .sms_box {
+        padding : 25px 0 0 0;
+        height : 70px;
+    }
+
+    .verticalLine1 {
+        height : 1.5px;
+    }
+
+        .question_container_header{
+            padding : 0 5px;  
+            font-size: 15px;
+        }
+
+            .question_box img {
+                padding : 0 0 15px 0;
+            }
+
+    .answer_container {
+        /* background-color: bisque; */
+        padding : 12px 5px 8px 5px;
+    }
+
+        .answer_container .answer_input_button_box {
+            flex : 4;
+        }
+
+            .answer_box {
+                display : inline-block;
+                flex : 1;
+                padding : 0.3em 0px 0.3em 0;
+            }
+
+                .answer_box input {
+                    padding : 0;
+                    border : 0;
+                }
+
+            .answer_button_box {
+                padding : 3px 0 3px 0;
+            }
+
+                #answer_button {
+                    width : 100%;
+                    height : 100%; 
+                    border : 0;
+                    padding : 0;
+                    background-color : rgba(0,81,200,255);;
+
+                    font-size : 20px;
+                    font-family: 'Fjalla One', sans-serif;
+                    line-height: 29.46px; /*부모 .answer_button_box의 height*/
+                    color : white;
+                    font-weight: normal;
+                }
+
+                #answer_button:hover {
+                    width : 100%;
+                    height : 100%; 
+                    border : 0;
+                    padding : 0;
+                    background-color : rgba(0,41,100,255);
+
+                    font-size : 20px;
+                    font-family: 'Fjalla One', sans-serif;
+                    line-height: 29.46px; /*부모 .answer_button_box의 height*/
+                    color : white;
+                    font-weight: normal;
+                }
+
+    .aboutUs_container {
+        padding : 20px 0;
+    }
+
+    .aboutUs_header {
+        font-size : 18px;
+    }
+
+    .aboutUs_content {
+        font-size : 14px;
+    }
+
+    .caution_container {
+        padding : 20px 0;
+    }
+
+    .caution_header {
+        font-size : 18px;
+        line-height : 2;
+    }
+
+    .caution_content {
+        font-size : 14px;
+    }
+}
