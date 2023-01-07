@@ -196,16 +196,12 @@ header{
 
 .login_box {
     width : 25%;
-    height : 107.5px;
+    height : 100%;
     padding : 10px 10px 0 10px;
     font-family: initial;
 }
-    .login_box ul {
-        display : none;
-    }
-
     .login_box form {
-
+      font-size: 0.8rem;
     }
     .login_box form input {
         display : block;
@@ -232,6 +228,7 @@ header{
 .login_box_buttons {
     display : flex;
     justify-content : flex-start;
+    height: 33%;
 }
 
     .login_box_buttons button {
@@ -242,7 +239,7 @@ header{
         margin : 0 5px 0 0;
         background-color : rgba(0,81,200,255);
 
-        font-size : 15px;
+        font-size : 0.8rem;
         font-family: 'Fjalla One', sans-serif;
         /* line-height: 35.46px; 부모 .answer_button_box의 height */
         color : white;
@@ -1150,7 +1147,7 @@ footer {
         display : inline-block;
     }
     .user_profile_form_container  input,
-    .user_creation_form_container  input {
+    .user_creation_form_container_input {
         display : block;
         text-indent: 5px;
         background-color : rgba(242,248,252,255);
@@ -1163,6 +1160,24 @@ footer {
         /* height : 2em; */
         width : 55%;
     }
+
+      input[type="checkbox"] + label{
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        border:3px solid #707070;
+        position: relative;
+      }
+      input[class=user_creation_form_checkbox]:checked + label::after{
+        content:'✔';
+        font-size: 25px;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        position: absolute;
+        left: 0;
+        top:0;
+      }
 
     .user_profile_form_container  ul,
     .user_creation_form_container  ul {

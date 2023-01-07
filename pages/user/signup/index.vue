@@ -1,147 +1,138 @@
 <template>
-    <div class="user_creation_form_container">
-      <!--    <Header></Header>-->
-      <!--    헤더 시작-->
-      <div class="product_content_header_wrap">
-        <div class="mobile_header_wrap header_wrap max_width">
-          <div class="header_content">
-            <h1 class="product_ditail_title header_ditail">
-              회원가입
-            </h1>
-          </div>
-          <div class="back_button_wrap">
-          </div>
-        </div>
-      </div>
-      <!--    헤더 끝-->
-      <div>
-        <div class="login_wrap">
-          <!--        <div class="login_wrap_title m_t_120"><b>JOIN</b></div>-->
-
-          <ul class="m_t_20">
-            <li>
-              <div class="title">{{ userInfo.email.text }}</div>
-              <input
-              id="email"
-              v-model="userInfo.email.value"
-              type="text"
-              placeholder="이메일를 입력해주세요."
-              name="email"
-              @input="validationCheck"
-              >
-              <div v-if="userInfo.email.message" class="font_12 color_r">{{ userInfo.email.message }}</div>
-            </li>
-            <li>
-              <div class="title">{{ userInfo.password.text }}</div>
-              <input
-              id="password"
-              v-model="userInfo.password.value"
-              type="password"
-              placeholder="비밀번호 (8자 이상의 영문, 숫자, 특수문자 조합)"
-              name="password"
-              class="m_b_10"
-              :minlength="8"
-              @input="validationCheck"
-              @blur="validationCheck"
-              >
-              <div  v-if="userInfo.password.message" class="font_12 color_r">{{ userInfo.password.message }}</div>
-              <input
-              id="passwordConfirm"
-              v-model="passwordConfirm"
-              type="password"
-              placeholder="비밀번호 확인"
-              :minlength="8"
-              @input="validationCheck"
-              >
-              <div v-if="userInfo.password.message2" class="font_12 color_r" >{{ userInfo.password.message2 }}</div>
-            </li>
-            <li>
-              <div class="title">{{ userInfo.name.text }}</div>
-              <input
-              id="name"
-              v-model="userInfo.name.value"
-              type="text"
-              placeholder="이름"
-              name="name"
-              @input="validationCheck"
-              >
-              <div v-if="userInfo.name.message" class="font_12 color_r" >{{ userInfo.name.message }}</div>
-            </li>
-            <li>
-              <div class="title">{{ userInfo.phone.text }}</div>
-              <div class="input_but_wrap d_ib_100">
-                <input
-                id="phone"
-                v-model="userInfo.phone.value"
-                type="text"
-                placeholder="'-'없이 숫자만 입력"
-                name="phone"
-                @input="validationCheck"
-                >
-                <a @click="sendSMSAuth">인증번호 받기</a>
-              </div>
-              <div v-if="userInfo.phone.message" class="font_12 color_r">{{ userInfo.phone.message }}</div>
-              <div class="input_but_wrap d_ib_100">
-                <input
-                id="authNumber"
-                v-model="userInfo.authNumber.value"
-                type="text"
-                placeholder="인증번호"
-                name="authNumber"
-                @input="validationCheck"
-                >
-                <a @click="verifySMSAuth">인증하기</a>
-              </div>
-              <div v-if="userInfo.authNumber.message" class="font_12 color_r">{{ userInfo.authNumber.message }}</div>
-            </li>
-            <li style="margin: 20px 0;">
-              <div v-for="(agreement, i) in agreements" :key="i" class="m_b_10">
-                <div class="w_auto checkbox_wrap">
-                  <input
-                  :id="agreement.value"
-                  v-model="checked"
-                  type="checkbox"
-                  :value="agreement.value"
-                  >
-                  <label :for="agreement.value">{{ agreement.text }}</label>
-                </div>
-                <div class="square_but_wrap pull-right">
-                  <nuxt-link
-                  class="gray_but_light"
-                  :to="agreement.path"
-                  target="_blank"
-                  >자세히 보기</nuxt-link>
-                  <!--                <a class="gray_but_light" :id="i" v-on:click="popTerms(agreement.text, agreement.value)">자세히 보기</a>-->
-                </div>
-              </div>
-              <div class="m_b_10">
-                <div class="w_auto checkbox_wrap">
-                  <input
-                  id="agreementAll"
-                  v-model="allCheck"
-                  type="checkbox"
-                  >
-                  <label for="agreementAll">약관 전체 동의</label>
-                </div>
-              </div>
-              <div v-if="agreementMessage" class="font_12 color_r">{{ agreementMessage }}</div>
-            </li>
-          </ul>
-
-          <div class="but_wrap">
-            <a
-            class="w_100"
-            style="border-radius: 10px;"
-            @click.prevent="createUserInfo"
-            >가입하기</a>
-          </div>
-        </div>
+  <div class="user_creation_form_container">
+    <div class="user_creation_form_header">
+      <div class="user_creation_form_header_signin">
+        SignIn
       </div>
     </div>
+    <!--    헤더 끝-->
+    <div>
+      <p>{{ userInfo.email.text }}</p>
+      <input class="user_creation_form_container_input"
+             id="email"
+             v-model="userInfo.email.value"
+             type="text"
+             placeholder="이메일를 입력해주세요."
+             name="email"
+             @input="validationCheck"
+      >
+      <ul v-if="userInfo.email.message">{{ userInfo.email.message }}</ul>
+    </div>
+    <div>
+      <p>{{ userInfo.password.text }}</p>
+      <input class="user_creation_form_container_input"
+             id="password"
+             v-model="userInfo.password.value"
+             type="password"
+             placeholder="비밀번호 (8자 이상의 영문, 숫자, 특수문자 조합)"
+             name="password"
+             :minlength="8"
+             @input="validationCheck"
+             @blur="validationCheck"
+      >
+      <ul v-if="userInfo.password.message">{{ userInfo.password.message }}</ul>
+    </div>
+    <div>
+      <p></p>
+      <input class="user_creation_form_container_input"
+             id="passwordConfirm"
+             v-model="passwordConfirm"
+             type="password"
+             placeholder="비밀번호 확인"
+             :minlength="8"
+             @input="validationCheck"
+      >
+      <ul v-if="userInfo.password.message2">{{ userInfo.password.message2 }}</ul>
+    </div>
+    <div>
+      <p class="title">{{ userInfo.name.text }}</p>
+      <input class="user_creation_form_container_input"
+             id="name"
+             v-model="userInfo.name.value"
+             type="text"
+             placeholder="닉네임"
+             name="name"
+             @input="validationCheck"
+      >
+      <ul v-if="userInfo.name.message">{{ userInfo.name.message }}</ul>
+    </div>
+    <div>
+      <p class="title">{{ userInfo.phone.text }}</p>
+      <div>
+        <input class="user_creation_form_container_input"
+               id="phone"
+               v-model="userInfo.phone.value"
+               type="text"
+               placeholder="'-'없이 숫자만 입력"
+               name="phone"
+               @input="validationCheck"
+        >
+        <a @click="sendSMSAuth">인증번호 받기</a>
+      </div>
+      <ul v-if="userInfo.phone.message">{{ userInfo.phone.message }}</ul>
+    </div>
+    <div>
+      <p></p>
+      <div>
+        <input class="user_creation_form_container_input"
+               id="authNumber"
+               v-model="userInfo.authNumber.value"
+               type="text"
+               placeholder="인증번호"
+               name="authNumber"
+               @input="validationCheck"
+        >
+        <a @click="verifySMSAuth">인증하기</a>
+      </div>
+      <ul v-if="userInfo.authNumber.message">{{ userInfo.authNumber.message }}</ul>
+    </div>
+    <div v-for="(agreement, i) in agreements" :key="i">
+      <div>
+        <input class="user_creation_form_checkbox"
+               :id="agreement.value"
+               v-model="checked"
+               type="checkbox"
+               :value="agreement.value"
+        >
+        <label :for="agreement.value"/>
+      </div>
+      <div>
+        {{ agreement.text }}
+      </div>
+      <div>
+        <nuxt-link
+          class="gray_but_light"
+          :to="agreement.path"
+          target="_blank"
+        >자세히 보기
+        </nuxt-link>
+        <!--                <a class="gray_but_light" :id="i" v-on:click="popTerms(agreement.text, agreement.value)">자세히 보기</a>-->
+      </div>
+    </div>
+    <div>
+      <div>
+        <input class="user_creation_form_checkbox"
+               id="agreementAll"
+               v-model="allCheck"
+               type="checkbox"
+        >
+        <label for="agreementAll"/>
+        <div>약관 전체 동의</div>
+      </div>
+    </div>
+    <div v-if="agreementMessage">{{ agreementMessage }}</div>
+
+    <div>
+      <a
+        class="w_100"
+        @click.prevent="createUserInfo"
+      >가입하기</a>
+    </div>
+  </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import {mapGetters} from 'vuex';
 import Popup from '@/components/popups/popup';
 
 const prefix = 'user/signup';
@@ -149,17 +140,17 @@ const prefix = 'user/signup';
 export default {
   data: () => ({
     agreements: [
-      { text: '이용약관(필수)', value: 'terms', path: '/agreement/terms' },
-      { text: '개인정보수집이용동의(필수)', value: 'privacy', path: '/agreement/privacy' },
-      { text: '개인정보 제3자 제공동의(필수)', value: 'third', path: '/agreement/third' },
+      {text: '이용약관(필수)', value: 'terms', path: '/agreement/terms'},
+      {text: '개인정보수집이용동의(필수)', value: 'privacy', path: '/agreement/privacy'},
+      {text: '개인정보 제3자 제공동의(필수)', value: 'third', path: '/agreement/third'},
     ],
     checked: [],
     userInfo: {
-      email: { text: '이메일', value: '', message: '' },
-      password: { text: '비밀번호', value: '', message: '' },
-      name: { text: '이름', value: '', message: '' },
-      phone: { text: '전화 번호', value: '', message: '' },
-      authNumber: { text: '인증번호', value: '', message: '' },
+      email: {text: '이메일', value: '', message: ''},
+      password: {text: '비밀번호', value: '', message: ''},
+      name: {text: '이름', value: '', message: ''},
+      phone: {text: '전화 번호', value: '', message: ''},
+      authNumber: {text: '인증번호', value: '', message: ''},
     },
     isAuth: false,
     passwordConfirm: '',
@@ -292,7 +283,7 @@ export default {
                 },
               },
             }).$mount();
-            that.$router.replace({ name: 'main' });
+            that.$router.replace({name: 'main'});
           } else {
             that.popupAlert(that.result.message);
           }
@@ -314,7 +305,7 @@ export default {
       this.userInfo.phone.message = '';
 
       // send
-      const data = { phone: this.userInfo.phone.value };
+      const data = {phone: this.userInfo.phone.value};
       const result = await this.$store.dispatch(`${prefix}/sendSMSAuth`, data);
       if (result.result === 'success') {
         this.popupAlert('인증번호가 발송되었습니다. 입력창에 3분이내로 입력해주세요.');
@@ -341,7 +332,7 @@ export default {
       this.userInfo.authNumber.message = '';
 
       // send
-      const data = { phone: this.userInfo.phone.value, code: this.userInfo.authNumber.value };
+      const data = {phone: this.userInfo.phone.value, code: this.userInfo.authNumber.value};
       const result = await this.$store.dispatch(`${prefix}/verifySMSAuth`, data);
       // TODO : 스토어 심사를 위한 임시 인증 코드. 심사 후 삭제
       if (this.userInfo.authNumber.value === '7yb3e5') {

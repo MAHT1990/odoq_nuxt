@@ -1,14 +1,14 @@
 <template>
     <div class="login_box">
-        <form id="login_box_form" action="">
+        <form action="">
             <input
-            v-model.lazy="user.email" 
-            type="text" 
+            v-model.lazy="user.email"
+            type="text"
             placeholder="ODOQ ID"
             required
             @keyup.enter="testLinkMethod"
             >
-            <input 
+            <input
             v-model.lazy="user.password"
             type="password"
             placeholder="PASSWORD"
@@ -17,10 +17,8 @@
             >
         </form>
         <div class="login_box_buttons">
-        <button @click="testLinkMethod">Log In</button>
-        <nuxt-link to="/user/signup">
-            <button>Sign Up</button>
-        </nuxt-link>
+        <button @click="linkToSignUp">Log In</button>
+        <button @click="linkToSignUp">Sign Up</button>
     </div>
 </div>
 </template>
@@ -76,8 +74,9 @@ export default {
                 }
             }
         },
-        testLinkMethod() {
+        linkToSignUp() {
             this.$store.dispatch('user/login/linkTestAction')
+            this.$router.push('/user/signup/')
         }
     }
 }
