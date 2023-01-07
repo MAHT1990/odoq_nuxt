@@ -71,7 +71,7 @@ export default function axios({ $axios }) {
     return Promise.resolve(res);
   }, (error) => {
     // 500: 서버 에러 처리
-    console.log('500: 서버 에러', error);
+    console.error('500: 서버 에러', error);
     return Promise.reject(error);
   });
 }

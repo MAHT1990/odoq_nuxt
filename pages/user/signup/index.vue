@@ -21,35 +21,35 @@
           <ul class="m_t_20">
             <li>
               <div class="title">{{ userInfo.email.text }}</div>
-              <input 
-              id="email" 
+              <input
+              id="email"
               v-model="userInfo.email.value"
-              type="text" 
-              placeholder="이메일를 입력해주세요." 
-              name="email" 
-              @input="validationCheck" 
+              type="text"
+              placeholder="이메일를 입력해주세요."
+              name="email"
+              @input="validationCheck"
               >
               <div v-if="userInfo.email.message" class="font_12 color_r">{{ userInfo.email.message }}</div>
             </li>
             <li>
               <div class="title">{{ userInfo.password.text }}</div>
-              <input 
+              <input
               id="password"
-              v-model="userInfo.password.value" 
-              type="password" 
-              placeholder="비밀번호 (8자 이상의 영문, 숫자, 특수문자 조합)" 
-              name="password" 
+              v-model="userInfo.password.value"
+              type="password"
+              placeholder="비밀번호 (8자 이상의 영문, 숫자, 특수문자 조합)"
+              name="password"
               class="m_b_10"
               :minlength="8"
-              @input="validationCheck" 
-              @blur="validationCheck" 
+              @input="validationCheck"
+              @blur="validationCheck"
               >
               <div  v-if="userInfo.password.message" class="font_12 color_r">{{ userInfo.password.message }}</div>
-              <input 
-              id="passwordConfirm" 
-              v-model="passwordConfirm" 
-              type="password" 
-              placeholder="비밀번호 확인" 
+              <input
+              id="passwordConfirm"
+              v-model="passwordConfirm"
+              type="password"
+              placeholder="비밀번호 확인"
               :minlength="8"
               @input="validationCheck"
               >
@@ -57,12 +57,12 @@
             </li>
             <li>
               <div class="title">{{ userInfo.name.text }}</div>
-              <input 
-              id="name" 
+              <input
+              id="name"
               v-model="userInfo.name.value"
-              type="text" 
-              placeholder="이름" 
-              name="name" 
+              type="text"
+              placeholder="이름"
+              name="name"
               @input="validationCheck"
               >
               <div v-if="userInfo.name.message" class="font_12 color_r" >{{ userInfo.name.message }}</div>
@@ -70,24 +70,24 @@
             <li>
               <div class="title">{{ userInfo.phone.text }}</div>
               <div class="input_but_wrap d_ib_100">
-                <input 
-                id="phone" 
+                <input
+                id="phone"
                 v-model="userInfo.phone.value"
-                type="text" 
-                placeholder="'-'없이 숫자만 입력" 
-                name="phone" 
+                type="text"
+                placeholder="'-'없이 숫자만 입력"
+                name="phone"
                 @input="validationCheck"
                 >
                 <a @click="sendSMSAuth">인증번호 받기</a>
               </div>
               <div v-if="userInfo.phone.message" class="font_12 color_r">{{ userInfo.phone.message }}</div>
               <div class="input_but_wrap d_ib_100">
-                <input 
-                id="authNumber" 
+                <input
+                id="authNumber"
                 v-model="userInfo.authNumber.value"
-                type="text" 
-                placeholder="인증번호" 
-                name="authNumber" 
+                type="text"
+                placeholder="인증번호"
+                name="authNumber"
                 @input="validationCheck"
                 >
                 <a @click="verifySMSAuth">인증하기</a>
@@ -97,18 +97,18 @@
             <li style="margin: 20px 0;">
               <div v-for="(agreement, i) in agreements" :key="i" class="m_b_10">
                 <div class="w_auto checkbox_wrap">
-                  <input 
-                  :id="agreement.value" 
+                  <input
+                  :id="agreement.value"
                   v-model="checked"
-                  type="checkbox" 
-                  :value="agreement.value" 
+                  type="checkbox"
+                  :value="agreement.value"
                   >
                   <label :for="agreement.value">{{ agreement.text }}</label>
                 </div>
                 <div class="square_but_wrap pull-right">
-                  <nuxt-link 
-                  class="gray_but_light" 
-                  :to="agreement.path" 
+                  <nuxt-link
+                  class="gray_but_light"
+                  :to="agreement.path"
                   target="_blank"
                   >자세히 보기</nuxt-link>
                   <!--                <a class="gray_but_light" :id="i" v-on:click="popTerms(agreement.text, agreement.value)">자세히 보기</a>-->
@@ -116,10 +116,10 @@
               </div>
               <div class="m_b_10">
                 <div class="w_auto checkbox_wrap">
-                  <input 
-                  id="agreementAll" 
+                  <input
+                  id="agreementAll"
                   v-model="allCheck"
-                  type="checkbox"  
+                  type="checkbox"
                   >
                   <label for="agreementAll">약관 전체 동의</label>
                 </div>
@@ -129,10 +129,10 @@
           </ul>
 
           <div class="but_wrap">
-            <a 
-            class="w_100" 
+            <a
+            class="w_100"
             style="border-radius: 10px;"
-            @click.prevent="createUserInfo" 
+            @click.prevent="createUserInfo"
             >가입하기</a>
           </div>
         </div>

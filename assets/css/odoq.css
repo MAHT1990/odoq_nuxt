@@ -12,7 +12,7 @@ body {
 }
 
 input, button {
-    appearance: none;
+    /*appearance: none;*/
     border-radius : 0;
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -56,7 +56,7 @@ nav {
         .plan_box:hover {
             color : rgb(223, 223, 223);
         }
-        
+
             .plan_box img {
                 display : block;
                 height : 65%;
@@ -69,7 +69,7 @@ nav {
                 margin : 3px 0;
                 text-align: center;
             }
-        
+
         .admin_box {
             width : 50px;
             height : 50px;
@@ -98,7 +98,7 @@ nav {
             justify-content: center;
             height : 100%;
             text-align : center;
-            
+
             box-sizing : border-box;
             padding : 10px 0 10px 30px;
         }
@@ -116,12 +116,12 @@ nav {
         .plan_popup {
             position : fixed;
             z-index: 1;
-            left:0px; top : 0px; 
+            left:0px; top : 0px;
             width:100%; height:100%;
             background-color : rgba(196, 196, 196, 0.5);
             display : none;
         }
-        
+
         .plan_popup_contents {
             position : absolute;
             left : 50%; top : 50%;
@@ -131,14 +131,14 @@ nav {
             height:80%;
             background-color : white;
             padding : 15px;
-    
+
             display : flex;
             flex-direction : column;
             justify-content : center;
-            
+
             border-radius: 10px;
         }
-        
+
         .plan_popup_contents_header_verticalline{
             flex : 1;
         }
@@ -147,24 +147,24 @@ nav {
                 /* padding : 15px; */
                 font-family: 'Abril Fatface', cursive;
             }
-            
+
             .plan_popup_contents_verticalline{
-                height : 3px; 
+                height : 3px;
                 margin : 5px 0;
                 background-color: black;
             }
-    
+
         .plan_popup_contents_img_box{
             overflow : auto;
             width : 100%;
             flex : 6;
         }
-    
+
             .plan_popup_contents_img {
                 width : 100%;
             }
 
-            
+
 header{
     max-width : 550px;
     margin : 0 auto;
@@ -173,7 +173,7 @@ header{
 .header_pseudo_box {
     height : 70px;
     width : 100%;
-}         
+}
 
 .header_container {
     font-size: 25px;
@@ -205,7 +205,7 @@ header{
     }
 
     .login_box form {
-        
+
     }
     .login_box form input {
         display : block;
@@ -278,11 +278,11 @@ header{
         margin : 1px;
         text-align: center;
     }
-    
+
     .sms_popup {
         position : fixed;
         z-index: 1;
-        left:0px; top : 0px; 
+        left:0px; top : 0px;
         width:100%; height:100%;
         background-color : rgba(196, 196, 196, 0.5);
         display : none;
@@ -305,7 +305,7 @@ header{
         display : flex;
         flex-direction : column;
         justify-content : center;
-        
+
         border-radius: 10px;
     }
 
@@ -339,7 +339,7 @@ header{
             line-height : 25px;
             color : rgba(0,81,200,255);
         }
-        
+
         .sms_popup_contents_header_text2 {
             float : left;
             height : 25px;
@@ -357,7 +357,7 @@ header{
         .sms_popup_contents_input_box > button:first-child {
             float : right;
             box-sizing: border-box;
-            height : 100%; 
+            height : 100%;
             border : 0;
             padding : 0;
             background-color : rgb(175, 175, 175);
@@ -370,7 +370,7 @@ header{
 
             margin : 0 0.5em;
         }
-        
+
         .sms_popup_contents_input_box > button:nth-child(2) {
             float : right;
             box-sizing: border-box;
@@ -399,7 +399,7 @@ header{
             background-position: 3px center;
             background-repeat: no-repeat;
             text-indent: 5px;
-            
+
             box-sizing: border-box;
             font-size : 12px;
             border : 0;
@@ -436,7 +436,7 @@ header{
 }
 
 .question_container_header{
-    padding : 0 10px;  
+    padding : 0 10px;
         font-size: 20px;
         font-family: 'Fjalla One', sans-serif;
         display : flex;
@@ -466,7 +466,7 @@ header{
             max-width : 550px;
             margin :auto;
         }
-  
+
 .verticalLine2 {
     width : 100%;
     height : 2px;
@@ -536,7 +536,7 @@ header{
 
             #answer_button {
                 width : 100%;
-                height : 100%; 
+                height : 100%;
                 border : 0;
                 padding : 0;
                 background-color : rgba(0,81,200,255);
@@ -550,7 +550,7 @@ header{
 
             #answer_button:hover {
                 width : 100%;
-                height : 100%; 
+                height : 100%;
                 border : 0;
                 padding : 0;
                 background-color : rgba(0,41,100,255);
@@ -612,7 +612,7 @@ header{
         color : rgba(0,41,100,255);
         cursor : pointer;
     }
-    
+
     .cocomment_input_box_charnumbs_and_button button {
         border : 0;
         background-color: transparent;
@@ -731,7 +731,7 @@ header{
             display : inline-block;
             font-size : 10px;
             color : rgba(168,168,168,255);
-            
+
         }
 
 
@@ -782,28 +782,28 @@ header{
     .comment_line_tool_box {
         font-size:20px;
         z-index : 1;
-        
+
         transform: translate(-100%, 0%);
         background-color : white;
         padding : 3px;
-        
+
         flex-direction : column;
         justify-content : center;
-        
+
         border-radius: 10px;
         display : none;
     }
     .cocomment_line_tool_box {
         font-size:20px;
         z-index : 1;
-        
+
         transform: translate(-100%, 0%);
         background-color : white;
         padding : 3px;
-        
+
         flex-direction : column;
         justify-content : center;
-        
+
         border-radius: 10px;
         display : none;
     }
@@ -827,7 +827,7 @@ header{
         padding : 10px;
         /* background-color: white; */
     }
-    
+
     .cocomment_edit_input_box {
         padding : 10px;
         /* background-color: white; */
@@ -838,18 +838,18 @@ header{
         box-sizing : border-box;
         padding : 10px;
         width : 100%;
-        
+
         resize : none;
         border : 0;
         outline-color : rgba(0,41,100,255);
     }
-    
+
     .cocomment_edit_input {
         flex : 5;
         box-sizing : border-box;
         padding : 10px;
         width : 100%;
-        
+
         resize : none;
         border : 0;
         outline-color : rgba(0,41,100,255);
@@ -878,7 +878,7 @@ header{
         font-size : 15px;
         cursor : pointer;
     }
-    
+
     .comment_edit_cancel_button {
         padding : 5px 5px 5px 15px;
         border : 0;
@@ -930,7 +930,7 @@ header{
         color : rgba(0,41,100,255);
         cursor : pointer;
     }
-    
+
     .comment_like {
         background-color:transparent;
         border : 0;
@@ -963,38 +963,38 @@ header{
             background-color:white;
             padding : 5px;
         }
-    
-    
+
+
         .cocomment_input_box form textarea {
             display : block;
             box-sizing : border-box;
             width : 100%;
             padding : 10px;
             font-size : 15px;
-            
+
             resize : none;
             border : 0;
             outline-color : transparent;
         }
-        
+
         .cocomment_input_box form textarea:focus {
             /* height : 6em; */
         }
-        
+
         .cocomment_input_box_charnumbs_and_button {
             font-size : 15px;
             display : flex;
             justify-content : space-between;
             height : 35px;
         }
-    
+
         .cocomment_input_box_charnumbs {
         }
-    
+
         .cocomment_input_box_charnumbs span{
             line-height : 35px;
         }
-    
+
         .cocomment_input_box_charnumbs_and_button button {
             border : 0;
             background-color: transparent;
@@ -1043,7 +1043,7 @@ footer {
     display : block;
     background-color : rgba(223, 223, 223, 0.5);
     padding : 10px;
-    margin : 10px 0;         
+    margin : 10px 0;
 }
 
 .aboutUs_container {
@@ -1120,7 +1120,7 @@ footer {
     display : flex;
     flex-direction : column;
     justify-content : center;
-    
+
     border-radius: 10px;
 }
 
@@ -1130,31 +1130,31 @@ footer {
         font-family: 'Fjalla One', sans-serif;
         line-height: 35.46px;
     }
-    .user_profile_form_container form,
-    .user_creation_form_container form {
+    .user_profile_form_container,
+    .user_creation_form_container {
         display : flex;
         flex-direction : column;
         justify-content : center;
     }
 
-    .user_profile_form_container form div,
-    .user_creation_form_container form div {
+    .user_profile_form_container  div,
+    .user_creation_form_container  div {
         display : flex;
         justify-content : space-between;
         margin : 8px 0;
     }
 
-    .user_profile_form_container form p,
-    .user_creation_form_container form p {
+    .user_profile_form_container  p,
+    .user_creation_form_container  p {
         /* line-height: 24px; */
         display : inline-block;
     }
-    .user_profile_form_container form input,
-    .user_creation_form_container form input {
+    .user_profile_form_container  input,
+    .user_creation_form_container  input {
         display : block;
         text-indent: 5px;
         background-color : rgba(242,248,252,255);
-        
+
         box-sizing: border-box;
         font-size : 12px;
         border : 0;
@@ -1164,18 +1164,18 @@ footer {
         width : 55%;
     }
 
-    .user_profile_form_container form ul,
-    .user_creation_form_container form ul {
+    .user_profile_form_container  ul,
+    .user_creation_form_container  ul {
         font-size : 10px;
         color : red;
         text-align: right;
         list-style: none;
     }
 
-    .user_profile_form_container form button,
-    .user_creation_form_container form button {
+    .user_profile_form_container  button,
+    .user_creation_form_container  button {
         width : 100%;
-        height : 100%; 
+        height : 100%;
         margin : 10px 0 ;
         border : 0;
         padding : 0;
@@ -1188,8 +1188,8 @@ footer {
         font-weight: normal;
     }
 
-    .user_profile_form_container form button:hover,
-    .user_creation_form_container form button:hover {
+    .user_profile_form_container  button:hover,
+    .user_creation_form_container  button:hover {
         background-color : rgba(0,41,100,255);
     }
 
@@ -1210,7 +1210,7 @@ footer {
     display : flex;
     flex-direction : column;
     justify-content : center;
-    
+
     border-radius: 10px;
 }
 
@@ -1226,7 +1226,7 @@ footer {
     line-height: 35.46px;
 }
 
-.user_creation_form_container form{
+.user_creation_form_container {
     display : flex;
     flex-direction: column;
     justify-content: content;
@@ -1236,7 +1236,7 @@ footer {
 .profile_creation_popup {
     position : fixed;
     z-index: 1;
-    left:0px; top : 0px; 
+    left:0px; top : 0px;
     width:100%; height:100%;
     background-color : rgba(196, 196, 196, 0.5);
     /* display : none; */
