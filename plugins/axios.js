@@ -12,6 +12,7 @@ const HEADER_JWT_TOKEN_NON_MEMBER = 'X-JWTNONMEMBER';
 export default function axios({ $axios }) {
   $axios.interceptors.request.use(async (config) => {
     config.baseURL = process.env.BASE_URL;
+    console.log(process.env.BASE_URL);
     const isClient = typeof document !== 'undefined';
     if (config.url === CSRF_URL) return config;
     let csrf = Utils.getCookie(config.headers.common.cookie, KEY_CSRF);
@@ -22,15 +23,20 @@ export default function axios({ $axios }) {
     if (!jwtNonMember && isClient) jwtNonMember = Utils.getCookie(document.cookie, KEY_JWT_NON_MEMBER);
 
     if (csrf) {
-      csrf = JSON.parse(csrf);
-      const expired = new Date(csrf.csrf_expired);
-      if (Date.now() > expired.getTime()) {
+      try{
+        csrf = JSON.parse(csrf);
+        const expired = new Date(csrf.csrf_expired);
+        if (Date.now() > expired.getTime()) {
+          Utils.removeCookie(KEY_CSRF);
+          csrf = null;
+        }
+      } catch {
         Utils.removeCookie(KEY_CSRF);
         csrf = null;
       }
     }
 
-    if (!csrf) {
+    if (!csrf || csrf === undefined) {
       const result = await $axios.$get(CSRF_URL);
       csrf = result.data;
       Utils.addCookie(KEY_CSRF, JSON.stringify(result.data));
