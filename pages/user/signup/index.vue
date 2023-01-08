@@ -197,7 +197,7 @@ export default {
     },
   },
   methods: {
-    phoneValidation(phone) {
+    validationPhone(phone) {
       const re = /^(?:01[016789]|02|0[3-9][0-9])[0-9]{3,4}[0-9]{4}$/;
       return re.test(phone);
     },
@@ -217,9 +217,9 @@ export default {
         if (id === 'password') {
           that[id] = that.userInfo.password.value;
         }
-        const isNum = that[id] ? that[id].search(/[0-9]/g) > -1 : false;
-        const isEng = that[id] ? that[id].search(/[a-zA-Z]/g) > -1 : false;
-        const isSpe = that[id] ? that[id].search(/[`~!@#$%^&*|₩₩₩'₩";:₩/?]/gi) > -1 : false;
+        const isNum = that[id] ? that[id].search(/[0-9]/) > -1 : false;
+        const isEng = that[id] ? that[id].search(/[a-zA-Z]/) > -1 : false;
+        const isSpe = that[id] ? that[id].search(/[`~!@#$%^&*|₩₩₩'₩";:₩/?]/i) > -1 : false;
         const isWhi = that[id] ? that[id].search(/\s/) > -1 : false;
         if (id === 'password' && (!isNum || !isEng || !isSpe || !isWhi)) {
           that.userInfo.password.message = '공백을 제외한 비밀번호를 영문, 숫자, 특수문자를 조합하여 8자 이상으로 입력해주세요.';
@@ -231,11 +231,11 @@ export default {
         }
       }
       if (id === 'nickName') {
-        if (!that.userInfo[id].value) that.userInfo[id].message = '이름을 입력해주세요.';
+        if (!that.userInfo[id].value) that.userInfo[id].message = '닉네임을 입력해주세요.';
         else that.userInfo[id].message = '';
       }
       if (id === 'phone') {
-        const phoneValid = that.phoneValidation(that.userInfo[id].value);
+        const phoneValid = that.validationPhone(that.userInfo[id].value);
         if (phoneValid === false) that.userInfo[id].message = '전화번호가 올바르지 않습니다.';
         else that.userInfo[id].message = '';
       }
@@ -300,13 +300,9 @@ export default {
      */
     async sendSMSAuth() {
       // check phone
-      const phoneValid = this.phoneValidation(this.userInfo.phone.value);
-      if (phoneValid === false) {
-        this.userInfo.phone.message = '전화번호가 올바르지 않습니다.';
+      if (this.userInfo.phone.message) {
         return;
       }
-      this.userInfo.phone.message = '';
-
       // send
       const data = {phone: this.userInfo.phone.value};
       const result = await this.$store.dispatch(`${prefix}/sendSMSAuth`, data);
@@ -321,7 +317,7 @@ export default {
      */
     async verifySMSAuth() {
       // check phone, auth number
-      const phoneValid = this.phoneValidation(this.userInfo.phone.value);
+      const phoneValid = this.validationPhone(this.userInfo.phone.value);
       if (phoneValid === false) {
         this.userInfo.phone.message = '전화번호가 올바르지 않습니다.';
         return;
