@@ -8,64 +8,69 @@
     <!--    헤더 끝-->
     <div>
       <p>{{ userInfo.email.text }}</p>
-      <input class="user_creation_form_container_input"
-             id="email"
-             v-model="userInfo.email.value"
-             type="text"
-             placeholder="이메일를 입력해주세요."
-             name="email"
-             @input="validationCheck"
+      <input
+        id="email"
+        v-model="userInfo.email.value"
+        class="user_creation_form_container_input"
+        type="text"
+        placeholder="이메일를 입력해주세요."
+        name="email"
+        @input="validationCheck"
       >
       <ul v-if="userInfo.email.message">{{ userInfo.email.message }}</ul>
     </div>
     <div>
       <p>{{ userInfo.password.text }}</p>
-      <input class="user_creation_form_container_input"
-             id="password"
-             v-model="userInfo.password.value"
-             type="password"
-             placeholder="비밀번호 (8자 이상의 영문, 숫자, 특수문자 조합)"
-             name="password"
-             :minlength="8"
-             @input="validationCheck"
-             @blur="validationCheck"
+      <input
+        id="password"
+        v-model="userInfo.password.value"
+        class="user_creation_form_container_input"
+        type="password"
+        placeholder="비밀번호 (8자 이상의 영문, 숫자, 특수문자 조합)"
+        name="password"
+        :minlength="8"
+        @input="validationCheck"
+        @blur="validationCheck"
       >
       <ul v-if="userInfo.password.message">{{ userInfo.password.message }}</ul>
     </div>
     <div>
       <p></p>
-      <input class="user_creation_form_container_input"
-             id="passwordConfirm"
-             v-model="passwordConfirm"
-             type="password"
-             placeholder="비밀번호 확인"
-             :minlength="8"
-             @input="validationCheck"
+      <input
+        id="passwordConfirm"
+        v-model="passwordConfirm"
+        class="user_creation_form_container_input"
+        type="password"
+        placeholder="비밀번호 확인"
+        :minlength="8"
+        @input="validationCheck"
       >
       <ul v-if="userInfo.password.message2">{{ userInfo.password.message2 }}</ul>
     </div>
     <div>
-      <p class="title">{{ userInfo.name.text }}</p>
-      <input class="user_creation_form_container_input"
-             id="name"
-             v-model="userInfo.name.value"
-             type="text"
-             placeholder="닉네임"
-             name="name"
-             @input="validationCheck"
+      <p class="title">{{ userInfo.nickName.text }}</p>
+      <input
+        id="nickName"
+        v-model="userInfo.nickName.value"
+        class="user_creation_form_container_input"
+        type="text"
+        placeholder="닉네임"
+        name="nickName"
+        @input="validationCheck"
       >
-      <ul v-if="userInfo.name.message">{{ userInfo.name.message }}</ul>
+      <ul v-if="userInfo.nickName.message">{{ userInfo.nickName.message }}</ul>
     </div>
     <div>
       <p class="title">{{ userInfo.phone.text }}</p>
       <div>
-        <input class="user_creation_form_container_input"
-               id="phone"
-               v-model="userInfo.phone.value"
-               type="text"
-               placeholder="'-'없이 숫자만 입력"
-               name="phone"
-               @input="validationCheck"
+        <input
+          id="phone"
+          v-model="userInfo.phone.value"
+          class="user_creation_form_container_input"
+          type="text"
+          placeholder="'-'없이 숫자만 입력"
+          name="phone"
+          @input="validationCheck"
         >
         <a @click="sendSMSAuth">인증번호 받기</a>
       </div>
@@ -74,13 +79,14 @@
     <div>
       <p></p>
       <div>
-        <input class="user_creation_form_container_input"
-               id="authNumber"
-               v-model="userInfo.authNumber.value"
-               type="text"
-               placeholder="인증번호"
-               name="authNumber"
-               @input="validationCheck"
+        <input
+          id="authNumber"
+          v-model="userInfo.authNumber.value"
+          class="user_creation_form_container_input"
+          type="text"
+          placeholder="인증번호"
+          name="authNumber"
+          @input="validationCheck"
         >
         <a @click="verifySMSAuth">인증하기</a>
       </div>
@@ -88,11 +94,12 @@
     </div>
     <div v-for="(agreement, i) in agreements" :key="i">
       <div>
-        <input class="user_creation_form_checkbox"
-               :id="agreement.value"
-               v-model="checked"
-               type="checkbox"
-               :value="agreement.value"
+        <input
+          :id="agreement.value"
+          v-model="checked"
+          class="user_creation_form_checkbox"
+          type="checkbox"
+          :value="agreement.value"
         >
         <label :for="agreement.value"/>
       </div>
@@ -111,10 +118,11 @@
     </div>
     <div>
       <div>
-        <input class="user_creation_form_checkbox"
-               id="agreementAll"
-               v-model="allCheck"
-               type="checkbox"
+        <input
+          id="agreementAll"
+          v-model="allCheck"
+          class="user_creation_form_checkbox"
+          type="checkbox"
         >
         <label for="agreementAll"/>
         <div>약관 전체 동의</div>
@@ -124,7 +132,6 @@
 
     <div>
       <a
-        class="w_100"
         @click.prevent="createUserInfo"
       >가입하기</a>
     </div>
@@ -139,21 +146,20 @@ const prefix = 'user/signup';
 
 export default {
   data: () => ({
-    agreements: [
-      {text: '이용약관(필수)', value: 'terms', path: '/agreement/terms'},
-      {text: '개인정보수집이용동의(필수)', value: 'privacy', path: '/agreement/privacy'},
-      {text: '개인정보 제3자 제공동의(필수)', value: 'third', path: '/agreement/third'},
-    ],
-    checked: [],
     userInfo: {
       email: {text: '이메일', value: '', message: ''},
       password: {text: '비밀번호', value: '', message: ''},
-      name: {text: '이름', value: '', message: ''},
+      nickName: {text: '닉네임', value: '', message: ''},
       phone: {text: '전화 번호', value: '', message: ''},
       authNumber: {text: '인증번호', value: '', message: ''},
     },
-    isAuth: false,
     passwordConfirm: '',
+    isPhoneNumbAuth: false,
+    agreements: [
+      {text: '이용약관(필수)', value: 'terms', path: '/agreement/terms'},
+      {text: '개인정보수집이용동의(필수)', value: 'privacy', path: '/agreement/privacy'},
+    ],
+    arrayAgreementsChecked: [],
     agreementMessage: '',
     registAllow: true,
   }),
@@ -163,16 +169,16 @@ export default {
   computed: {
     allCheck: {
       get() {
-        return this.agreements ? this.checked.length === this.agreements.length : false;
+        return this.agreements ? this.arrayAgreementsChecked.length === this.agreements.length : false;
       },
       set(value) {
-        const checked = [];
+        const arrayAgreementsChecked = [];
         if (value) {
           this.agreements.forEach((agreement) => {
-            checked.push(agreement.value);
+            arrayAgreementsChecked.push(agreement.value);
           });
         }
-        this.checked = checked;
+        this.arrayAgreementsChecked = arrayAgreementsChecked;
       },
     },
     ...mapGetters({
@@ -186,25 +192,24 @@ export default {
      */
     'userInfo.phone.value': {
       handler() {
-        this.isAuth = false;
+        this.isPhoneNumbAuth = false;
       },
     },
   },
   methods: {
     phoneValidation(phone) {
-      const re = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})[0-9]{3,4}[0-9]{4}$/;
+      const re = /^(?:01[016789]|02|0[3-9][0-9])[0-9]{3,4}[0-9]{4}$/;
       return re.test(phone);
     },
-    validation(email) {
+    validationEmail(email) {
       const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/;
       return re.test(email);
     },
     validationCheck(e) {
       const id = e.target.id;
       const that = this;
-      console.log(this);
       if (id === 'email') {
-        const emailValid = that.validation(that.userInfo[id].value);
+        const emailValid = that.validationEmail(that.userInfo[id].value);
         if (emailValid === false) that.userInfo[id].message = '이메일이 올바르지 않습니다.';
         else that.userInfo[id].message = '';
       }
@@ -214,11 +219,9 @@ export default {
         }
         const isNum = that[id] ? that[id].search(/[0-9]/g) > -1 : false;
         const isEng = that[id] ? that[id].search(/[a-zA-Z]/g) > -1 : false;
-        const isSpe = that[id] ? that[id].search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi) > -1 : false;
-        console.log(that.password);
-        console.log(that[id]);
-        console.log(id);
-        if ((!isNum || !isEng || !isSpe || that[id].search(/\s/) > -1) && id === 'password') {
+        const isSpe = that[id] ? that[id].search(/[`~!@#$%^&*|₩₩₩'₩";:₩/?]/gi) > -1 : false;
+        const isWhi = that[id] ? that[id].search(/\s/) > -1 : false;
+        if (id === 'password' && (!isNum || !isEng || !isSpe || !isWhi)) {
           that.userInfo.password.message = '공백을 제외한 비밀번호를 영문, 숫자, 특수문자를 조합하여 8자 이상으로 입력해주세요.';
         } else if (that.userInfo.password.value !== that[id] && id === 'passwordConfirm') {
           that.userInfo.password.message2 = '비밀번호가 일치하지 않습니다.';
@@ -227,7 +230,7 @@ export default {
           that.userInfo.password.message2 = '';
         }
       }
-      if (id === 'name') {
+      if (id === 'nickName') {
         if (!that.userInfo[id].value) that.userInfo[id].message = '이름을 입력해주세요.';
         else that.userInfo[id].message = '';
       }
@@ -262,12 +265,12 @@ export default {
           that.registAllow = false;
         }
       });
-      if (!that.isAuth) {
+      if (!that.isPhoneNumbAuth) {
         this.popupAlert('전화번호 인증을 해주세요.');
         that.registAllow = false;
       }
       if (that.registAllow === true) {
-        if (that.checked.includes('terms') && that.checked.includes('privacy')) {
+        if (that.arrayAgreementsChecked.includes('terms') && that.arrayAgreementsChecked.includes('privacy')) {
           that.agreementMessage = '';
           const userInfo = {};
           Object.keys(that.userInfo).forEach((key) => {
@@ -337,13 +340,13 @@ export default {
       // TODO : 스토어 심사를 위한 임시 인증 코드. 심사 후 삭제
       if (this.userInfo.authNumber.value === '7yb3e5') {
         this.popupAlert('인증 되었습니다');
-        this.isAuth = true;
+        this.isPhoneNumbAuth = true;
       } else if (result.result === 'success') {
         this.popupAlert('인증 되었습니다');
-        this.isAuth = true;
+        this.isPhoneNumbAuth = true;
       } else {
         this.popupAlert(result.message);
-        this.isAuth = false;
+        this.isPhoneNumbAuth = false;
       }
     },
     popupAlert(message) {
