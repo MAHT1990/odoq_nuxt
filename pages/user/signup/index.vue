@@ -334,7 +334,7 @@ export default {
       const data = {phone: this.userInfo.phone.value, code: this.userInfo.authNumber.value};
       const result = await this.$store.dispatch(`${prefix}/verifySMSAuth`, data);
       // TODO : 스토어 심사를 위한 임시 인증 코드. 심사 후 삭제
-      if (this.userInfo.authNumber.value === '7yb3e5') {
+      if (this.userInfo.authNumber.value === 'ODOQ73') {
         this.popupAlert('인증 되었습니다');
         this.isPhoneNumbAuth = true;
       } else if (result.result === 'success') {
