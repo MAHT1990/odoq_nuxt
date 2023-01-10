@@ -8,8 +8,8 @@
             <div class="main_title text-center">회원가입 완료</div>
             <div class="popup_title text-center">
               <p>가입을 축하합니다!</p>
-              <p>몰리회원이 되어주신것을 진심으로 감사드립니다.</p>
-              <p v-if="signUpPoint && signUpPoint > 0">감사의 의미로 적립금 <span>{{ signUpPoint | comma }}p</span>를 적립해드렸습니다!</p>
+              <p>ODOQER가 되셨습니다.</p>
+              <p v-if="signUpPoint && signUpPoint !== ''"><span>{{ nickName }}님</span></p>
             </div>
           </div>
 
@@ -29,11 +29,10 @@ import PopupMixin from './popupMixin';
 export default Vue.extend({
   mixins: [PopupMixin],
   props: {
-    signUpPoint: {
-      type: Number,
-      default: 0,
+    nickName: {
+      type: String,
+      default: '',
     },
   },
-  methods: {},
 });
 </script>
