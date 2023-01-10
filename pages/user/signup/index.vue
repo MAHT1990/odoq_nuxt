@@ -92,11 +92,11 @@
       </div>
       <ul v-if="userInfo.authNumber.message">{{ userInfo.authNumber.message }}</ul>
     </div>
-    <div v-for="(agreement, i) in agreements" :key="i">
+    <div v-for="(agreement, i) in agreements.arrayAgreements" :key="i">
       <div>
         <input
           :id="agreement.value"
-          v-model="checked"
+          v-model="agreements.arrayAgreementsChecked"
           class="user_creation_form_checkbox"
           type="checkbox"
           :value="agreement.value"
@@ -128,7 +128,7 @@
         <div>약관 전체 동의</div>
       </div>
     </div>
-    <div v-if="agreementMessage">{{ agreementMessage }}</div>
+    <ul v-if="agreements.agreementMessage">{{ agreements.agreementMessage }}</ul>
 
     <div>
       <a
@@ -155,12 +155,14 @@ export default {
     },
     passwordConfirm: '',
     isPhoneNumbAuth: false,
-    agreements: [
-      {text: '이용약관(필수)', value: 'terms', path: '/agreement/terms'},
-      {text: '개인정보수집이용동의(필수)', value: 'privacy', path: '/agreement/privacy'},
-    ],
-    arrayAgreementsChecked: [],
-    agreementMessage: '',
+    agreements: {
+      arrayAgreements: [
+        {text: '이용약관(필수)', value: 'terms', path: '/agreement/terms'},
+        {text: '개인정보수집이용동의(필수)', value: 'privacy', path: '/agreement/privacy'},
+      ],
+      arrayAgreementsChecked: [],
+      agreementMessage: '',
+    },
     registAllow: true,
   }),
 //   async fetch({ store }) {
@@ -169,16 +171,17 @@ export default {
   computed: {
     allCheck: {
       get() {
-        return this.agreements ? this.arrayAgreementsChecked.length === this.agreements.length : false;
+        return this.agreements.arrayAgreements ?
+          this.agreements.arrayAgreementsChecked.length === this.agreements.arrayAgreements.length : false;
       },
-      set(value) {
+      set(v) {
         const arrayAgreementsChecked = [];
-        if (value) {
-          this.agreements.forEach((agreement) => {
+        if (v) {
+          this.agreements.arrayAgreements.forEach((agreement) => {
             arrayAgreementsChecked.push(agreement.value);
           });
         }
-        this.arrayAgreementsChecked = arrayAgreementsChecked;
+        this.agreements.arrayAgreementsChecked = arrayAgreementsChecked;
       },
     },
     ...mapGetters({
@@ -266,32 +269,34 @@ export default {
         }
       });
       if (!that.isPhoneNumbAuth) {
-        this.popupAlert('전화번호 인증을 해주세요.');
+        that.$popup.showAlertPopup('전화번호 인증을 해주세요.');
         that.registAllow = false;
       }
       if (that.registAllow === true) {
-        if (that.arrayAgreementsChecked.includes('terms') && that.arrayAgreementsChecked.includes('privacy')) {
-          that.agreementMessage = '';
+        if (that.agreements.arrayAgreementsChecked.includes('terms') &&
+            that.agreements.arrayAgreementsChecked.includes('privacy')) {
+          that.agreements.agreementMessage = '';
           const userInfo = {};
           Object.keys(that.userInfo).forEach((key) => {
             userInfo[key] = that.userInfo[key].value;
           });
-          await this.$store.dispatch(`${prefix}/createUser`, userInfo);
+          await that.$store.dispatch(`${prefix}/createUser`, userInfo);
           if (that.result.result === 'success') {
             new that.$popup.UserRegistCompleted({
               propsData: {
-                signUpPoint: that.result.data.sign_up_point ? that.result.data.sign_up_point : 0,
+                // TODO: BE 확인해서 nickName 어떻게 넘어오는지 확인.
+                // nickName: that.result.data.sign_up_point ? that.result.data.sign_up_point : '',
                 okCallback(params) {
                   params.$destroy();
                 },
               },
             }).$mount();
-            that.$router.replace({name: 'main'});
+            that.$router.replace({name: ''});
           } else {
-            that.popupAlert(that.result.message);
+            that.$popup.showAlertPopup(that.result.message);
           }
         } else {
-          that.agreementMessage = '필수 약관에 동의해주세요.';
+          that.agreements.agreementMessage = '필수 약관에 동의해주세요.';
         }
       }
     },
@@ -307,9 +312,9 @@ export default {
       const data = {phone: this.userInfo.phone.value};
       const result = await this.$store.dispatch(`${prefix}/sendSMSAuth`, data);
       if (result.result === 'success') {
-        this.popupAlert('인증번호가 발송되었습니다. 입력창에 3분이내로 입력해주세요.');
+        this.$popup.showAlertPopup('인증번호가 발송되었습니다. 입력창에 3분이내로 입력해주세요.');
       } else {
-        this.popupAlert(result.message);
+        this.$popup.showAlertPopup(result.message);
       }
     },
     /**
@@ -335,23 +340,15 @@ export default {
       const result = await this.$store.dispatch(`${prefix}/verifySMSAuth`, data);
       // TODO : 스토어 심사를 위한 임시 인증 코드. 심사 후 삭제
       if (this.userInfo.authNumber.value === 'ODOQ73') {
-        this.popupAlert('인증 되었습니다');
+        this.$popup.showAlertPopup('인증 되었습니다');
         this.isPhoneNumbAuth = true;
       } else if (result.result === 'success') {
-        this.popupAlert('인증 되었습니다');
+        this.$popup.showAlertPopup('인증 되었습니다');
         this.isPhoneNumbAuth = true;
       } else {
-        this.popupAlert(result.message);
+        this.$popup.showAlertPopup(result.message);
         this.isPhoneNumbAuth = false;
       }
-    },
-    popupAlert(message) {
-      new Popup.Alert({
-        propsData: {
-          title: message,
-          okCallback: (params) => params.$destroy(),
-        },
-      }).$mount();
     },
   },
 };
