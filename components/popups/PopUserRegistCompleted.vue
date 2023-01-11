@@ -9,7 +9,7 @@
             <div class="popup_title text-center">
               <p>가입을 축하합니다!</p>
               <p>ODOQER가 되셨습니다.</p>
-              <p v-if="signUpPoint && signUpPoint !== ''"><span>{{ nickName }}님</span></p>
+              <p v-if="name && name !== ''"><span>{{ name }}님</span></p>
             </div>
           </div>
 
@@ -29,7 +29,7 @@ import PopupMixin from './popupMixin';
 export default Vue.extend({
   mixins: [PopupMixin],
   props: {
-    nickName: {
+    name: {
       type: String,
       default: '',
     },
