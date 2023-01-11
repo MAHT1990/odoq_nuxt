@@ -48,17 +48,17 @@
       <ul v-if="userInfo.password.message2">{{ userInfo.password.message2 }}</ul>
     </div>
     <div>
-      <p class="title">{{ userInfo.nickName.text }}</p>
+      <p class="title">{{ userInfo.name.text }}</p>
       <input
-        id="nickName"
-        v-model="userInfo.nickName.value"
+        id="name"
+        v-model="userInfo.name.value"
         class="user_creation_form_container_input"
         type="text"
         placeholder="닉네임"
-        name="nickName"
+        name="name"
         @input="validationCheck"
       >
-      <ul v-if="userInfo.nickName.message">{{ userInfo.nickName.message }}</ul>
+      <ul v-if="userInfo.name.message">{{ userInfo.name.message }}</ul>
     </div>
     <div>
       <p class="title">{{ userInfo.phone.text }}</p>
@@ -149,7 +149,7 @@ export default {
     userInfo: {
       email: {text: '이메일', value: '', message: ''},
       password: {text: '비밀번호', value: '', message: ''},
-      nickName: {text: '닉네임', value: '', message: ''},
+      name: {text: '닉네임', value: '', message: ''},
       phone: {text: '전화 번호', value: '', message: ''},
       authNumber: {text: '인증번호', value: '', message: ''},
     },
@@ -220,11 +220,11 @@ export default {
         if (id === 'password') {
           that[id] = that.userInfo.password.value;
         }
-        const isNum = that[id] ? that[id].search(/[0-9]/) > -1 : false;
-        const isEng = that[id] ? that[id].search(/[a-zA-Z]/) > -1 : false;
-        const isSpe = that[id] ? that[id].search(/[`~!@#$%^&*|₩₩₩'₩";:₩/?]/i) > -1 : false;
-        const isWhi = that[id] ? that[id].search(/\s/) > -1 : false;
-        if (id === 'password' && (!isNum || !isEng || !isSpe || !isWhi)) {
+        const isNum = that[id] ? that[id].search(/[0-9]/g) > -1 : false;
+        const isEng = that[id] ? that[id].search(/[a-zA-Z]/g) > -1 : false;
+        const isSpe = that[id] ? that[id].search(/[`~!@#$%^&*|₩₩₩'₩";:₩/?]/gi) > -1 : false;
+        const isWhi = that[id] ? that[id].search(/\s/g) > -1 : false;
+        if (id === 'password' && (!isNum || !isEng || !isSpe || isWhi)) {
           that.userInfo.password.message = '공백을 제외한 비밀번호를 영문, 숫자, 특수문자를 조합하여 8자 이상으로 입력해주세요.';
         } else if (that.userInfo.password.value !== that[id] && id === 'passwordConfirm') {
           that.userInfo.password.message2 = '비밀번호가 일치하지 않습니다.';
@@ -233,7 +233,7 @@ export default {
           that.userInfo.password.message2 = '';
         }
       }
-      if (id === 'nickName') {
+      if (id === 'name') {
         if (!that.userInfo[id].value) that.userInfo[id].message = '닉네임을 입력해주세요.';
         else that.userInfo[id].message = '';
       }
@@ -282,16 +282,17 @@ export default {
           });
           await that.$store.dispatch(`${prefix}/createUser`, userInfo);
           if (that.result.result === 'success') {
-            new that.$popup.UserRegistCompleted({
+            new that.$popup.PopUserRegistCompleted({
               propsData: {
-                // TODO: BE 확인해서 nickName 어떻게 넘어오는지 확인.
-                // nickName: that.result.data.sign_up_point ? that.result.data.sign_up_point : '',
+                // TODO: BE 확인해서 name 어떻게 넘어오는지 확인.
+                // name: that.userInfo.name.value,
+                name: that.userInfo.name.value,
                 okCallback(params) {
                   params.$destroy();
+                  that.$router.replace({path: '/'});
                 },
               },
             }).$mount();
-            that.$router.replace({name: ''});
           } else {
             that.$popup.showAlertPopup(that.result.message);
           }
