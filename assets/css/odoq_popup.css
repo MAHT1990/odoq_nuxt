@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Abril+Fatface&family=Fjalla+One&family=Nanum+Gothic&display=swap');
+
+.popup_mask {
+  position: fixed;
+  z-index: 1;
+  left:0px; top: 0px;
+  width:100%; height:100%;
+  background-color: rgba(196, 196, 196, 0.5);
+}
+
+.popup_wrapper {
+  position: absolute;
+  left:0px; top:0px;
+  width:100%; height:100%;
+}
+
+.popup_container {
+  position : absolute;
+  left : 50%; top : 50%;
+  transform: translate(-50%, -50%);
+  max-width:420px;
+  width : 80%;
+  /*height:80%;*/
+  background-color : white;
+  padding : 15px;
+
+  display : flex;
+  flex-direction : column;
+  justify-content : center;
+
+  border-radius: 10px;
+}
+
+.popup_wrap {
+  width: 100%;
+  height: 100%;
+}
+
+.main_title {
+  font-size: 2rem;
+}
+
+.popup_title {
+  font-size: 2rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.popup_btn_wrap {
+  height: 50px;
+  display: flex;
+}
+
+.popup_btn_wrap button {
+  font-size: 1rem;
+}
+
+
+.plan_popup {
+  position : fixed;
+  z-index: 1;
+  left:0px; top : 0px;
+  width:100%; height:100%;
+  background-color : rgba(196, 196, 196, 0.5);
+  display : none;
+}
+
+.plan_popup_contents {
+  position : absolute;
+  left : 50%; top : 50%;
+  transform: translate(-50%, -50%);
+  max-width:420px;
+  width : 80%;
+  height:80%;
+  background-color : white;
+  padding : 15px;
+
+  display : flex;
+  flex-direction : column;
+  justify-content : center;
+
+  border-radius: 10px;
+}
+
+.plan_popup_contents_header_verticalline{
+  flex : 1;
+}
+.plan_popup_contents_header {
+  font-size : 40px;
+  /* padding : 15px; */
+  font-family: 'Abril Fatface', cursive;
+}
+
+.plan_popup_contents_verticalline{
+  height : 3px;
+  margin : 5px 0;
+  background-color: black;
+}
+
+.plan_popup_contents_img_box{
+  overflow : auto;
+  width : 100%;
+  flex : 6;
+}
+
+.plan_popup_contents_img {
+  width : 100%;
+}
+
+.sms_popup {
+  position : fixed;
+  z-index: 1;
+  left:0px; top : 0px;
+  width:100%; height:100%;
+  background-color : rgba(196, 196, 196, 0.5);
+  display : none;
+}
+
+.sms_popup_background {
+  width : 100%;
+  height : 100%;
+}
+.sms_popup_contents {
+  position : absolute;
+  left : 50%; top : 50%;
+  transform: translate(-50%, -50%);
+  max-width:300px;
+  width : 40%;
+  /* height:20%; */
+  background-color : white;
+  padding : 15px 20px 15px 20px;
+
+  display : flex;
+  flex-direction : column;
+  justify-content : center;
+
+  border-radius: 10px;
+}
+
+@media screen and (max-width : 650px) {
+  .sms_popup_contents {
+    width : 80%;
+  }
+}
+
+.sms_popup_contents_header_box {
+  /* height : 75%; */
+  padding : 0.3em;
+}
+
+.sms_popup_contents_header_img {
+  width : 50px;
+  height : 50px;
+  float : left;
+}
+
+.sms_popup_contents_header_img img {
+  height : 100%;
+  /* margin : auto; */
+}
+
+.sms_popup_contents_header_text1 {
+  float : left;
+  height : 25px;
+  width : 60%;
+  font-size: 22px;
+  line-height : 25px;
+  color : rgba(0,81,200,255);
+}
+
+.sms_popup_contents_header_text2 {
+  float : left;
+  height : 25px;
+  width : 60%;
+  font-size: 10px;
+  line-height : 25px;
+  color : grey;
+}
+
+.sms_popup_contents_input_box {
+  /* height : 25%; */
+  padding : 0.3em;
+}
+
+.sms_popup_contents_input_box > button:first-child {
+  float : right;
+  box-sizing: border-box;
+  height : 100%;
+  border : 0;
+  padding : 0;
+  background-color : rgb(175, 175, 175);
+
+  font-size : 12px;
+  height : 2.0em;
+  width : 3.5em;
+  color : white;
+  font-weight: normal;
+
+  margin : 0 0.5em;
+}
+
+.sms_popup_contents_input_box > button:nth-child(2) {
+  float : right;
+  box-sizing: border-box;
+  /* height : 100%;  */
+  border : 0;
+  padding : 0;
+  background-color : rgba(0,81,200,255);
+
+  font-size : 12px;
+  height : 2.0em;
+  width : 3.5em;
+  color : white;
+  font-weight: normal;
+
+  margin : 0 0 0 0.5em;
+}
+
+.sms_popup_contents_input_box > button:hover {
+  color : rgb(223, 223, 223);
+}
+
+.sms_popup_contents_input_box > input {
+  display : block;
+  background-image: url(https://cdn4.iconfinder.com/data/icons/ui-office/512/User_Interface-75-256.png);
+  background-size: contain;
+  background-position: 3px center;
+  background-repeat: no-repeat;
+  text-indent: 5px;
+
+  box-sizing: border-box;
+  font-size : 12px;
+  border : 0;
+  border-bottom : 1px solid rgba(0,81,200,255);
+  padding : 0;
+  height : 2em;
+  width : 55%;
+}
+
+.sms_popup_contents_input_box > input:focus {
+  background-image: none;
+  border:0px;
+}
+
+/* .sms_popup_contents_input_box > input:focus-visible {
+    outline : 0;
+} */
