@@ -7,8 +7,15 @@
 </template>
 
 <script>
+import UserAuthMixin from '@/mixins/UserAuthMixin';
 
 export default {
   name: 'IndexPage',
+  mixins: [UserAuthMixin],
+  methods: {
+    login() {
+      this.isLogin = true;
+    }
+  },
 }
 </script>
