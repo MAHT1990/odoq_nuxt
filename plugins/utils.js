@@ -33,15 +33,29 @@ const getUserId = (cookie) => {
   return userId;
 };
 
-const getStoreId = (cookie) => {
-  let storeId;
+const getUserIdByJwt = (jwt) => {
+  let userId;
+  const info = JSON.parse(atob(jwt.split('.')[1]));
+  const grade = parseInt(info.info.split('_')[1], 10);
+  if (grade === 0) userId = info.info.split('_')[0];
+  return userId;
+}
+
+const getUserName = (cookie) => {
+  let userName;
   const jwt = getCookie(cookie, 'jwt');
   if (jwt) {
     const info = JSON.parse(atob(jwt.split('.')[1]));
-    storeId = info.info.split('_')[2];
+    userName = info.info.split('_')[2];
   }
-  return storeId;
+  return userName;
 };
+
+const getUserNameByJwt = (jwt) => {
+  const info = JSON.parse(atob(jwt.split('.')[1]));
+  const userName = info.info.split('_')[2];
+  return userName;
+}
 
 const getUserGrade = (cookie) => {
   let userGrade;
@@ -53,12 +67,21 @@ const getUserGrade = (cookie) => {
   return userGrade;
 };
 
+const getUserGradeByJwt = (jwt) => {
+  const info = JSON.parse(atob(jwt.split('.')[1]));
+  const userGrade = info.info.split('_')[1];
+  return userGrade
+}
+
 export default {
   atob,
   addCookie,
   getCookie,
   removeCookie,
   getUserId,
-  getStoreId,
+  getUserIdByJwt,
+  getUserName,
+  getUserNameByJwt,
   getUserGrade,
+  getUserGradeByJwt,
 };
