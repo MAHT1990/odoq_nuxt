@@ -1,8 +1,8 @@
 <template>
   <client-only>
-    <div class="popup-mask ">
-      <div class="popup-wrapper">
-        <div class="popup-container">
+    <div class="popup_mask" @click="ok">
+      <div class="popup_wrapper">
+        <div class="popup_container">
 
           <div class="popup_wrap">
             <div class="main_title text-center">회원가입 완료</div>
@@ -12,10 +12,9 @@
               <p v-if="name && name !== ''"><span>{{ name }}님</span></p>
             </div>
           </div>
-
-        </div>
-        <div class="popup_btn_wrap">
-          <button @click="ok">확인</button>
+          <div class="popup_btn_wrap">
+            <button @click="ok">확인</button>
+          </div>
         </div>
       </div>
     </div>
