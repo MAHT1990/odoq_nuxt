@@ -1,8 +1,8 @@
 <template>
   <client-only>
-    <div class="popup-mask">
-      <div class="popup-wrapper">
-        <div class="popup-container">
+    <div class="popup_mask">
+      <div class="popup_wrapper">
+        <div class="popup_container">
           <div class="popup_wrap">
             <div class="popup_title text-center">재가입은 불가 합니다.</br> 정말 회원 탈퇴하시겠습니까?</div>
           </div>
