@@ -1,17 +1,15 @@
 <template>
   <client-only>
-    <div class="popup-mask">
-      <div class="popup-wrapper">
-        <div class="popup-container">
+    <div class="popup_mask" @click="ok">
+      <div class="popup_wrapper">
+        <div class="popup_container">
 
           <div class="popup_wrap">
             <div class="popup_title text-center" :style="title.indexOf('\n') > -1 ? 'white-space: pre;' : ''">{{ title }}</div>
           </div>
-
-        </div>
-
-        <div class="popup_btn_wrap">
-          <button @click="ok">확인</button>
+          <div class="popup_btn_wrap">
+            <button @click="ok">확인</button>
+          </div>
         </div>
       </div>
     </div>
