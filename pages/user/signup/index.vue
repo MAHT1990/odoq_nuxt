@@ -142,8 +142,6 @@
 import {mapGetters} from 'vuex';
 import Popup from '@/components/popups/popup';
 
-const prefix = 'user/signup';
-
 export default {
   data: () => ({
     userInfo: {
@@ -186,7 +184,7 @@ export default {
     },
     ...mapGetters({
       agreementObject: 'common/agreementObject',
-      result: `${prefix}/result`,
+      createResult: `user/userAuthStore/createResult`,
     }),
   },
   watch: {
@@ -280,8 +278,8 @@ export default {
           Object.keys(that.userInfo).forEach((key) => {
             userInfo[key] = that.userInfo[key].value;
           });
-          await that.$store.dispatch(`${prefix}/createUser`, userInfo);
-          if (that.result.result === 'success') {
+          await that.$store.dispatch('user/userAuthStore/createUser', userInfo);
+          if (that.createResult.result === 'success') {
             new that.$popup.PopUserRegistCompleted({
               propsData: {
                 // TODO: BE 확인해서 name 어떻게 넘어오는지 확인.
@@ -294,7 +292,7 @@ export default {
               },
             }).$mount();
           } else {
-            that.$popup.showAlertPopup(that.result.message);
+            that.$popup.showAlertPopup(that.createResult.message);
           }
         } else {
           that.agreements.agreementMessage = '필수 약관에 동의해주세요.';
@@ -311,7 +309,7 @@ export default {
       }
       // send
       const data = {phone: this.userInfo.phone.value};
-      const result = await this.$store.dispatch(`${prefix}/sendSMSAuth`, data);
+      const result = await this.$store.dispatch('user/userAuthStore/sendSMSAuth', data);
       if (result.result === 'success') {
         this.$popup.showAlertPopup('인증번호가 발송되었습니다. 입력창에 3분이내로 입력해주세요.');
       } else {
@@ -338,7 +336,7 @@ export default {
 
       // send
       const data = {phone: this.userInfo.phone.value, code: this.userInfo.authNumber.value};
-      const result = await this.$store.dispatch(`${prefix}/verifySMSAuth`, data);
+      const result = await this.$store.dispatch('user/userAuthStore/verifySMSAuth', data);
       // TODO : 스토어 심사를 위한 임시 인증 코드. 심사 후 삭제
       if (this.userInfo.authNumber.value === 'ODOQ73') {
         this.$popup.showAlertPopup('인증 되었습니다');
