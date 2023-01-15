@@ -1,8 +1,8 @@
 <template>
   <client-only>
-    <div class="popup-mask">
-      <div class="popup-wrapper">
-        <div class="popup-container">
+    <div class="popup_mask">
+      <div class="popup_wrapper">
+        <div class="popup_container">
 
           <div class="popup_wrap">
             <div class="popup_title text-center">{{title}}</div>
