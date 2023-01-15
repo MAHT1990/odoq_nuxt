@@ -1,72 +1,84 @@
 <template>
-    <div class="login_box">
+    <div class="login_box_container">
+      <div v-if="isLogin" class="login_box">
+        <p><span>{{loginResult.userName}}님</span></p>
+        <p>반갑습니다.</p>
+        <div class="login_box_buttons">
+          <button @click="logout">Log Out</button>
+          <button @click="linkToSignUp">MyPage</button>
+        </div>
+      </div>
+      <div v-else class="login_box">
         <form action="">
             <input
-            v-model.lazy="user.email"
+            v-model.lazy="input.email"
             type="text"
             placeholder="ODOQ ID"
             required
-            @keyup.enter="testLinkMethod"
+            @keyup.enter="userLogin"
             >
             <input
-            v-model.lazy="user.password"
+            v-model.lazy="input.password"
             type="password"
             placeholder="PASSWORD"
             required
-            @keyup.enter="testLinkMethod"
+            @keyup.enter="userLogin"
             >
         </form>
         <div class="login_box_buttons">
-        <button @click="linkToSignUp">Log In</button>
-        <button @click="linkToSignUp">Sign Up</button>
+          <button @click="userLogin">Log In</button>
+          <button @click="linkToSignUp">Sign Up</button>
+        </div>
+      </div>
     </div>
-</div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import Utils from '@/plugins/utils';
 
-const EMAIL = 'email';
-const JWT = 'jwt';
-
 export default {
     data () {
         return {
-            user: {
+            input: {
                 email: '',
                 password: '',
             },
             message: {
                 login: '',
+            },
+            user: {
+                name: '',
             }
         }
     },
     computed: {
         ...mapGetters({
-            result: 'result',
+            loginResult: 'user/userAuthStore/loginResult',
+            isLogin: 'user/userAuthStore/isLogin',
         })
     },
     methods: {
         async userLogin() {
             const that = this;
-            const jwt = Utils.getCookie(document.cookie, JWT);
+            const jwt = Utils.getCookie(document.cookie, 'jwt');
             const jwtGrade = jwt ? JSON.parse(atob(jwt.split('.')[1])).info.split('_')[1] : '';
             if (jwtGrade === '0') {
-                that.$router.replace('/');
+                that.$router.go(0);
             } else {
                 that.message.login = '';
-                if (!that.user.email) that.message.login= '아이디';
-                if (!that.user.password) {
+                if (!that.input.email) that.message.login= '아이디';
+                if (!that.input.password) {
                     if (that.message.login) that.message.login += ' / ';
                     that.message.login += '비밀번호';
                 }
                 if (that.message.login === '') {
-                    await that.$store.dispatch('user/login/getUserInfo', that.user);
-                    if (that.result.result === 'success') {
-                        if (that.rememberID === true) Utils.addCookie(EMAIL, that.user.email, 99999999999)
-                        that.$router.replace('/');
+                    await that.$store.dispatch('user/userAuthStore/getUserInfo', that.input);
+                    if (that.loginResult.result === 'success') {
+                        that.user.name = Utils.getUserName(document.cookie);
+                        console.log(that.user.name);
                     } else {
+                        Utils.removeCookie('jwt');
                         that.message.login = that.result.message;
                     }
                 } else {
@@ -75,8 +87,12 @@ export default {
             }
         },
         linkToSignUp() {
-            this.$store.dispatch('user/login/linkTestAction')
             this.$router.push('/user/signup/')
+        },
+        logout() {
+          Utils.removeCookie('jwt');
+          Utils.removeCookie('lgn_tgt');
+          this.$store.commit('user/userAuthStore/checkLogin', false);
         }
     }
 }
