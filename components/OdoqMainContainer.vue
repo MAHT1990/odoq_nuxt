@@ -1,26 +1,35 @@
 <template>
   <div class="main_container">
-    <OdoqQuestionContainer></OdoqQuestionContainer>
-    <OdoqWeekendTimerContainer></OdoqWeekendTimerContainer>
+    <OdoqWeekendTimerContainer
+      v-if="weekday === 0 || weekday === 6"
+    ></OdoqWeekendTimerContainer>
+    <OdoqQuestionContainer
+      v-else
+    ></OdoqQuestionContainer>
     <div class="verticalLine2"></div>
-    <div>오오오 로그인했너</div>
-    <OdoqAnswerContainer></OdoqAnswerContainer>
+    <div>{{ weekday }}</div>
+    <OdoqAnswerContainer
+      v-if="isLogin"
+      :question-answer="sampleAnswer"
+    ></OdoqAnswerContainer>
   </div>
 </template>
 
 <script>
 import {mapGetters} from "vuex";
+
 export default {
-    data () {
-        return {
-            weekday: 1,
-            onOffSeason: true,
-        }
-    },
-    computed: {
-      ...mapGetters({
-        isLogin: 'user/userAuthStore/isLogin'
-      })
+  data() {
+    return {
+      weekday: new Date().getDay(),
+      onOffSeason: true,
+      sampleAnswer: 555,
     }
+  },
+  computed: {
+    ...mapGetters({
+      isLogin: 'user/userAuthStore/isLogin'
+    })
+  }
 }
 </script>
