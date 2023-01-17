@@ -19,6 +19,12 @@ export default {
             season: 1,
             code: 222,
         }
+    },
+    props: {
+      questionImage: {
+        type: String,
+        default: '',
+      },
     }
 }
 </script>
