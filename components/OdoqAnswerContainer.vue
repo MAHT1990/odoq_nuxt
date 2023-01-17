@@ -10,11 +10,11 @@
                 </button>
             </div>
             <div class="answer_box">
-                <input 
-                id="answer_input" 
-                v-model="answerValue"
-                type="search" 
-                @keydown.enter="answerPost" 
+                <input
+                id="answer_input"
+                v-model="inputAnswer"
+                type="text"
+                @keydown.enter="answerPost"
                 @input="hideIcon">
             </div>
         </div>
@@ -25,12 +25,19 @@
 export default {
     data () {
         return {
-            answerValue : '',
+            inputAnswer : null,
         }
+    },
+    props: {
+      questionAnswer: Number,
     },
     methods: {
         answerPost: function() {
-            alert('answer function would be added')
+          if(Number(this.inputAnswer) === this.questionAnswer) {
+            alert('정답!, Popup이 뜰 거임.');
+          } else {
+            alert('틀렸을 때, Popup이 뜰 거임.');
+          }
         },
         hideIcon: function(event) {
             const thisDom = event.target;
