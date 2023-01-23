@@ -12,6 +12,7 @@
       v-if="isLogin"
       :question-answer="sampleAnswer"
     ></OdoqAnswerContainer>
+    <a href="question.img"></a>
   </div>
 </template>
 
@@ -28,8 +29,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      isLogin: 'user/userAuthStore/isLogin'
+      isLogin: 'user/userAuthStore/isLogin',
+      question: 'question/questionStore/question',
     })
+  },
+  async asyncData({ store }) {
+    await store.dispatch('question/questionStore/getQuestion');
   }
 }
 </script>
