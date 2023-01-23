@@ -11,8 +11,7 @@ const HEADER_JWT_TOKEN_NON_MEMBER = 'X-JWTNONMEMBER';
 
 export default function axios({ $axios }) {
   $axios.interceptors.request.use(async (config) => {
-    config.baseURL = process.env.BASE_URL;
-    console.log(process.env.BASE_URL);
+    config.baseURL = process.env.BASE_API_URL;
     const isClient = typeof document !== 'undefined';
     if (config.url === CSRF_URL) return config;
     let csrf = Utils.getCookie(config.headers.common.cookie, KEY_CSRF);
