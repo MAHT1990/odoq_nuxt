@@ -8,11 +8,6 @@ import Utils from '@/plugins/utils';
  */
 
 export default {
-  data: () => ({
-    userId: null,
-    userGrade: null,
-    isNormalUser: null,
-  }),
   /**
    * request에서 JWT를 확인하여 로그인 상태를 확인한다.
    * 회원가입후 자동로그인의 경우, req.headers를 얻을 수 없다.
