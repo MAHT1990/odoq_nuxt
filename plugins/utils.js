@@ -73,6 +73,12 @@ const getUserGradeByJwt = (jwt) => {
   return userGrade
 }
 
+const getImgUrl = (imgUrlWithoutDomain) => {
+  return process.env.BASE_URL + imgUrlWithoutDomain
+}
+
+
+
 export default {
   atob,
   addCookie,
@@ -84,4 +90,5 @@ export default {
   getUserNameByJwt,
   getUserGrade,
   getUserGradeByJwt,
+  getImgUrl,
 };
