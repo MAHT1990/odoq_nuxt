@@ -5,6 +5,8 @@
     ></OdoqWeekendTimerContainer>
     <OdoqQuestionContainer
       v-else
+      :question="question"
+      @nextQuestionLoadEvent="loadNext"
     ></OdoqQuestionContainer>
     <div class="verticalLine2"></div>
     <div>{{ weekday }}</div>
@@ -29,7 +31,13 @@ export default {
   computed: {
     ...mapGetters({
       isLogin: 'user/userAuthStore/isLogin',
-    })
+      question: 'question/questionStore/question',
+    }),
   },
+  methods: {
+    async loadNext() {
+      await this.$store.dispatch('question/questionStore/getQuestion');
+    }
+  }
 }
 </script>
