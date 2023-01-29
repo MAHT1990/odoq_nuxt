@@ -1,8 +1,8 @@
 <template>
   <div id="index">
-    <OdoqHeader></OdoqHeader>
+    <OdoqHeader/>
     <div class="verticalLine1"></div>
-    <OdoqMainContainer></OdoqMainContainer>
+    <OdoqMainContainer/>
   </div>
 </template>
 
@@ -14,6 +14,7 @@ export default {
   async asyncData({ store, req }) {
     // 문제 받아오기
     await store.dispatch('question/questionStore/getQuestion');
+    await store.dispatch('post/postStore.js/getPost');
 
     // 로그인 CHECK.
     try {
