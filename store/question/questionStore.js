@@ -6,7 +6,7 @@ const state = () => ({
 
 const actions = {
   async getQuestion({ commit }) {
-    const res = await this.$axios.get('question')
+    const res = await this.$axios.get('question');
     commit('setQuestion', res.data);
   },
 }
