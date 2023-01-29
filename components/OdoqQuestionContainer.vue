@@ -28,11 +28,14 @@ export default {
   },
   computed: {
     timerFormat() {
-      const hour = parseInt(this.secondRemain / 3600);
-      const min = parseInt((this.secondRemain % 3600) / 60);
-      const sec = parseInt(this.secondRemain % 60);
+      if (typeof this.secondRemain === 'number'){
+        const hour = parseInt(this.secondRemain / 3600);
+        const min = parseInt((this.secondRemain % 3600) / 60);
+        const sec = parseInt(this.secondRemain % 60);
 
-      return `${this.timerFormatter(hour)}:${this.timerFormatter(min)}:${this.timerFormatter(sec)}`;
+        return `${this.timerFormatter(hour)}:${this.timerFormatter(min)}:${this.timerFormatter(sec)}`;
+      }
+      return this.secondRemain
     }
   },
   watch: {
