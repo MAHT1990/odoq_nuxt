@@ -381,7 +381,7 @@ header{
 }
 
 
-    .comment_input_box form textarea {
+    .comment_input_box textarea {
         display : block;
         box-sizing : border-box;
         width : 100%;
