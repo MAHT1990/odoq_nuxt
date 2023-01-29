@@ -12,8 +12,9 @@
     <div>{{ weekday }}</div>
     <OdoqAnswerContainer
       v-if="isLogin"
-      :question-answer="sampleAnswer"
+      :question-answer="question.answer"
     ></OdoqAnswerContainer>
+    <OdoqPostContainer/>
   </div>
 </template>
 
@@ -25,7 +26,6 @@ export default {
     return {
       weekday: new Date().getDay(),
       onOffSeason: true,
-      sampleAnswer: 555,
     }
   },
   computed: {
