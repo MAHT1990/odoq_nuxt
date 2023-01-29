@@ -23,17 +23,17 @@
 
 <script>
 export default {
-    data () {
+  props: {
+    questionAnswer: String,
+  },
+  data () {
         return {
             inputAnswer : null,
         }
     },
-    props: {
-      questionAnswer: Number,
-    },
     methods: {
         answerPost: function() {
-          if(Number(this.inputAnswer) === this.questionAnswer) {
+          if(this.inputAnswer === this.questionAnswer) {
             alert('정답!, Popup이 뜰 거임.');
           } else {
             alert('틀렸을 때, Popup이 뜰 거임.');
