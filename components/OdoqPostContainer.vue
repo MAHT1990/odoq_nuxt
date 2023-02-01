@@ -28,14 +28,22 @@
             placeholder="댓글을 입력해주세요."
             @focus="onBoxFocus"
             @blur="onBoxBlur"
+            @keyup.enter="createPost"
           />
           <div class="comment_input_box_charnumbs_and_button">
             <div class="comment_input_box_charnumbs"><span>{{contentLength}}</span></div>
-            <button class="comment_input_box_button" type="button" onclick="form_submit(this)"><i class="fa-solid fa-pen"></i></button>
+            <button
+              class="comment_input_box_button"
+              type="button"
+              @click="createPost"
+            >
+              <i class="fa-solid fa-pen"></i>
+            </button>
           </div>
         </div>
       </div>
     </div>
+    <OdoqPostListBox/>
   </div>
 </template>
 
@@ -53,8 +61,9 @@ export default {
   computed: {
     ...mapGetters({
       isLogin: 'user/userAuthStore/isLogin',
+      loginResult: 'user/userAuthStore/loginResult',
       question: 'question/questionStore/question',
-      post: 'post/postStore/post',
+      arrayPost: 'post/postStore/arrayPost',
     }),
     contentLength() {
       if (this.postInput.content.length > 0){
@@ -72,7 +81,18 @@ export default {
     },
     onBoxBlur(e) {
       e.target.rows = 1;
+    },
+    async createPost() {
+      await this.$store.dispatch(
+        'post/postStore/createPost',
+        {
+          user: this.loginResult.userId,
+          content: this.postInput.content,
+      });
     }
+  },
+  mounted() {
+    console.log('post is ', this.post);
   }
 }
 </script>
