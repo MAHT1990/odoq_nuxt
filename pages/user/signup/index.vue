@@ -107,12 +107,7 @@
         {{ agreement.text }}
       </div>
       <div>
-        <nuxt-link
-          class="gray_but_light"
-          :to="agreement.path"
-          target="_blank"
-        >자세히 보기
-        </nuxt-link>
+        <a @click="popTerms(agreement.title)">자세히 보기</a>
         <!--                <a class="gray_but_light" :id="i" v-on:click="popTerms(agreement.text, agreement.value)">자세히 보기</a>-->
       </div>
     </div>
@@ -140,7 +135,6 @@
 
 <script>
 import {mapGetters} from 'vuex';
-import Popup from '@/components/popups/popup';
 
 export default {
   data: () => ({
@@ -155,8 +149,16 @@ export default {
     isPhoneNumbAuth: false,
     agreements: {
       arrayAgreements: [
-        {text: '이용약관(필수)', value: 'terms', path: '/agreement/terms'},
-        {text: '개인정보수집이용동의(필수)', value: 'privacy', path: '/agreement/privacy'},
+        {
+          text: '이용약관(필수)',
+          value: 'terms',
+          title: '이용약관',
+        },
+        {
+          text: '개인정보수집이용동의(필수)',
+          value: 'privacy',
+          title: '개인정보 취급방침',
+        },
       ],
       arrayAgreementsChecked: [],
       agreementMessage: '',
@@ -183,7 +185,6 @@ export default {
       },
     },
     ...mapGetters({
-      agreementObject: 'common/agreementObject',
       createResult: `user/userAuthStore/createResult`,
     }),
   },
@@ -245,11 +246,10 @@ export default {
         else that.userInfo[id].message = '';
       }
     },
-    popTerms(agreementTypeStr, agreementType) {
-      new Popup.Terms({
+    popTerms(agreementTitle) {
+      new this.$popup.PopTerms({
         propsData: {
-          title: agreementTypeStr,
-          message: this.agreementObject(agreementType).content,
+          title: agreementTitle,
           okCallback: (params) => params.$destroy(),
         },
       }).$mount();
@@ -282,8 +282,6 @@ export default {
           if (that.createResult.result === 'success') {
             new that.$popup.PopUserRegistCompleted({
               propsData: {
-                // TODO: BE 확인해서 name 어떻게 넘어오는지 확인.
-                // name: that.userInfo.name.value,
                 name: that.userInfo.name.value,
                 okCallback(params) {
                   params.$destroy();
