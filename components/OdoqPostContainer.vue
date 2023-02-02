@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-    <OdoqPostListBox/>
+    <OdoqPostListContainer/>
   </div>
 </template>
 
@@ -83,16 +83,14 @@ export default {
       e.target.rows = 1;
     },
     async createPost() {
-      await this.$store.dispatch(
+      const res = await this.$store.dispatch(
         'post/postStore/createPost',
         {
           user: this.loginResult.userId,
           content: this.postInput.content,
       });
+      if (res) this.postInput.content = '';
     }
   },
-  mounted() {
-    console.log('post is ', this.post);
-  }
 }
 </script>
