@@ -35,7 +35,6 @@
 
 <script>
 import {mapGetters} from 'vuex';
-import Utils from '@/plugins/utils';
 
 export default {
   data() {
@@ -58,7 +57,7 @@ export default {
   methods: {
     async userLogin() {
       const that = this;
-      const jwt = Utils.getCookie(document.cookie, 'jwt');
+      const jwt = this.$utils.getCookie(document.cookie, 'jwt');
       const jwtGrade = jwt ? JSON.parse(atob(jwt.split('.')[1])).info.split('_')[1] : '';
       if (jwtGrade === '0') {
         that.$router.go(0);
@@ -72,7 +71,7 @@ export default {
         if (that.message.login === '') {
           await that.$store.dispatch('user/userAuthStore/getUserInfo', that.input);
           if (that.loginResult.result !== 'success') {
-            Utils.removeCookie('jwt');
+            this.$utils.removeCookie('jwt');
             that.message.login = that.result.message;
           }
         } else {
@@ -84,8 +83,8 @@ export default {
       this.$router.push('/user/signup/')
     },
     logout() {
-      Utils.removeCookie('jwt');
-      Utils.removeCookie('lgn_tgt');
+      this.$utils.removeCookie('jwt');
+      this.$utils.removeCookie('lgn_tgt');
       this.$store.commit('user/userAuthStore/checkLogin', false);
     }
   }
