@@ -15,6 +15,7 @@
       :question-answer="question.answer"
     ></OdoqAnswerContainer>
     <OdoqPostContainer/>
+    <OdoqFooter/>
   </div>
 </template>
 
