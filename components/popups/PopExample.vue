@@ -22,7 +22,7 @@
 
 <script>
 import Vue from 'vue';
-import PopupMixin from './popupMixin';
+import PopupMixin from '@/mixins/popupMixin';
 
 export default Vue.extend({
   mixins: [PopupMixin],
