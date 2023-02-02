@@ -3,9 +3,9 @@ const state = () => ({
 });
 
 const actions = {
-  async getPost({ commit }) {
+  async getPost({ commit }, objAboutPage) {
     console.log('getPost gogogo');
-    const res = await this.$axios.get('post/');
+    const res = await this.$axios.get('post/', objAboutPage);
     if (res.data.result === 'success') {
       commit('setArrayPost', res.data.data.posts);
       // console.dir(res.data.data.posts, {
@@ -17,7 +17,12 @@ const actions = {
   },
   async createPost({ commit }, postData) {
     console.log('createPost path is here');
-    await this.$axios.post('post/', postData)
+    const res = await this.$axios.post('post/', postData);
+    if (res.data.result === 'success') {
+      console.log(res.data.data.posts);
+      commit('setArrayPost', res.data.data.posts);
+    }
+    return 1;
   }
 };
 
