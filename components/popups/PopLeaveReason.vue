@@ -20,7 +20,7 @@
 <script>
 import Vue from 'vue';
 import { mapGetters } from 'vuex';
-import PopupMixin from './popupMixin';
+import PopupMixin from '@/mixins/popupMixin';
 
 export default Vue.extend({
   mixins: [PopupMixin],
