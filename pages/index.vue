@@ -14,7 +14,10 @@ export default {
   async asyncData({ store, req }) {
     // 문제 받아오기
     await store.dispatch('question/questionStore/getQuestion');
-    await store.dispatch('post/postStore/getPost');
+    await store.dispatch('post/postStore/getPost', {
+      pageNumber: 1,
+      pageSize: 7,
+    });
 
     // 로그인 CHECK.
     try {
@@ -24,5 +27,8 @@ export default {
     } catch (TypeError) {
     }
   },
+  mounted() {
+    console.log(this.$utils);
+  }
 }
 </script>
