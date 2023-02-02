@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 const atob = (str) => Buffer.from(str, 'base64').toString('binary');
 
 const addCookie = (key, value, expires) => {
@@ -77,9 +79,7 @@ const getImgUrl = (imgUrlWithoutDomain) => {
   return process.env.BASE_URL + imgUrlWithoutDomain
 }
 
-
-
-export default {
+const Utils = {
   atob,
   addCookie,
   getCookie,
@@ -92,3 +92,6 @@ export default {
   getUserGradeByJwt,
   getImgUrl,
 };
+
+export default Utils;
+Vue.prototype.$utils = Utils;
