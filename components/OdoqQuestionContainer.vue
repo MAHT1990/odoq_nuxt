@@ -6,7 +6,7 @@
     </div>
     <div class="question_box">
       <img v-if="hasImg" :src="question.img_url" alt="load Error">
-      <img v-else src="@/assets/img/testQuestion2.jpg" alt="load Error">
+<!--      <img v-else src="@/assets/img/testQuestion2.jpg" alt="load Error">-->
     </div>
   </div>
 </template>
