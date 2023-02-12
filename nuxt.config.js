@@ -14,7 +14,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
+      { rel: 'shortcut icon', href: '/Odoqfavicon.png' }
     ],
     script: [
       { src: 'https://kit.fontawesome.com/76f43dbc0d.js', crossOrigin: 'anonymous' }
