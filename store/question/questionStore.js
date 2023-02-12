@@ -20,9 +20,16 @@ const mutations = {
    * @param axiosResData - axios의 Response의 data
    */
   setQuestion(state, axiosResData) {
-    const resData = {
-      ...axiosResData.data,
-      img_url: Utils.getImgUrl(axiosResData.data.img_url)
+    console.log('axiosResData is ', axiosResData);
+    let resData;
+    if (Object.keys(axiosResData.data).length === 0) {
+      resData = {};
+    }
+    else {
+      resData = {
+        ...axiosResData.data,
+        img_url: Utils.getImgUrl(axiosResData.data.img_url)
+      }
     }
     state.question = resData;
   }
