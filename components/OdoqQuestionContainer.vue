@@ -6,7 +6,6 @@
     </div>
     <div class="question_box">
       <img v-if="hasImg" :src="questionValidated.img_url" alt="load Error">
-<!--      <img v-else src="@/assets/img/testQuestion2.jpg" alt="load Error">-->
     </div>
   </div>
 </template>
@@ -28,7 +27,7 @@ export default {
   },
   computed: {
     questionValidated() {
-      console.log('question origin is ', this.question);
+      // console.log('question origin is ', this.question);
       if(Object.keys(this.question).length === 0) {
         return {
           code: '현재 문항없음',
@@ -69,7 +68,7 @@ export default {
   },
   methods: {
     timerFormatter(num) {
-      return num < 10 ? "0" + num : num;
+      return num < 10 ? `0${num}` : num;
     },
     timerStarter() {
       if (this.question.second_remain > 0) {
