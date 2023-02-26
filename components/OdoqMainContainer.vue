@@ -2,6 +2,7 @@
   <div class="main_container">
     <OdoqWeekendTimerContainer
       v-if="weekday === 0 || weekday === 6"
+      @nextQuestionLoadEvent="loadNext"
     ></OdoqWeekendTimerContainer>
     <OdoqQuestionContainer
       v-else
