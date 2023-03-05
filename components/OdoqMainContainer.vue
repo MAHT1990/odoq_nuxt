@@ -38,6 +38,7 @@ export default {
   },
   methods: {
     async loadNext() {
+      this.weekday = new Date().getDay();
       await this.$store.dispatch('question/questionStore/getQuestion');
     }
   }
