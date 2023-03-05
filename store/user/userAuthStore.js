@@ -2,7 +2,7 @@ import Utils from '@/plugins/utils';
 
 const state = function () {
   return {
-    loginResult: {
+    userInfo: {
       userId: '',
       userName: '',
       userGrade: '',
@@ -62,9 +62,9 @@ const mutations = {
       Utils.addCookie('jwt', resData.data.token, 999999999999)
       Utils.removeCookie('lgn_tgt')
       Utils.removeCookie('jwtNonMember')
-      state.loginResult.userId = Utils.getUserIdByJwt(resData.data.token);
-      state.loginResult.userName = Utils.getUserNameByJwt(resData.data.token);
-      state.loginResult.userGrade = Utils.getUserGradeByJwt(resData.data.token);
+      state.userInfo.userId = parseInt(Utils.getUserIdByJwt(resData.data.token), 10);
+      state.userInfo.userName = Utils.getUserNameByJwt(resData.data.token);
+      state.userInfo.userGrade = parseInt(Utils.getUserGradeByJwt(resData.data.token), 10);
     }
     if (resData.result === 'error') Utils.removeCookie('csrf')
   },
@@ -74,13 +74,13 @@ const mutations = {
    * @param resData - getUserInfo 에 의한 응답 data
    */
   setUserInfo(state, resData) {
-    state.loginResult = resData;
+    state.userInfo = resData;
     if (resData.result === 'success') {
       Utils.addCookie('jwt', resData.data.token, 999999999999);
       state.isLogin = true;
-      state.loginResult.userId = Utils.getUserIdByJwt(resData.data.token);
-      state.loginResult.userName = Utils.getUserNameByJwt(resData.data.token);
-      state.loginResult.userGrade = Utils.getUserGradeByJwt(resData.data.token);
+      state.userInfo.userId = parseInt(Utils.getUserIdByJwt(resData.data.token), 10);
+      state.userInfo.userName = Utils.getUserNameByJwt(resData.data.token);
+      state.userInfo.userGrade = parseInt(Utils.getUserGradeByJwt(resData.data.token), 10);
     }
     if (resData.result === 'error') Utils.removeCookie('csrf');
   },
@@ -93,15 +93,15 @@ const mutations = {
    */
   checkLogin(state, {isLogin, cookie}) {
     state.isLogin = isLogin;
-    state.loginResult.userId = Utils.getUserId(cookie);
-    state.loginResult.userName = Utils.getUserName(cookie);
-    state.loginResult.userGrade = Utils.getUserGrade(cookie);
+    state.userInfo.userId = parseInt(Utils.getUserId(cookie), 10);
+    state.userInfo.userName = Utils.getUserName(cookie);
+    state.userInfo.userGrade = parseInt(Utils.getUserGrade(cookie), 10);
   },
 };
 
 const getters = {
   createResult: (state) => state.createResult,
-  loginResult: (state) => state.loginResult,
+  userInfo: (state) => state.userInfo,
   isLogin: (state) => state.isLogin,
 };
 
