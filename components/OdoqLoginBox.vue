@@ -1,7 +1,7 @@
 <template>
   <div class="login_box_container">
     <div v-if="isLogin" class="login_box">
-      <p><span>{{ loginResult.userName }}님</span></p>
+      <p><span>{{ userInfo.userName }}님</span></p>
       <p>반갑습니다.</p>
       <div class="login_box_buttons">
         <button @click="logout">Log Out</button>
@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      loginResult: 'user/userAuthStore/loginResult',
+      userInfo: 'user/userAuthStore/userInfo',
       isLogin: 'user/userAuthStore/isLogin',
     })
   },
@@ -70,7 +70,7 @@ export default {
         }
         if (that.message.login === '') {
           await that.$store.dispatch('user/userAuthStore/getUserInfo', that.input);
-          if (that.loginResult.result !== 'success') {
+          if (that.userInfo.result !== 'success') {
             this.$utils.removeCookie('jwt');
             that.message.login = that.result.message;
           }
