@@ -11,9 +11,10 @@
     <div class="comment_list_filter_vertical_line"></div>
     <div class="comment_list_box">
       <OdoqPostLine
-        v-for="post in arrayPost"
+        v-for="post in arrayPosts"
         :key="post.id"
         :post="post"
+        :user-info="userInfo"
       />
     </div>
     <div class="comment_list_navigator">
@@ -33,12 +34,19 @@
 <script>
 import {mapGetters} from 'vuex';
 export default {
+  props: {
+    filteringFlag: {
+      type: Number,
+      default: 1,
+    }
+  },
   computed: {
     ...mapGetters({
-      arrayPost: 'post/postStore/arrayPost',
+      arrayPosts: 'post/postStore/arrayPosts',
       totalPosts: 'post/postStore/totalPosts',
       currentPage: 'post/postStore/currentPage',
       totalPages: 'post/postStore/totalPages',
+      userInfo: 'user/userAuthStore/userInfo',
     })
   },
   methods: {
@@ -47,13 +55,13 @@ export default {
     },
     prevPage() {
       this.$store.dispatch('post/postStore/getPost', {
-        pageNumber: this.currentPage - 1,
+        pageNumber: this.currentPage === 1 ? this.currentPage : this.currentPage - 1,
         pageSize: 7,
       });
     },
     nextPage() {
       this.$store.dispatch('post/postStore/getPost', {
-        pageNumber: this.currentPage + 1,
+        pageNumber: this.currentPage === this.totalPages ? this.currentPage : this.currentPage + 1,
         pageSize: 7,
       });
     }
