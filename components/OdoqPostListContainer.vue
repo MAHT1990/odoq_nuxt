@@ -15,6 +15,7 @@
         :key="post.id"
         :post="post"
         :user-info="userInfo"
+        :is-login="isLogin"
       />
     </div>
     <div class="comment_list_navigator">
@@ -36,8 +37,8 @@ import {mapGetters} from 'vuex';
 export default {
   props: {
     filteringFlag: {
-      type: Number,
-      default: 1,
+      type: String,
+      default: 'all',
     }
   },
   computed: {
@@ -47,7 +48,18 @@ export default {
       currentPage: 'post/postStore/currentPage',
       totalPages: 'post/postStore/totalPages',
       userInfo: 'user/userAuthStore/userInfo',
+      isLogin: 'user/userAuthStore/isLogin',
     })
+  },
+  watch: {
+    async filteringFlag() {
+      await this.$store.dispatch('post/postStore/getPost', {
+        pageNumber: 1,
+        pageSize: 7,
+        filteringFlag: this.filteringFlag,
+        userId: this.userInfo.userId,
+      });
+    }
   },
   methods: {
     emptyClick() {
