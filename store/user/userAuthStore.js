@@ -87,15 +87,16 @@ const mutations = {
   /**
    * 어플을 다시 켰을 때, 자동 로그인 : JWT 세팅 돼있는지 확인 후,
    * state.isLogin, 유저 정보 state에 반영.
+   * 로그아웃시, isLogin: false, cookie: null 로 넘어옴.
    * @param state
    * @param isLogin - UserAuthMixin.js 에서 asyncData로 체크후, 넘겨줌.
    * @param cookie - UserAuthMixin.js 에서 asyncData로 체크후, 넘겨줌.
    */
   checkLogin(state, {isLogin, cookie}) {
     state.isLogin = isLogin;
-    state.userInfo.userId = parseInt(Utils.getUserId(cookie), 10);
-    state.userInfo.userName = Utils.getUserName(cookie);
-    state.userInfo.userGrade = parseInt(Utils.getUserGrade(cookie), 10);
+    state.userInfo.userId = cookie ? parseInt(Utils.getUserId(cookie), 10) : '';
+    state.userInfo.userName = cookie ? Utils.getUserName(cookie) : '';
+    state.userInfo.userGrade = cookie ? parseInt(Utils.getUserGrade(cookie), 10) : '';
   },
 };
 
