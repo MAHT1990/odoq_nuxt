@@ -4,12 +4,12 @@
       <div class="comment_container_header_today_and_my_comment">
         <div class="comment_container_header_today">오늘의 댓글 &nbsp; <span>0</span> 개</div>
         <div
-          v-if="filteringFlag===2"
+          v-if="filteringFlag==='all'"
           class="comment_container_header_my_comment"
           @click="toggleMyPost">내 댓글&nbsp;<i class="fa-solid fa-chevron-right"></i>
         </div>
         <div
-          v-else-if="filteringFlag===1"
+          v-else-if="filteringFlag==='my'"
           class="comment_container_header_my_comment"
           @click="toggleMyPost">전체댓글&nbsp;<i class="fa-solid fa-chevron-right"></i>
         </div>
@@ -56,7 +56,7 @@ import {mapGetters} from "vuex";
 export default {
   props: {},
   data: () => ({
-    filteringFlag: 1,
+    filteringFlag: 'all',
     postInput: {
       content:'',
     },
@@ -75,7 +75,8 @@ export default {
   },
   methods: {
     toggleMyPost() {
-      this.filteringFlag = this.filteringFlag === 1 ? 2 : 1;
+      this.filteringFlag = this.filteringFlag === 'all' ? 'my' : 'all';
+
     },
     onBoxFocus(e) {
       e.target.rows = 5;
