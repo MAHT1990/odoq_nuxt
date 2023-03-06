@@ -85,7 +85,10 @@ export default {
     logout() {
       this.$utils.removeCookie('jwt');
       this.$utils.removeCookie('lgn_tgt');
-      this.$store.commit('user/userAuthStore/checkLogin', false);
+      this.$store.commit('user/userAuthStore/checkLogin', {
+        isLogin: false,
+        cookie: null,
+      });
     }
   }
 }
