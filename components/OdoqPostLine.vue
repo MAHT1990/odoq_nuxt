@@ -38,6 +38,9 @@ export default {
     },
     userInfo: {
       type: Object
+    },
+    isLogin: {
+      type: Boolean
     }
   },
   methods: {
@@ -45,14 +48,20 @@ export default {
       console.log('ToolBox goes heeeeeere');
     },
     async likePost(){
-      console.log('likePost in OdoqPostLine');
-      const resData = await this.$store.dispatch('post/postStore/likePost', {
-        postId: this.post.id,
-        userId: this.userInfo.userId,
-      });
-      console.log('resData: ', resData);
-      if (resData.result === 'success') this.isLiked = !this.isLiked;
-      else this.$popup.showAlertPopup('좋아요 실패');
+      // console.log('likePost in OdoqPostLine');
+      // console.log('userInfo in likePost: ', this.userInfo);
+      // console.log('isLogin in likePost: ', this.isLogin);
+      if (this.isLogin) {
+        const resData = await this.$store.dispatch('post/postStore/likePost', {
+          postId: this.post.id,
+          userId: this.userInfo.userId,
+        });
+        // console.log('resData: ', resData);
+        if (resData.result === 'success') this.isLiked = !this.isLiked;
+        else this.$popup.showAlertPopup('좋아요 실패');
+      } else {
+        this.$popup.showAlertPopup('로그인이 필요한 서비스입니다.');
+      }
     },
   },
   mounted() {
