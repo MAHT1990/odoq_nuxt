@@ -1,5 +1,6 @@
 const state = () => ({
   arrayPosts: [],
+  todayPosts: 0,
   totalPosts: 0,
   currentPage: 0,
   totalPages: 0,
@@ -14,6 +15,7 @@ const actions = {
     if (res.data.result === 'success') {
       commit('setArrayPosts', res.data.data.posts);
       commit('setTotalPosts', res.data.data.total_posts);
+      commit('setTodayPosts', res.data.data.today_posts);
       commit('setCurrentPage', res.data.data.current_page);
       commit('setTotalPages', res.data.data.total_pages);
       // console.log('postStore의 getPost의 결과: ', res.data.data);
@@ -31,6 +33,7 @@ const actions = {
       console.log(res.data.data);
       commit('setArrayPosts', res.data.data.posts);
       commit('setTotalPosts', res.data.data.total_posts);
+      commit('setTodayPosts', res.data.data.today_posts);
       commit('setCurrentPage', res.data.data.current_page);
       commit('setTotalPages', res.data.data.total_pages);
     }
@@ -62,6 +65,9 @@ const mutations = {
   setTotalPosts(state, axiosTotalPosts) {
     state.totalPosts = axiosTotalPosts;
   },
+  setTodayPosts(state, axiosTodayPosts) {
+    state.todayPosts = axiosTodayPosts;
+  },
   setCurrentPage(state, axiosCurrentPage) {
     state.currentPage = axiosCurrentPage;
   },
@@ -77,6 +83,7 @@ const mutations = {
 const getters = {
   arrayPosts: (state) => (state.arrayPosts),
   totalPosts: (state) => (state.totalPosts),
+  todayPosts: (state) => (state.todayPosts),
   currentPage: (state) => (state.currentPage),
   totalPages: (state) => (state.totalPages),
 };

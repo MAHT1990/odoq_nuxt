@@ -2,7 +2,7 @@
   <div class="comment_container">
     <div class="comment_container_header">
       <div class="comment_container_header_today_and_my_comment">
-        <div class="comment_container_header_today">오늘의 댓글 &nbsp; <span>0</span> 개</div>
+        <div class="comment_container_header_today">오늘의 댓글 &nbsp; <span>{{ todayPosts }}</span> 개</div>
         <div
           v-if="filteringFlag==='all'"
           class="comment_container_header_my_comment"
@@ -13,7 +13,6 @@
           class="comment_container_header_my_comment"
           @click="toggleMyPost">전체댓글&nbsp;<i class="fa-solid fa-chevron-right"></i>
         </div>
-        <div></div>
       </div>
       <div class="comment_container_header_notice">관리자가 악성댓글을 감지하고 있습니다. 건강한 댓글 문화를 위해 노력하는 오도커가 됩시다.</div>
     </div>
@@ -65,6 +64,7 @@ export default {
     ...mapGetters({
       isLogin: 'user/userAuthStore/isLogin',
       userInfo: 'user/userAuthStore/userInfo',
+      todayPosts: 'post/postStore/todayPosts',
     }),
     contentLength() {
       if (this.postInput.content.length > 0){
@@ -84,12 +84,13 @@ export default {
     onBoxBlur(e) {
       e.target.rows = 1;
     },
-    async createPost(e) {
+    async createPost() {
       const res = await this.$store.dispatch(
         'post/postStore/createPost',
         {
           user: this.userInfo.userId,
           content: this.postInput.content,
+          filteringFlag: this.filteringFlag,
       });
       if (res.data.result === 'success') this.postInput.content = '';
     }

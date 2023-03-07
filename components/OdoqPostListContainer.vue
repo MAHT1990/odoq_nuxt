@@ -1,11 +1,15 @@
 <template>
   <div class="comment_list_container">
     <div class="comment_list_filter">
-      <button @click="emptyClick">
-        최신순<i class="fa-solid fa-angle-down"></i>
+      <button
+        ref="buttonOrderAll"
+        @click="orderPost('latest')"
+      >최신순<i class="fa-solid fa-angle-down"></i>
       </button>
-      <button @click="emptyClick">
-        오늘의 댓글 추천순<i class="fa-solid fa-angle-down"></i>
+      <button
+        ref="buttonOrderMy"
+        @click="orderPost('likeCount')"
+      >오늘의 댓글 추천순<i class="fa-solid fa-angle-down"></i>
       </button>
     </div>
     <div class="comment_list_filter_vertical_line"></div>
@@ -41,6 +45,15 @@ export default {
       default: 'all',
     }
   },
+  data () {
+    return {
+      orderingFlag: '',
+      buttonColor: {
+        activated: 'rgba(0, 81, 200, 255)',
+        deactivated: 'rgba(153, 153, 153, 255)',
+      },
+    };
+  },
   computed: {
     ...mapGetters({
       arrayPosts: 'post/postStore/arrayPosts',
@@ -49,9 +62,14 @@ export default {
       totalPages: 'post/postStore/totalPages',
       userInfo: 'user/userAuthStore/userInfo',
       isLogin: 'user/userAuthStore/isLogin',
-    })
+    }),
   },
   watch: {
+    /**
+     * @description
+     * 1. filteringFlag가 변경되면, 해당 filteringFlag에 맞게 post를 나열.
+     * @return {Promise<void>}
+     */
     async filteringFlag() {
       await this.$store.dispatch('post/postStore/getPost', {
         pageNumber: 1,
@@ -59,11 +77,35 @@ export default {
         filteringFlag: this.filteringFlag,
         userId: this.userInfo.userId,
       });
-    }
+    },
+    /**
+     * @description
+     * 1. orderingFlag가 변경되면, 해당 orderingFlag에 맞는 색상으로 버튼 색상을 변경한다.
+     */
+    orderingFlag() {
+      this.$refs.buttonOrderAll.style.color = this.orderingFlag === 'latest' ? this.buttonColor.activated : this.buttonColor.deactivated;
+      this.$refs.buttonOrderMy.style.color = this.orderingFlag === 'likeCount' ? this.buttonColor.activated : this.buttonColor.deactivated;
+    },
   },
   methods: {
-    emptyClick() {
-      console.log('emptyClick');
+    /**
+     * @description
+     * 1. orderingFlag를 변경하고, 해당 orderingFlag에 맞게 post를 나열한다.
+     * 2. orderingFlag가 변경되지 않으면, 아무것도 하지 않는다.
+     * 3. 부모로부터 받은 filteringFlag를 함께 전달해야.
+     * @param orderingFlag
+     * @return {Promise<void>}
+     */
+    orderPost(orderingFlag) {
+      if (this.orderingFlag === orderingFlag) return
+      this.orderingFlag = orderingFlag;
+      this.$store.dispatch('post/postStore/getPost', {
+        pageNumber: 1,
+        pageSize: 7,
+        filteringFlag: this.filteringFlag,
+        orderingFlag: this.orderingFlag,
+        userId: this.userInfo.userId,
+      });
     },
     prevPage() {
       this.$store.dispatch('post/postStore/getPost', {
