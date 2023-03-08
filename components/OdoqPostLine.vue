@@ -27,11 +27,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      isLiked: false,
-    }
-  },
   props: {
     post: {
       type: Object
@@ -42,6 +37,11 @@ export default {
     isLogin: {
       type: Boolean
     }
+  },
+  computed: {
+    isLiked() {
+      return this.post.liked_users.includes(this.userInfo.userId);
+    },
   },
   methods: {
     openToolBox(){

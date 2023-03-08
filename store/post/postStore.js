@@ -76,8 +76,19 @@ const mutations = {
   },
   modifyPostLike(state, axiosLikePost) {
     const postIndex = state.arrayPosts.findIndex((post) => post.id === axiosLikePost.post_id);
+    if (state.arrayPosts[postIndex].like_count < axiosLikePost.like_count) {
+      state.arrayPosts[postIndex].liked_users.push(axiosLikePost.userId)
+    } else {
+      state.arrayPosts[postIndex].liked_users.pop(axiosLikePost.userId)
+    };
     state.arrayPosts[postIndex].like_count = axiosLikePost.like_count;
-  }
+  },
+  // make modifyPostLike simple
+  // modifyPostLike(state, axiosLikePost) {
+  //   const postIndex = state.arrayPosts.findIndex((post) => post.id === axiosLikePost.post_id);
+  //   state.arrayPosts[postIndex].like_count = axiosLikePost.like_count;
+  //   state.arrayPosts[postIndex].liked_users = axiosLikePost.liked_users;
+
 };
 
 const getters = {
