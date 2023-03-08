@@ -25,7 +25,8 @@ export default {
   css: [
     '@/assets/css/odoq.css',
     '@/assets/css/odoq_popup.css',
-    '@/assets/css/odoq_mobile.css'
+    '@/assets/css/odoq_mobile.css',
+    '@/assets/css/weekend_timer.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
