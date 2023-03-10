@@ -8,9 +8,10 @@ const actions = {
     console.log('query in sendAuthorSms is ', query);
     this.$axios.post('sms/', query);
   },
-  sendStudentSms() {
+  sendStudentSms(context, query) {
     console.log('Way to sendStudentSms is here');
-    console.log('query in sendStudentSms is ');
+    console.log('query in sendStudentSms is ', query);
+    this.$axios.post('sms/', query);
   },
 }
 
