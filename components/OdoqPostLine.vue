@@ -15,7 +15,7 @@
     <div class="comment_line_content">{{post.content}}</div>
     <div class="comment_line_cocomment_and_like">
       <button class="comment_line_open_cocomment">
-        <i class="fa-solid fa-caret-down"></i>답글 (댓글 개수)
+<!--        <i class="fa-solid fa-caret-down"></i>답글 (댓글 개수)-->
       </button>
       <button class="comment_like">
         <i v-if="isLiked" class="fa-solid fa-thumbs-up" @click="likePost"></i><i v-else class="fa-regular fa-thumbs-up" @click="likePost"></i>&nbsp;<span>{{post.like_count}}</span>
