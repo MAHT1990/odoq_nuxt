@@ -1,7 +1,7 @@
 <template>
   <div class="main_container">
     <OdoqWeekendTimerContainer
-      v-if="weekday === 2 || weekday === 3"
+      v-if="weekday === 2 || weekday === 5"
       @nextQuestionLoadEvent="loadNext"
     ></OdoqWeekendTimerContainer>
     <OdoqQuestionContainer
@@ -39,20 +39,7 @@ export default {
   methods: {
     async loadNext() {
       this.weekday = new Date().getDay();
-      await this.$store.dispatch('smsStore/sendAuthorSms', {
-        answerCount: this.question.answer_count,
-        solveCount: this.question.solve_count,
-        solvePercent: this.question.answer_count / this.question.solve_count * 100,
-        target: 'author',
-      });
-      console.log('previous question is ', this.question);
       await this.$store.dispatch('question/questionStore/getQuestion');
-      console.log('current question is ', this.question);
-      this.$store.dispatch('smsStore/sendStudentSms', {
-        content: '문항이 업데이트 되었습니다.',
-        url: document.location.href,
-        target: 'student',
-      });
     }
   }
 }
