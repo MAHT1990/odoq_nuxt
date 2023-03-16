@@ -12,7 +12,7 @@
         ></button>
       </div>
     </div>
-    <div class="comment_line_content">{{post.content}}{{isLiked}}</div>
+    <div class="comment_line_content">{{post.content}}</div>
     <div class="comment_line_cocomment_and_like">
       <button class="comment_line_open_cocomment">
 <!--        <i class="fa-solid fa-caret-down"></i>답글 (댓글 개수)-->
@@ -53,9 +53,6 @@ export default {
       console.log('ToolBox goes heeeeeere');
     },
     async likePost(){
-      // console.log('likePost in OdoqPostLine');
-      // console.log('userInfo in likePost: ', this.userInfo);
-      // console.log('isLogin in likePost: ', this.isLogin);
       if (this.isLogin) {
         const resData = await this.$store.dispatch('post/postStore/likePost', {
           postId: this.post.id,
