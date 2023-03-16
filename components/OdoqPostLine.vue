@@ -12,7 +12,7 @@
         ></button>
       </div>
     </div>
-    <div class="comment_line_content">{{post.content}}</div>
+    <div class="comment_line_content">{{post.content}}{{isLiked}}</div>
     <div class="comment_line_cocomment_and_like">
       <button class="comment_line_open_cocomment">
 <!--        <i class="fa-solid fa-caret-down"></i>답글 (댓글 개수)-->
@@ -39,8 +39,13 @@ export default {
     }
   },
   computed: {
-    isLiked() {
-      return this.post.liked_users.includes(this.userInfo.userId);
+    isLiked: {
+      get() {
+        return this.post.liked_users.includes(this.userInfo.userId);
+      },
+      set(v) {
+        console.log('new Value in isLiked: ', v);
+      }
     },
   },
   methods: {
@@ -57,8 +62,8 @@ export default {
           userId: this.userInfo.userId,
         });
         // console.log('resData: ', resData);
-        if (resData.result === 'success') this.isLiked = !this.isLiked;
-        else this.$popup.showAlertPopup('좋아요 실패');
+        if (resData.result !== 'success') this.$popup.showAlertPopup('좋아요 실패');
+        console.log(this.post);
       } else {
         this.$popup.showAlertPopup('로그인이 필요한 서비스입니다.');
       }
