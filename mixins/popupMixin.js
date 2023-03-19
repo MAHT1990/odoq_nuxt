@@ -1,5 +1,5 @@
 export default {
-    props: ['title', 'subTitle', 'message', 'okCallback', 'cancelCallback', 'closeCallback'],
+    props: ['title', 'initValue', 'subTitle', 'message', 'okCallback', 'cancelCallback', 'closeCallback'],
     data() {
       return {
         params: {
@@ -15,10 +15,15 @@ export default {
     },
     mounted() {
       document.querySelector('body').appendChild(this.$el);
+      setTimeout(() => {
+        document.addEventListener('click', this.onClickOutside);
+      }, 300);
     },
     beforeDestroy() {
+      document.removeEventListener('click', this.onClickOutside);
       document.querySelector('body').removeChild(this.$el);
       if (this.closeCallback) this.closeCallback();
+
     },
     methods: {
       async ok() {
@@ -32,6 +37,12 @@ export default {
       cancel() {
         if (this.cancelCallback) this.cancelCallback(this.params);
         this.$destroy();
+      },
+      onClickOutside(e) {
+        if (!this.$el.contains(e.target)) {
+          if (this.closeCallback) this.closeCallback();
+          this.$destroy();
+        }
       },
     },
   };

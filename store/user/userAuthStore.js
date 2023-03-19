@@ -3,9 +3,9 @@ import Utils from '@/plugins/utils';
 const state = function () {
   return {
     userInfo: {
-      userId: '',
+      userId: 0,
       userName: '',
-      userGrade: '',
+      userGrade: 0,
     },
     createResult: {},
     isLogin: false,
@@ -47,7 +47,10 @@ const actions = {
    */
   async getUserInfo({commit}, data) {
     const res = await this.$axios.post('user/login/', data);
-    await commit('setUserInfo', res.data);
+    if (res.data.result === 'success') {
+      commit ('setUserInfo', res.data);
+    }
+    return res.data;
   },
 };
 
@@ -74,7 +77,7 @@ const mutations = {
    * @param resData - getUserInfo 에 의한 응답 data
    */
   setUserInfo(state, resData) {
-    state.userInfo = resData;
+    // console.log('userAuthStore > mutations > setUserInfo > resData is ', resData);
     if (resData.result === 'success') {
       Utils.addCookie('jwt', resData.data.token, 999999999999);
       state.isLogin = true;
@@ -82,6 +85,7 @@ const mutations = {
       state.userInfo.userName = Utils.getUserNameByJwt(resData.data.token);
       state.userInfo.userGrade = parseInt(Utils.getUserGradeByJwt(resData.data.token), 10);
     }
+    // console.log('userAuthStore > mutations > setUserInfo > state is ', state);
     if (resData.result === 'error') Utils.removeCookie('csrf');
   },
   /**

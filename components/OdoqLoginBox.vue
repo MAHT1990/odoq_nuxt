@@ -59,7 +59,9 @@ export default {
       const that = this;
       const jwt = this.$utils.getCookie(document.cookie, 'jwt');
       const jwtGrade = jwt ? JSON.parse(atob(jwt.split('.')[1])).info.split('_')[1] : '';
-      if (jwtGrade === '0') {
+      // console.log('OdoqLoginBox.vue: jwt: ', jwt);
+      // console.log('OdoqLoginBox.vue: jwtGrade: ', jwtGrade);
+      if (jwtGrade === '0' || jwtGrade === '1' || jwtGrade === '2') {
         that.$router.go(0);
       } else {
         that.message.login = '';
@@ -69,10 +71,10 @@ export default {
           that.message.login += '비밀번호';
         }
         if (that.message.login === '') {
-          await that.$store.dispatch('user/userAuthStore/getUserInfo', that.input);
-          if (that.userInfo.result !== 'success') {
+          const res = await that.$store.dispatch('user/userAuthStore/getUserInfo', that.input);
+          if (res.result !== 'success') {
             this.$utils.removeCookie('jwt');
-            that.message.login = that.result.message;
+            that.message.login = res.message;
           }
         } else {
           that.message.login += '를 입력해주세요.';

@@ -8,7 +8,6 @@ const state = () => ({
 
 const actions = {
   async getPost({ commit }, objAboutPage) {
-    console.log('getPost gogogo');
     const res = await this.$axios.get('post/', {
       params: objAboutPage,
     });
@@ -27,10 +26,9 @@ const actions = {
     }
   },
   async createPost({ commit }, postData) {
-    console.log('createPost path is here');
+    // console.log('createPost path is here');
     const res = await this.$axios.post('post/', postData);
     if (res.data.result === 'success') {
-      console.log(res.data.data);
       commit('setArrayPosts', res.data.data.posts);
       commit('setTotalPosts', res.data.data.total_posts);
       commit('setTodayPosts', res.data.data.today_posts);
@@ -47,12 +45,23 @@ const actions = {
    * @return {Promise<AxiosResponse<any>>}
    */
   async likePost({ commit }, postAndUserData) {
-    console.log('likePost path is here');
+    // console.log('likePost path is here');
     postAndUserData.flag = 'like';
     const res = await this.$axios.patch('post/', postAndUserData);
     if (res.data.result === 'success') {
-      console.log(res.data.data);
+      // console.log(res.data.data);
       commit('modifyPostLike', res.data.data);
+    }
+    return res.data;
+  },
+  async blindPost({ commit }, postData) {
+    // console.log('blindPost path is here');
+    postData.flag = 'blind';
+    const res = await this.$axios.patch('post/', postData);
+    // console.log('blindPost의 res.data는 ', res.data);
+    if (res.data.result === 'success') {
+      // console.log(res.data.data);
+      commit('modifyPostBlind', res.data.data);
     }
     return res.data;
   }
@@ -75,6 +84,7 @@ const mutations = {
     state.totalPages = axiosTotalPages;
   },
   modifyPostLike(state, axiosLikePost) {
+    // console.log('postStore > mutations > modifyPostLike axiosLikePost is ', axiosLikePost)
     const postIndex = state.arrayPosts.findIndex((post) => post.id === axiosLikePost.post_id);
     if (state.arrayPosts[postIndex].like_count < axiosLikePost.like_count) {
       state.arrayPosts[postIndex].liked_users.push(axiosLikePost.user_id)
@@ -83,12 +93,16 @@ const mutations = {
     };
     state.arrayPosts[postIndex].like_count = axiosLikePost.like_count;
   },
-  // make modifyPostLike simple
-  // modifyPostLike(state, axiosLikePost) {
-  //   const postIndex = state.arrayPosts.findIndex((post) => post.id === axiosLikePost.post_id);
-  //   state.arrayPosts[postIndex].like_count = axiosLikePost.like_count;
-  //   state.arrayPosts[postIndex].liked_users = axiosLikePost.liked_users;
-
+  modifyPostBlind(state, axiosBlindPost) {
+    // console.log('axiosBlindPost is ', axiosBlindPost);
+    const postIndex = state.arrayPosts.findIndex((post) => post.id === axiosBlindPost.post_id);
+    if (state.arrayPosts[postIndex].blind === false) {
+      state.arrayPosts[postIndex].blind = true;
+      state.arrayPosts[postIndex].blind_text = axiosBlindPost.blind_text;
+    } else {
+      state.arrayPosts[postIndex].blind = false;
+    };
+  }
 };
 
 const getters = {

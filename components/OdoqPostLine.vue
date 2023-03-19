@@ -7,12 +7,18 @@
       </div>
       <div class="comment_line_tool_box_btn_and_box">
         <button
+          v-if="isWriter"
           class="comment_line_tool_box_btn"
           @click="openToolBox"
-        ></button>
+        ><i class="fa-solid fa-ellipsis-vertical"></i></button>
       </div>
     </div>
-    <div class="comment_line_content">{{post.content}}</div>
+    <div
+      v-if="post.blind === true"
+      class="comment_line_content"
+      style="color: #707070; text-decoration-line: line-through; font-style: italic;"
+    >{{post.blind_text}} </div>
+    <div v-else class="comment_line_content">{{post.content}}</div>
     <div class="comment_line_cocomment_and_like">
       <button class="comment_line_open_cocomment">
 <!--        <i class="fa-solid fa-caret-down"></i>답글 (댓글 개수)-->
@@ -47,10 +53,25 @@ export default {
         console.log('new Value in isLiked: ', v);
       }
     },
+    isWriter() {
+      return parseInt(this.userInfo.userId, 10) === parseInt(this.post.user_id, 10) || parseInt(this.userInfo.userGrade, 10) === 2;
+      // code above is too long, so I changed it to below:
+    }
   },
   methods: {
-    openToolBox(){
-      console.log('ToolBox goes heeeeeere');
+    openToolBox(e){
+      // console.log('ToolBox goes heeeeeere');
+      new this.$popup.PopToolBox({
+        propsData: {
+          initValue: {
+            post: this.post,
+            userInfo: this.userInfo,
+            isLogin: this.isLogin,
+            left: e.pageX,
+            top: e.pageY,
+          }
+        }
+      }).$mount();
     },
     async likePost(){
       if (this.isLogin) {
@@ -60,7 +81,7 @@ export default {
         });
         // console.log('resData: ', resData);
         if (resData.result !== 'success') this.$popup.showAlertPopup('좋아요 실패');
-        console.log(this.post);
+        // console.log(this.post);
       } else {
         this.$popup.showAlertPopup('로그인이 필요한 서비스입니다.');
       }

@@ -4,6 +4,7 @@ import PopConfirm from '@/components/popups/PopConfirm'; // 확인 팝업
 import PopUserRegistCompleted from '@/components/popups/PopUserRegistCompleted'; // 회원가입 완료 팝업
 import PopTerms from '@/components/popups/PopTerms'; // 약관 안내 팝업
 import PopLeaveReason from '@/components/popups/PopLeaveReason'; // 회원 탈퇴 사유입력
+import PopToolBox from '@/components/popups/PopToolBox'; // 툴박스 팝업
 
 
 const Popup = {
@@ -21,6 +22,7 @@ const Popup = {
   PopUserRegistCompleted,
   PopTerms,
   PopLeaveReason,
+  PopToolBox,
 };
 export default Popup
 Vue.prototype.$popup = Popup;
