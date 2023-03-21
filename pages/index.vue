@@ -18,6 +18,7 @@ export default {
       pageNumber: 1,
       pageSize: 7,
     });
+    await store.dispatch('notice/noticeStore/getNotice');
 
     // 로그인 CHECK.
     try {

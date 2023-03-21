@@ -1,14 +1,14 @@
 <template>
   <div class="main_container">
     <OdoqWeekendTimerContainer
-      v-if="weekday === 2 || weekday === 5"
+      v-if="isWeekEnd"
       @nextQuestionLoadEvent="loadNext"
-    ></OdoqWeekendTimerContainer>
+    />
     <OdoqQuestionContainer
       v-else
       :question="question"
       @nextQuestionLoadEvent="loadNext"
-    ></OdoqQuestionContainer>
+    />
     <div class="verticalLine2"></div>
     <div>{{ weekday }}</div>
     <OdoqAnswerContainer
@@ -35,6 +35,9 @@ export default {
       isLogin: 'user/userAuthStore/isLogin',
       question: 'question/questionStore/question',
     }),
+    isWeekEnd() {
+      return this.weekday === 1 || this.weekday === 2;
+    }
   },
   methods: {
     async loadNext() {
