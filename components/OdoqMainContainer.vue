@@ -1,12 +1,12 @@
 <template>
   <div class="main_container">
     <odoq-question-container
-      v-if="!isWeekend"
+      v-show="!isWeekend"
       :question="question"
       @nextQuestionLoadEvent="loadNext"
     />
     <odoq-weekend-timer-container
-      v-else
+      v-show="isWeekend"
       @nextQuestionLoadEvent="loadNext"
     />
     <div class="verticalLine2"></div>
