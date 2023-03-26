@@ -2,19 +2,19 @@
   <div class="main_container">
     <odoq-question-container
       v-if="!isWeekend"
-      v-bind:question="question"
-      v-on:nextQuestionLoadEvent="loadNext"
+      :question="question"
+      @nextQuestionLoadEvent="loadNext"
     />
     <odoq-weekend-timer-container
       v-else
-      v-on:nextQuestionLoadEvent="loadNext"
+      @nextQuestionLoadEvent="loadNext"
     />
     <div class="verticalLine2"></div>
     <div>{{ weekday }}</div>
     <odoq-answer-container
       v-if="isLogin"
-      v-bind:question="question"
-      v-bind:user-info="userInfo"
+      :question="question"
+      :user-info="userInfo"
     />
     <odoq-post-container/>
     <odoq-footer/>
@@ -27,7 +27,7 @@ import {mapGetters} from "vuex";
 export default {
   data() {
     return {
-      weekday: new Date().getDay(),
+      weekday: null,
       onOffSeason: true,
     }
   },
@@ -46,6 +46,9 @@ export default {
       this.weekday = new Date().getDay();
       await this.$store.dispatch('question/questionStore/getQuestion');
     }
+  },
+  created() {
+    this.weekday = new Date().getDay();
   }
 }
 </script>
