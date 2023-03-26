@@ -2,19 +2,19 @@
   <div class="main_container">
     <odoq-question-container
       v-if="!isWeekend"
-      :question="question"
-      @nextQuestionLoadEvent="loadNext"
+      v-bind:question="question"
+      v-on:nextQuestionLoadEvent="loadNext"
     />
     <odoq-weekend-timer-container
-      v-if="isWeekend"
-      @nextQuestionLoadEvent="loadNext"
+      v-else
+      v-on:nextQuestionLoadEvent="loadNext"
     />
     <div class="verticalLine2"></div>
     <div>{{ weekday }}</div>
     <odoq-answer-container
       v-if="isLogin"
-      :question="question"
-      :user-info="userInfo"
+      v-bind:question="question"
+      v-bind:user-info="userInfo"
     />
     <odoq-post-container/>
     <odoq-footer/>
