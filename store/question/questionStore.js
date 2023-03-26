@@ -7,8 +7,23 @@ const state = () => ({
 const actions = {
   async getQuestion({ commit }) {
     const res = await this.$axios.get('question');
+    console.log('questionStore > getQuestion > res.data is ', res.data);
     commit('setQuestion', res.data);
   },
+  async getAnswerHistory({ commit }, query) {
+    const res = await this.$axios.get('question/answer_history',
+      {
+        params: {
+          ...query
+        }
+      });
+    console.log('questionStore > getAnswerHistory > res.data is ', res.data);
+    commit('setAnswerHistory', res.data);
+  },
+  async postAnswer({ commit }, data) {
+    const res = await this.$axios.post('question/', data);
+    commit('updateQuestionAnswerStatus', res.data);
+  }
 }
 
 const mutations = {
@@ -32,6 +47,21 @@ const mutations = {
       }
     }
     state.question = resData;
+    console.log('questionStore > setQuestion > state.question is ', state.question);
+  },
+  setAnswerHistory(state, axiosResData) {
+    state.question.can_answer_remain_time = axiosResData.data.can_answer_remain_time;
+  },
+  /**
+   * 답변을 등록하고, 답변수와 해결수를 업데이트
+   * @param state
+   * @param axiosResData
+   */
+  updateQuestionAnswerStatus(state, axiosResData) {
+    console.log('questionStore > updateQuestionAnswerStatus > axiosResData is ', axiosResData);
+    state.question.answer_count = axiosResData.data.answer_count;
+    state.question.solve_count = axiosResData.data.solve_count;
+    state.question.can_answer_remain_time = axiosResData.data.can_answer_remain_time;
   }
 }
 

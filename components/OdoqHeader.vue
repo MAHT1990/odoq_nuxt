@@ -8,8 +8,14 @@
               <OdoqLoginBox></OdoqLoginBox>
           </div>
           <div class="sms_pseudo_container">
-            <div class="sms_box">
-              <img src="@/assets/img/sms.png" alt="sms알림">
+            <div
+              class="sms_box"
+              @click="checkAcceptSms"
+            >
+              <img
+                src="@/assets/img/sms.png"
+                alt="sms알림"
+              >
               <p>SMS</p>
               <p>알 림</p>
             </div>
@@ -19,6 +25,30 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 export default {
+  computed: {
+    ...mapGetters({
+      isAcceptSms: 'sms/smsStore/isAcceptSms',
+    }),
+  },
+  methods: {
+    async checkAcceptSms() {
+      console.log('## checkAcceptSms button is pushed');
+      console.log('## this.$store is ', this.$store);
+      console.log('## this.$store.getters[\'user/userAuthStore/isLogin\']: ', this.$store.getters['user/userAuthStore/isLogin'])
+      if (this.$store.getters['user/userAuthStore/isLogin']) {
+        const res = await this.$store.dispatch('sms/smsStore/checkAcceptSms', {
+          userId: this.$store.getters['user/userAuthStore/userInfo'].userId,
+          acceptSms: !this.isAcceptSms,
+        });
+
+        if (res.result === 'success') {
+          console.log('## this.isAcceptSms: ', this.isAcceptSms);
+          this.$popup.showAlertPopup('SMS 알림이 ' + (this.isAcceptSms ? '설정' : '해제') + '되었습니다.');
+        }
+      }
+    },
+  }
 }
 </script>

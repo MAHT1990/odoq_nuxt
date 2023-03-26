@@ -97,10 +97,20 @@ const mutations = {
    * @param cookie - UserAuthMixin.js 에서 asyncData로 체크후, 넘겨줌.
    */
   checkLogin(state, {isLogin, cookie}) {
+    const testUserId = cookie? (parseInt(Utils.getUserId(cookie), 10) || 0 ) : 0;
+    if (!testUserId) {
+      console.log('## userAuthStore > mutations > checkLogin > testUserId is ', testUserId);
+      this.$router.go(0);
+      return;
+    };
     state.isLogin = isLogin;
-    state.userInfo.userId = cookie ? parseInt(Utils.getUserId(cookie), 10) : '';
+    state.userInfo.userId = cookie ? (parseInt(Utils.getUserId(cookie), 10) || 0 ) : 0;
     state.userInfo.userName = cookie ? Utils.getUserName(cookie) : '';
-    state.userInfo.userGrade = cookie ? parseInt(Utils.getUserGrade(cookie), 10) : '';
+    state.userInfo.userGrade = cookie ? (parseInt(Utils.getUserGrade(cookie), 10) || 0 ) : 0;
+    // console.log('## userAuthStore > mutations > checkLogin > state is ', state);
+    // console.log('## userAuthStore > mutations > checkLogin > cookie is ', cookie);
+    // console.log('## userAuthStore > mutations > checkLogin > isLogin is ', isLogin);
+    // console.log('## userAuthStore > mutations > checkLogin > userId is ', Utils.getUserId(cookie));
   },
 };
 

@@ -48,6 +48,10 @@
   text-align: center;
 }
 
+.popup_text_wrap {
+  font-size: 1rem;
+}
+
 .popup_btn_wrap {
   height: 50px;
   display: flex;

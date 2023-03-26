@@ -1,7 +1,7 @@
 <template>
   <div class="main_container">
     <OdoqWeekendTimerContainer
-      v-if="isWeekEnd"
+      v-if="isWeekend"
       @nextQuestionLoadEvent="loadNext"
     />
     <OdoqQuestionContainer
@@ -13,7 +13,8 @@
     <div>{{ weekday }}</div>
     <OdoqAnswerContainer
       v-if="isLogin"
-      :question-answer="question.answer"
+      :question="question"
+      :user-info="userInfo"
     ></OdoqAnswerContainer>
     <OdoqPostContainer/>
     <OdoqFooter/>
@@ -32,10 +33,11 @@ export default {
   },
   computed: {
     ...mapGetters({
+      userInfo: 'user/userAuthStore/userInfo',
       isLogin: 'user/userAuthStore/isLogin',
       question: 'question/questionStore/question',
     }),
-    isWeekEnd() {
+    isWeekend() {
       return this.weekday === 1 || this.weekday === 2;
     }
   },

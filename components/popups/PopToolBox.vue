@@ -26,7 +26,7 @@ export default Vue.extend({
       // console.log('postBlind');
       new this.$popup.PopConfirm({
         propsData: {
-          title: '게시글을 블라인드 처리하시겠습니까?',
+          title: '게시글을 블라인드 처리/취소하시겠습니까?',
           okCallback: async (params) => {
             // console.log('okCallback');
             // console.log('현재 댓글에 대한 정보를 보내 블라인드 처리한다.', this.initValue.post);

@@ -80,7 +80,7 @@ export default {
       } else {
         this.secondRemain = 'THIS IS THE LAST';
       }
-    }
+    },
   },
 }
 </script>
