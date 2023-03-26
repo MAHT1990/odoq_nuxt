@@ -1,23 +1,23 @@
 <template>
   <div class="main_container">
-    <OdoqWeekendTimerContainer
-      v-if="isWeekend"
+    <odoq-question-container
+      v-if="!isWeekend"
+      :question="question"
       @nextQuestionLoadEvent="loadNext"
     />
-    <OdoqQuestionContainer
-      v-else
-      :question="question"
+    <odoq-weekend-timer-container
+      v-if="isWeekend"
       @nextQuestionLoadEvent="loadNext"
     />
     <div class="verticalLine2"></div>
     <div>{{ weekday }}</div>
-    <OdoqAnswerContainer
+    <odoq-answer-container
       v-if="isLogin"
       :question="question"
       :user-info="userInfo"
-    ></OdoqAnswerContainer>
-    <OdoqPostContainer/>
-    <OdoqFooter/>
+    ></odoq-answer-container>
+    <odoq-post-container/>
+    <odoq-footer/>
   </div>
 </template>
 
