@@ -15,7 +15,7 @@
       v-if="isLogin"
       :question="question"
       :user-info="userInfo"
-    ></odoq-answer-container>
+    />
     <odoq-post-container/>
     <odoq-footer/>
   </div>

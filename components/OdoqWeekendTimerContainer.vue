@@ -1,9 +1,6 @@
 <template>
     <div class="weekend_timer_container">
-
-        <div class="weekend_timer_container_header">
-        </div>
-
+        <div class="weekend_timer_container_header"></div>
         <div class="weekend_timer_box">
           {{ timerFormat }}
         </div>
