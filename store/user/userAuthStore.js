@@ -47,6 +47,7 @@ const actions = {
    */
   async getUserInfo({commit}, data) {
     const res = await this.$axios.post('user/login/', data);
+    console.log('## userAuthStore > actions > getUserInfo > res is ', res.data);
     if (res.data.result === 'success') {
       commit ('setUserInfo', res.data);
     }
@@ -77,7 +78,7 @@ const mutations = {
    * @param resData - getUserInfo 에 의한 응답 data
    */
   setUserInfo(state, resData) {
-    // console.log('userAuthStore > mutations > setUserInfo > resData is ', resData);
+    console.log('userAuthStore > mutations > setUserInfo > resData is ', resData);
     if (resData.result === 'success') {
       Utils.addCookie('jwt', resData.data.token, 999999999999);
       state.isLogin = true;
@@ -98,6 +99,7 @@ const mutations = {
    */
   checkLogin(state, {isLogin, cookie}) {
     const testUserId = cookie? (parseInt(Utils.getUserId(cookie), 10) || 0 ) : 0;
+    console.log('## userAuthStore > mutations > checkLogin > testUserId is ', Utils.getUserId(cookie));
     if (!testUserId) {
       console.log('## userAuthStore > mutations > checkLogin > testUserId is ', testUserId);
       this.$router.go(0);
@@ -107,10 +109,10 @@ const mutations = {
     state.userInfo.userId = cookie ? (parseInt(Utils.getUserId(cookie), 10) || 0 ) : 0;
     state.userInfo.userName = cookie ? Utils.getUserName(cookie) : '';
     state.userInfo.userGrade = cookie ? (parseInt(Utils.getUserGrade(cookie), 10) || 0 ) : 0;
-    // console.log('## userAuthStore > mutations > checkLogin > state is ', state);
-    // console.log('## userAuthStore > mutations > checkLogin > cookie is ', cookie);
-    // console.log('## userAuthStore > mutations > checkLogin > isLogin is ', isLogin);
-    // console.log('## userAuthStore > mutations > checkLogin > userId is ', Utils.getUserId(cookie));
+    console.log('## userAuthStore > mutations > checkLogin > state is ', state);
+    console.log('## userAuthStore > mutations > checkLogin > cookie is ', cookie);
+    console.log('## userAuthStore > mutations > checkLogin > isLogin is ', isLogin);
+    console.log('## userAuthStore > mutations > checkLogin > userId is ', Utils.getUserId(cookie));
   },
 };
 

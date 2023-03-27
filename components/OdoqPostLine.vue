@@ -3,7 +3,7 @@
     <div class="comment_line_user_and_updated_at_and_tool_box">
       <div class="comment_line_user_and_updated_at">
         <div class="comment_line_user">{{post.user_name}} &nbsp;<i v-if="post.user_grade" class="fa-solid fa-crown" style="color:rgba(255, 171, 0, 0.8);"></i></div>
-        <div class="comment_line_updated_at">{{post.updated_at}}</div>
+        <div class="comment_line_updated_at">{{formattedUpdatedTime}}</div>
       </div>
       <div class="comment_line_tool_box_btn_and_box">
         <button
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 export default {
   props: {
     post: {
@@ -56,7 +57,10 @@ export default {
     isWriter() {
       return parseInt(this.userInfo.userId, 10) === parseInt(this.post.user_id, 10) || parseInt(this.userInfo.userGrade, 10) === 2;
       // code above is too long, so I changed it to below:
-    }
+    },
+    formattedUpdatedTime() {
+      return moment(this.post.updated_at).format('YYYY-MM-DD HH:mm');
+    },
   },
   methods: {
     openToolBox(e){
