@@ -30,7 +30,7 @@ const getUserId = (cookie) => {
   if (jwt) {
     const info = JSON.parse(atob(jwt.split('.')[1]));
     const grade = parseInt(info.info.split('_')[1], 10);
-    if (grade > 0) userId = info.info.split('_')[0];
+    if (grade >= 0) userId = info.info.split('_')[0];
     console.log('## plugins/utils.js getUserId > info', info);
     console.log('## plugins/utils.js getUserId > grade', grade);
     console.log('## plugins/utils.js getUserId > userId', userId);
