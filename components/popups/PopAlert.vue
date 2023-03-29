@@ -2,7 +2,7 @@
   <client-only>
     <div class="popup_mask" @click="ok">
       <div class="popup_wrapper">
-        <div class="popup_container">
+        <div class="popup_container popup_alert_container">
 
           <div class="popup_wrap">
             <div class="popup_title text-center" :style="title.indexOf('\n') > -1 ? 'white-space: pre;' : ''">{{ title }}</div>

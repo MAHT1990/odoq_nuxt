@@ -23,13 +23,13 @@
                 </div>
               </div>
             </div>
+            <div class="popup_btn_wrap">
+              <button @click="ok">확인</button>
+            </div>
           </div>
-
         </div>
 
-        <div class="popup_btn_wrap">
-          <button @click="ok">확인</button>
-        </div>
+        
       </div>
     </div>
   </client-only>

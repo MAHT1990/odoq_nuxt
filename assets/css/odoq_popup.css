@@ -61,7 +61,6 @@
   font-size: 1rem;
 }
 
-
 .plan_popup {
   position : fixed;
   z-index: 1;
@@ -251,3 +250,122 @@
 /* .sms_popup_contents_input_box > input:focus-visible {
     outline : 0;
 } */
+
+
+/* POPUP ALERT */
+.popup_alert_container {
+  padding: 0;
+}
+.popup_alert_container .popup_wrap .popup_title{
+  font-size: 18px;
+  padding: 45px 15px;
+  font-weight: 600;
+  word-break: keep-all;
+  line-height: 1.4;
+}
+
+/* POPUP NOTICE */
+.popup_notice_container {
+  padding-bottom: 45px;
+}
+.popup_notice_container .popup_wrap .popup_title {
+  text-align: left;
+  font-weight: 600;
+}
+.popup_notice_container .popup_wrap .popup_img_wrap {
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  padding-top: 25px;
+}
+.popup_notice_container .popup_wrap img {
+  width: 100%;
+}
+
+/* POPUP ANSWER POST */
+.popup_answer_container {
+  padding: 0;
+}
+.popup_answer_container .popup_wrap .popup_title {
+  font-size: 20px;
+  padding: 25px 15px;
+  font-weight: 600;
+}
+.popup_answer_container .popup_wrap .popup_text_wrap {
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.popup_answer_container .popup_wrap .popup_text_wrap:last-child {
+  margin-bottom: 25px;
+}
+
+/* POPUP BUTTON */
+.popup_alert_container .popup_btn_wrap,
+.popup_answer_container .popup_btn_wrap {
+  width: 100%;
+}
+.popup_alert_container .popup_btn_wrap button,
+.popup_answer_container .popup_btn_wrap button {
+  width: 100%;
+  border: none;
+  background: rgba(0,81,200,255);
+  font-size: 16px;
+  color: #fff;
+  border-radius: 0 0 10px 10px;
+  font-weight: 500;
+}
+
+/* TERMS POPUP */
+.terms_popup_wrap .popup_title {
+  font-size: 22px;
+  font-weight: 700;
+  color: rgba(0,81,200,255);
+}
+.terms_popup_wrap h1,
+.terms_popup_wrap h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+.terms_popup_wrap h3 {
+  font-size: 16px;
+  font-weight: 400;
+}
+.terms_popup_wrap p {
+  line-height: 1.4;
+}
+.terms_popup_wrap .popup_btn_wrap {
+  width: 100%;
+}
+.terms_popup_wrap .popup_btn_wrap button {
+  width: 100%;
+  border: 0;
+  background-color: rgba(0,81,200,255);
+  color: #fff;
+  border-radius: 10px;
+}
+
+/* PopUserRegistCompleted */
+.popup_user_join_wrap .main_title {
+  font-size: 28px;
+  font-weight: 600;
+}
+.popup_user_join_wrap h2 {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.popup_user_join_wrap p {
+  font-size: 24px;
+  color: rgba(0,81,200,255);
+  font-weight: 700;
+}
+.popup_user_join_wrap .popup_btn_wrap {
+  width: 100%;
+}
+.popup_user_join_wrap .popup_btn_wrap button {
+  width: 100%;
+  border-radius: 10px;
+  color: #fff;
+  border: none;
+  background-color: rgba(0,81,200,255);
+}
