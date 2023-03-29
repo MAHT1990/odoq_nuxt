@@ -2,11 +2,13 @@
   <client-only>
     <div class="popup_mask" @click="closeNotice">
       <div class="popup_wrapper">
-        <div class="popup_container">
+        <div class="popup_container popup_notice_container">
 
           <div class="popup_wrap">
             <div class="popup_title text-center">{{title}}</div>
-            <img :src="initValue.img_url" alt="이미지없음">
+            <div class="popup_img_wrap">
+              <img :src="initValue.img_url" alt="이미지없음">
+            </div>
           </div>
 
         </div>

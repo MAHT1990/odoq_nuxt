@@ -2,7 +2,7 @@
   <client-only>
     <div class="popup_mask">
       <div class="popup_wrapper">
-        <div class="popup_container">
+        <div class="popup_container popup_answer_container">
 
           <div class="popup_wrap">
             <div class="popup_title text-center">{{title}}</div>
