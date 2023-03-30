@@ -41,7 +41,7 @@
 }
 
 .popup_title {
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
 .text-center {
@@ -270,7 +270,8 @@
 }
 .popup_notice_container .popup_wrap .popup_title {
   text-align: left;
-  font-weight: 600;
+  font-weight: 500;
+  font-family: 'Fjalla One', sans-serif;
 }
 .popup_notice_container .popup_wrap .popup_img_wrap {
   border-top: 2px solid #000;
@@ -315,7 +316,13 @@
   font-weight: 500;
 }
 
-/* TERMS POPUP */
+.popup_alert_container .popup_btn_wrap button:hover,
+.popup_answer_container .popup_btn_wrap button:hover {
+  background: rgba(0,41,100,255);
+  cursor: pointer;
+}
+
+  /* TERMS POPUP */
 .terms_popup_wrap .popup_title {
   font-size: 22px;
   font-weight: 700;

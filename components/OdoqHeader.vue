@@ -11,6 +11,7 @@
             <div
               class="sms_box"
               @click="checkAcceptSms"
+              :style="isAcceptSms ? 'opacity: 1;' : 'opacity: 0.4'"
             >
               <img
                 src="@/assets/img/sms.png"

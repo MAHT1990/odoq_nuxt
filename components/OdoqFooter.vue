@@ -1,16 +1,22 @@
 <template>
   <div class="footer_container">
     <div class="verticalLine3"></div>
-    <footer>
-      <div class="aboutUs_container">
-        <div class="aboutUs_header">
-          About us.
-        </div>
-        <div class="aboutUs_content">
-          SDIJ 수학강사 김정문 <br>
-          <a href="https://jmmath9.com/" target="_blank" rel="noopener noreferrer">jmmath9.com</a>
-        </div>
+    <div class="footer_image_container">
+      <div class="footer_image_container_img">
+        <img src="@/assets/img/footer_img.png">
       </div>
+      <div class="footer_image_container_pseudo"></div>
+    </div>
+    <footer>
+<!--      <div class="aboutUs_container">-->
+<!--        <div class="aboutUs_header">-->
+<!--          About us.-->
+<!--        </div>-->
+<!--        <div class="aboutUs_content">-->
+<!--          SDIJ 수학강사 김정문 <br>-->
+<!--          <a href="https://jmmath9.com/" target="_blank" rel="noopener noreferrer">jmmath9.com</a>-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="caution_container">
         <div class="caution_header">
           Caution.
