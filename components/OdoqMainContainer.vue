@@ -12,7 +12,7 @@
     <div class="verticalLine2"></div>
     <div>{{ weekday }}</div>
     <odoq-answer-container
-      v-if="isLogin && !isWeekend"
+      v-show="isLogin && !isWeekend"
       :question="question"
       :user-info="userInfo"
     />
