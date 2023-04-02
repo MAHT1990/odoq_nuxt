@@ -1,11 +1,11 @@
 <template>
   <client-only>
     <div class="popup_mask">
-      <div class="popup_wrapper">
+      <div class="popup_wrapper pop_confirm_wrap">
         <div class="popup_container">
 
           <div class="popup_wrap">
-            <div class="popup_title text-center">{{title}}</div>
+            <h1 class="popup_title text-center">{{title}}</h1>
             <div  v-if="message" class="popup_text_wrap">{{message}}</div>
           </div>
           <div class="popup_btn_wrap">

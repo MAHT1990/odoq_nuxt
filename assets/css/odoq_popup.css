@@ -376,3 +376,27 @@
   border: none;
   background-color: rgba(0,81,200,255);
 }
+
+/* POP CONFIRM */
+.pop_confirm_wrap h1{
+  font-size: 16px;
+}
+.pop_confirm_wrap .popup_btn_wrap {
+  width: 100%;
+  margin-top: 15px;
+  justify-content: space-between;
+}
+.pop_confirm_wrap .popup_btn_wrap button {
+  width: 49%;
+  border: none;
+  border-radius: 10px;
+}
+.popup_btn_wrap button:first-child {
+  border: 1px solid rgba(0,81,200,255);
+  background-color: #fff;
+  color: #434343;
+}
+.popup_btn_wrap button:last-child {
+  background-color: rgba(0,81,200,255);
+  color: #fff;
+}
