@@ -5,7 +5,7 @@
       <p>반갑습니다.</p>
       <div class="login_box_buttons">
         <button @click="logout">Log Out</button>
-        <button @click="linkToSignUp">MyPage</button>
+        <button @click="linkToMyPage">MyPage</button>
       </div>
     </div>
     <div v-else class="login_box">
@@ -83,6 +83,9 @@ export default {
     },
     linkToSignUp() {
       this.$router.push('/user/signup/')
+    },
+    linkToMyPage() {
+      this.$router.push('/')
     },
     logout() {
       this.$utils.removeCookie('jwt');

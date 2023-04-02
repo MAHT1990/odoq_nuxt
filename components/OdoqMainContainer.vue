@@ -38,7 +38,7 @@ export default {
       question: 'question/questionStore/question',
     }),
     isWeekend() {
-      return this.weekday === 1 || this.weekday === 2;
+      return this.weekday === 6 || this.weekday === 0;
     }
   },
   methods: {
