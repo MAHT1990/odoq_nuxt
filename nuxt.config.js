@@ -5,12 +5,15 @@ export default {
   },
   head: {
     titleTemplate: '%s - OdoqNuxt',
-    title: 'OdoqNuxt',
+    title: 'Odoq2',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
+      { hid: 'og:title', property: 'og:title', content: 'Odoq2' },
+      { hid: 'og:description', property: 'og:description', content: 'OneDayOneQuestion. Be a ODOQer' },
+      { hid: 'og:image', property: 'og:image', content: '/Odoqfavicon.png' },
     ],
     link: [
       { rel: 'shortcut icon', href: '/Odoqfavicon.png' }

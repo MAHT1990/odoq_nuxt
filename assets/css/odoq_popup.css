@@ -323,6 +323,10 @@
 }
 
   /* TERMS POPUP */
+.terms_popup_wrap {
+  max-height: 700px;
+  overflow: auto;
+}
 .terms_popup_wrap .popup_title {
   font-size: 22px;
   font-weight: 700;
@@ -339,6 +343,9 @@
 }
 .terms_popup_wrap p {
   line-height: 1.4;
+}
+.terms_popup_warp .popup_text_wrap {
+  max-width: 100%;
 }
 .terms_popup_wrap .popup_btn_wrap {
   width: 100%;
