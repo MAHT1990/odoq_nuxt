@@ -88,6 +88,10 @@ export default {
     },
     async createPost() {
       // this.$refs.textareaContent.rows = 1;
+      if (this.postInput.content.length === 0) {
+        this.$popup.showAlertPopup('댓글을 입력해주세요.');
+        return;
+      }
       const res = await this.$store.dispatch(
         'post/postStore/createPost',
         {
