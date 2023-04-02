@@ -16,7 +16,9 @@
       </div>
       <div class="comment_container_header_notice">관리자가 악성댓글을 감지하고 있습니다. 건강한 댓글 문화를 위해 노력하는 오도커가 됩시다.</div>
     </div>
-    <div v-if="isLogin" class="comment_input_box">
+    <div
+      v-if="isLogin" class="comment_input_box"
+    >
       <div class="comment_input_box_form">
         <div class="comment_input_box_textarea_and_charnumbs_and_button">
           <textarea
@@ -26,9 +28,8 @@
             rows="1"
             maxlength="500"
             placeholder="댓글을 입력해주세요."
-            @focus="onBoxFocus"
             @blur="onBoxBlur"
-            @keyup.enter.prevent="createPost"
+            @focus="onBoxFocus"
           />
           <div class="comment_input_box_charnumbs_and_button">
             <div class="comment_input_box_charnumbs"><span>{{contentLength}}</span></div>
@@ -76,15 +77,17 @@ export default {
   methods: {
     toggleMyPost() {
       this.filteringFlag = this.filteringFlag === 'all' ? 'my' : 'all';
-
     },
     onBoxFocus(e) {
       e.target.rows = 5;
     },
     onBoxBlur(e) {
-      e.target.rows = 1;
+      setTimeout(() => {
+        e.target.rows = 1;
+      }, 150);
     },
     async createPost() {
+      // this.$refs.textareaContent.rows = 1;
       const res = await this.$store.dispatch(
         'post/postStore/createPost',
         {

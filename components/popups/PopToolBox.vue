@@ -1,8 +1,8 @@
 <template>
     <div class = "comment_line_tool_box">
-      <button @click="postEditOpen" class="comment_edit">
-        <i class="fa-solid fa-pen"></i>
-      </button>
+<!--      <button @click="postEditOpen" class="comment_edit">-->
+<!--        <i class="fa-solid fa-pen"></i>-->
+<!--      </button>-->
       <button @click="postBlind" class="comment_blind">
         <i class="fa-solid fa-eraser"></i>
       </button>
