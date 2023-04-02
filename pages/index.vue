@@ -12,10 +12,16 @@ import Utils from "@/plugins/utils";
 
 export default {
   async asyncData({ store, req }) {
+    console.log('## asyncData in index.vue called');
     // 로그인 CHECK.
     try {
       const cookie = req? req.headers.cookie : document.cookie;
-      if (Utils.getCookie(cookie, 'jwt')) store.commit('user/userAuthStore/checkLogin', { isLogin: true, cookie });
+      if (Utils.getCookie(cookie, 'jwt')) {
+        console.log('## jwt cookie exists. (index.vue)', Utils.getCookie(cookie, 'jwt'));
+        store.commit(
+          'user/userAuthStore/checkLogin',
+          {isLogin: true, cookie})
+      };
     } catch (TypeError) {
       console.log('TypeError');
     }
