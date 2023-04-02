@@ -13,7 +13,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' },
       { hid: 'og:title', property: 'og:title', content: 'Odoq2' },
       { hid: 'og:description', property: 'og:description', content: 'OneDayOneQuestion. Be a ODOQer' },
-      { hid: 'og:image', property: 'og:image', content: '/Odoqfavicon.png' },
+      { hid: 'og:image', property: 'og:image', content: '/OdoqOGImage.png' },
     ],
     link: [
       { rel: 'shortcut icon', href: '/Odoqfavicon.png' }
