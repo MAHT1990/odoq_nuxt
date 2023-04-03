@@ -73,6 +73,10 @@ export default {
   },
   methods: {
     answerPost: async function () {
+      if (!this.inputAnswer) {
+        this.$popup.showAlertPopup('답을 입력해주세요.');
+        return;
+      }
       if (this.canAnswersecondRemain > 0) {
         this.$popup.showAlertPopup(`제출가능시간이 ${this.calculatedRemainTime} 남았습니다.`);
         return;
