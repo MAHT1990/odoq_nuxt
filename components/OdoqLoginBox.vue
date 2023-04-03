@@ -85,7 +85,7 @@ export default {
       this.$router.push('/user/signup/')
     },
     linkToMyPage() {
-      this.$router.push('/')
+      this.$popup.showAlertPopup('준비중입니다.');
     },
     logout() {
       this.$utils.removeCookie('jwt');

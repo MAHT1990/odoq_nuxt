@@ -1,7 +1,11 @@
 import Utils from "@/plugins/utils";
 
 const state = () => ({
-  question: {},
+  question: {
+    answer_count: 0,
+    solve_count: 0,
+    can_answer_remain_time: 0,
+  },
 });
 
 const actions = {

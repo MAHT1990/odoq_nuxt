@@ -62,6 +62,7 @@ export default {
       }
     },
     'question.can_answer_remain_time'(timeRemain) {
+      console.log('## OdoqAnswerContainer > watch reacted: ', timeRemain);
       if (timeRemain > 0) {
         this.timerStarter();
       }
@@ -72,6 +73,10 @@ export default {
   },
   methods: {
     answerPost: async function () {
+      if (this.canAnswersecondRemain > 0) {
+        this.$popup.showAlertPopup(`제출가능시간이 ${this.calculatedRemainTime} 남았습니다.`);
+        return;
+      }
       await this.$store.dispatch(
         'question/questionStore/postAnswer', {
           questionId: this.question.id,

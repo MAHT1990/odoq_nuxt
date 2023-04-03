@@ -7,7 +7,7 @@
           <div class="popup_wrap">
             <div class="popup_title text-center">{{title}}</div>
             <div class="popup_text_wrap">{{initValue.question.solve_count}}명이 답을 맞추셨습니다.</div>
-            <div class="popup_text_wrap">정답률 : {{initValue.question.solve_count/initValue.question.answer_count * 100}}%</div>
+<!--            <div class="popup_text_wrap">정답률 : {{initValue.question.solve_count/initValue.question.answer_count * 100}}%</div>-->
 <!--            <div class="popup_text_wrap">{{initValue.question.solve_count/initValue.question.answer_count}}</div>-->
           </div>
 
