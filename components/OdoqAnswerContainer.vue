@@ -10,7 +10,7 @@
           id="answer_button"
           style="background-color: #b3b3b3; color: white;"
         >
-          {{calculatedRemainTime}}
+          {{ calculatedRemainTime }}
         </button>
         <button
           v-else
@@ -61,15 +61,29 @@ export default {
         clearInterval(this.canAnswerintervalId)
       }
     },
-    'question.can_answer_remain_time'(timeRemain) {
-      console.log('## OdoqAnswerContainer > watch reacted: ', timeRemain);
-      if (timeRemain > 0) {
+    question: {
+      handler: function (newQuestion) {
+        console.log('## OdoqAnswerContainer > watch reacted: ', newQuestion);
         this.timerStarter();
-      }
-    }
+      },
+      immediate: true,
+      deep: true,
+    },
+    // 'question.can_answer_remain_time': {
+    //   handler: function (timeRemain) {
+    //     console.log('## OdoqAnswerContainer > watch reacted: ', timeRemain);
+    //     if (timeRemain > 0) {
+    //       this.timerStarter();
+    //     }
+    //   },
+    //   immediate: true,
+    //   deep: true,
+    // },
   },
   created() {
     this.timerStarter();
+    console.log('## OdoqAnswerContainer > created: ', this.question);
+    console.log(this.$store.getters['question/questionStore/question']);
   },
   methods: {
     answerPost: async function () {
