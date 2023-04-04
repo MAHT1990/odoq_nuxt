@@ -17,7 +17,7 @@
           id="answer_button"
           @click="answerPost"
         >
-          enter.
+          채점.
         </button>
       </div>
       <div class="answer_box">

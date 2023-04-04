@@ -17,7 +17,7 @@ export default {
     try {
       const cookie = req? req.headers.cookie : document.cookie;
       if (Utils.getCookie(cookie, 'jwt')) {
-        console.log('## jwt cookie exists. (index.vue)', Utils.getCookie(cookie, 'jwt'));
+        // console.log('## jwt cookie exists. (index.vue)', Utils.getCookie(cookie, 'jwt'));
         store.commit(
           'user/userAuthStore/checkLogin',
           {isLogin: true, cookie})
