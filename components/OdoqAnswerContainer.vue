@@ -66,7 +66,6 @@ export default {
         console.log('## OdoqAnswerContainer > watch reacted: ', newQuestion);
         this.timerStarter();
       },
-      immediate: true,
       deep: true,
     },
     // 'question.can_answer_remain_time': {
