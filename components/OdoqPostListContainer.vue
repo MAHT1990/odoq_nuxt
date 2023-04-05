@@ -9,7 +9,7 @@
       <button
         ref="buttonOrderMy"
         @click="orderPost('likeCount')"
-      >오늘의 댓글 추천순<i class="fa-solid fa-angle-down"></i>
+      >추천순<i class="fa-solid fa-angle-down"></i>
       </button>
     </div>
     <div class="comment_list_filter_vertical_line"></div>
