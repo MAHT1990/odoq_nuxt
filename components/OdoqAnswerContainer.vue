@@ -86,6 +86,10 @@ export default {
   },
   methods: {
     answerPost: async function () {
+      if (!this.userInfo.userId) {
+        this.$popup.showAlertPopup('로그인이 필요합니다.');
+        return;
+      }
       if (!this.inputAnswer) {
         this.$popup.showAlertPopup('답을 입력해주세요.');
         return;

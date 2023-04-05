@@ -1,18 +1,18 @@
 <template>
   <div class="main_container">
     <odoq-question-container
-      v-show="!isWeekend"
+      v-show="isAvailable"
       :question="question"
       @nextQuestionLoadEvent="loadNext"
     />
     <odoq-weekend-timer-container
-      v-show="isWeekend"
+      v-show="!isAvailable"
       @nextQuestionLoadEvent="loadNext"
     />
     <div class="verticalLine2"></div>
     <div>{{ weekday }}</div>
     <odoq-answer-container
-      v-show="isLogin && !isWeekend"
+      v-show="isAvailable"
       :question="question"
       :user-info="userInfo"
     />
@@ -33,12 +33,13 @@ export default {
   },
   computed: {
     ...mapGetters({
+      availableDays: 'common/availableDays',
       userInfo: 'user/userAuthStore/userInfo',
       isLogin: 'user/userAuthStore/isLogin',
       question: 'question/questionStore/question',
     }),
-    isWeekend() {
-      return this.weekday === 6 || this.weekday === 0;
+    isAvailable() {
+      return this.availableDays.includes(this.weekday);
     }
   },
   methods: {

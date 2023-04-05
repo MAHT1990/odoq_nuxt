@@ -73,8 +73,12 @@ export default {
         if (that.message.login === '') {
           const res = await that.$store.dispatch('user/userAuthStore/getUserInfo', that.input);
           if (res.result !== 'success') {
-            this.$utils.removeCookie('jwt');
+            that.$utils.removeCookie('jwt');
             that.message.login = res.message;
+          } else {
+            that.$store.dispatch('sms/smsStore/getAcceptSms', {
+              userId: that.$store.getters['user/userAuthStore/userInfo'].userId,
+            });
           }
         } else {
           that.message.login += '를 입력해주세요.';

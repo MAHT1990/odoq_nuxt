@@ -78,7 +78,7 @@ export default {
           this.secondRemain--
         }, 1000)
       } else {
-        this.secondRemain = 'THIS IS THE LAST';
+        this.secondRemain = 'COMING SOON';
       }
     },
   },
