@@ -31,8 +31,15 @@
             @blur="onBoxBlur"
             @focus="onBoxFocus"
           />
+          <img :src="postInput.image.url"/>
           <div class="comment_input_box_charnumbs_and_button">
             <div class="comment_input_box_charnumbs"><span>{{contentLength}}</span></div>
+            <input
+              type="file"
+              id="image_file"
+              @change="addImageToPost"
+              accept="image/*"
+            />
             <button
               class="comment_input_box_button"
               type="button"
@@ -45,6 +52,7 @@
       </div>
     </div>
     <OdoqPostListContainer
+      ref="postListContainer"
       :filtering-flag="filteringFlag"
     />
   </div>
@@ -58,7 +66,11 @@ export default {
   data: () => ({
     filteringFlag: 'all',
     postInput: {
-      content:'',
+      content: '',
+      image: {
+        file: null,
+        url: null,
+      },
     },
   }),
   computed: {
@@ -68,7 +80,7 @@ export default {
       todayPosts: 'post/postStore/todayPosts',
     }),
     contentLength() {
-      if (this.postInput.content.length > 0){
+      if (this.postInput.content.length > 0) {
         return `${this.postInput.content.length}/${this.$refs.textareaContent.maxLength}`;
       }
       return '';
@@ -92,15 +104,41 @@ export default {
         this.$popup.showAlertPopup('댓글을 입력해주세요.');
         return;
       }
+      const formData = new FormData();
+      formData.append('user', this.userInfo.userId);
+      formData.append('content', this.postInput.content);
+      formData.append('filteringFlag', this.filteringFlag);
+      formData.append('orderingFlag', this.$refs.postListContainer.orderingFlag);
+      if (this.postInput.image.file) {
+        formData.append('img', this.postInput.image.file);
+      }
+      // const formDataReform = {};
+      // for (const key of formData.keys()) {
+      //   formDataReform[key] = formData.get(key);
+      // }
+      // console.log('## PostContainer formDataReform', formDataReform);
       const res = await this.$store.dispatch(
         'post/postStore/createPost',
-        {
-          user: this.userInfo.userId,
-          content: this.postInput.content,
-          filteringFlag: this.filteringFlag,
-      });
-      if (res.data.result === 'success') this.postInput.content = '';
-    }
+        formData,
+      );
+      if (res.data.result === 'success') {
+        this.postInput.content = '';
+        this.postInput.image.file = null;
+        this.postInput.image.url = null;
+        this.$refs.textareaContent.rows = 1;
+        this.$popup.showAlertPopup('댓글이 등록되었습니다.');
+      }
+    },
+    addImageToPost(e) {
+      if (e.target.files.length === 0) return;
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.postInput.image.file = file;
+        this.postInput.image.url = reader.result;
+      };
+    },
   },
 }
 </script>
