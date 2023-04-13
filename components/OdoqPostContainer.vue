@@ -105,8 +105,9 @@ export default {
     },
     onBoxBlur(e) {
       setTimeout(() => {
-        e.target.rows = 1;
-      }, 150);
+        if (e.target.value.length === 0) e.target.rows = 1;
+        else e.target.style.border = '2px solid #e0e0e0';
+      }, 100);
     },
     async createPost() {
       // this.$refs.textareaContent.rows = 1;
