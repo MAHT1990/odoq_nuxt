@@ -20,10 +20,7 @@
     >{{post.blind_text}} </div>
     <div v-else class="comment_line_content">{{post.content}}</div>
     <div v-if="post.img_url && !post.blind" class="comment_line_image">
-      <img
-        :src="post.img_url"
-        style="max-width: 100%;"
-      />
+      <img :src="post.img_url" alt="이미지로드 실패"/>
     </div>
     <div class="comment_line_cocomment_and_like">
       <button class="comment_line_open_cocomment">

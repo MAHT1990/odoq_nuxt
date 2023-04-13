@@ -34,19 +34,25 @@
           <img :src="postInput.image.url"/>
           <div class="comment_input_box_charnumbs_and_button">
             <div class="comment_input_box_charnumbs"><span>{{contentLength}}</span></div>
-            <input
-              type="file"
-              id="image_file"
-              @change="addImageToPost"
-              accept="image/*"
-            />
-            <button
-              class="comment_input_box_button"
-              type="button"
-              @click="createPost"
-            >
-              <i class="fa-solid fa-pen"></i>
-            </button>
+            <div class="comment_input_box_buttons">
+              <label for="image_file" class="comment_input_box_button">
+                <i class="fa-solid fa-image"></i>
+              </label>
+              <input
+                type="file"
+                id="image_file"
+                @change="addImageToPost"
+                accept="image/*"
+                style="display: none;"
+              />
+              <button
+                class="comment_input_box_button"
+                type="button"
+                @click="createPost"
+              >
+                <i class="fa-solid fa-pen"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
