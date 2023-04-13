@@ -19,6 +19,9 @@
       style="color: #707070; text-decoration-line: line-through; font-style: italic;"
     >{{post.blind_text}} </div>
     <div v-else class="comment_line_content">{{post.content}}</div>
+    <div v-if="post.img_url && !post.blind" class="comment_line_image">
+      <img :src="post.img_url" alt="이미지로드 실패"/>
+    </div>
     <div class="comment_line_cocomment_and_like">
       <button class="comment_line_open_cocomment">
 <!--        <i class="fa-solid fa-caret-down"></i>답글 (댓글 개수)-->

@@ -465,6 +465,14 @@ header{
         /* height : 6em; */
     }
 
+    .comment_input_box img {
+      box-sizing : border-box;
+      max-width: 100%;
+      border-radius: 3px;
+      border : 0.5px transparent;
+      padding: 5px;
+    }
+
     .comment_input_box_charnumbs_and_button {
         font-size : 15px;
         display : flex;
@@ -478,13 +486,32 @@ header{
     .comment_input_box_charnumbs span{
         line-height : 35px;
     }
+    .comment_input_box_charnumbs_and_button label {
+      display: inline-block;
+      line-height: 35px;
+      border: 0;
+      background-color: transparent;
+      font-size: 19px;
+      color : rgba(0,41,100,255);
+      cursor : pointer;
+      margin: 0 5px;
+    }
+
+    .comment_input_box_charnumbx_and_button label:hover {
+      color: rgba(0,81,100,255);
+    }
 
     .comment_input_box_charnumbs_and_button button {
+        line-height: 35px;
         border : 0;
         background-color: transparent;
-        font-size: 15px;
+        font-size: 19px;
         color : rgba(0,41,100,255);
         cursor : pointer;
+    }
+
+    .comment_input_box_charnumbs_and_button button:hover {
+        color: rgba(0,81,100,255);
     }
 
     .cocomment_input_box_charnumbs_and_button button {
@@ -790,6 +817,14 @@ header{
     .cocomment_edit_input_box{
 
     }
+.comment_line_image img{
+  box-sizing : border-box;
+  max-width: 100%;
+  border-radius: 3px;
+  border : 0.5px transparent;
+  padding: 5px;
+
+}
 
 .comment_line_cocomment_and_like {
     padding : 10px;

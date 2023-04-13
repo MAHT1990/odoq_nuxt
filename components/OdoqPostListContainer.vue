@@ -111,12 +111,18 @@ export default {
       this.$store.dispatch('post/postStore/getPost', {
         pageNumber: this.currentPage === 1 ? this.currentPage : this.currentPage - 1,
         pageSize: 7,
+        filteringFlag: this.filteringFlag,
+        orderingFlag: this.orderingFlag,
+        userId: this.userInfo.userId,
       });
     },
     nextPage() {
       this.$store.dispatch('post/postStore/getPost', {
         pageNumber: this.currentPage === this.totalPages ? this.currentPage : this.currentPage + 1,
         pageSize: 7,
+        filteringFlag: this.filteringFlag,
+        orderingFlag: this.orderingFlag,
+        userId: this.userInfo.userId,
       });
     }
   }
