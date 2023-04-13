@@ -42,6 +42,7 @@
                 <i class="fa-solid fa-image"></i>
               </label>
               <input
+                ref="imageInput"
                 type="file"
                 id="image_file"
                 @change="addImageToPost"
@@ -151,6 +152,7 @@ export default {
     removeImageFromPost() {
       this.postInput.image.file = null;
       this.postInput.image.url = null;
+      this.$refs.imageInput.value = '';
     },
   },
 }

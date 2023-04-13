@@ -462,16 +462,18 @@ header{
     }
 
     .comment_input_box img {
+      display: block;
       box-sizing : border-box;
-      max-width: 100%;
+      max-width: 65%;
       border-radius: 3px;
       border : 0.5px transparent;
       padding: 5px;
       cursor: pointer;
+      margin: auto;
     }
 
     .comment_input_box img:hover {
-      opacity: 0.4;
+      opacity: 0.2;
     }
 
     .comment_input_box_charnumbs_and_button {
@@ -492,10 +494,10 @@ header{
       line-height: 35px;
       border: 0;
       background-color: transparent;
-      font-size: 19px;
+      font-size: 25px;
       color : rgba(0,41,100,255);
       cursor : pointer;
-      margin: 0 5px;
+      margin: 0 10px;
     }
 
     .comment_input_box_charnumbx_and_button label:hover {
@@ -506,7 +508,7 @@ header{
         line-height: 35px;
         border : 0;
         background-color: transparent;
-        font-size: 19px;
+        font-size: 25px;
         color : rgba(0,41,100,255);
         cursor : pointer;
     }
