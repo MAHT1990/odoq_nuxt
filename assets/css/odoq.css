@@ -461,16 +461,17 @@ header{
         outline-color : rgba(0,41,100,255);
     }
 
-    .comment_input_box form textarea:focus {
-        /* height : 6em; */
-    }
-
     .comment_input_box img {
       box-sizing : border-box;
       max-width: 100%;
       border-radius: 3px;
       border : 0.5px transparent;
       padding: 5px;
+      cursor: pointer;
+    }
+
+    .comment_input_box img:hover {
+      opacity: 0.4;
     }
 
     .comment_input_box_charnumbs_and_button {
@@ -817,13 +818,21 @@ header{
     .cocomment_edit_input_box{
 
     }
+.comment_line_image button {
+  padding: 10px;
+  border : 0;
+  background-color: transparent;
+  font-size: 1rem;
+  color : rgba(0,41,100,255);
+  cursor : pointer;
+}
 .comment_line_image img{
+  display: block;
   box-sizing : border-box;
   max-width: 100%;
-  border-radius: 3px;
+  border-radius: 5px;
   border : 0.5px transparent;
-  padding: 5px;
-
+  padding: 0 10px;
 }
 
 .comment_line_cocomment_and_like {

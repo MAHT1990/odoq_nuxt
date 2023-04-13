@@ -31,7 +31,10 @@
             @blur="onBoxBlur"
             @focus="onBoxFocus"
           />
-          <img :src="postInput.image.url"/>
+          <img
+            :src="postInput.image.url"
+            @click="removeImageFromPost"
+          />
           <div class="comment_input_box_charnumbs_and_button">
             <div class="comment_input_box_charnumbs"><span>{{contentLength}}</span></div>
             <div class="comment_input_box_buttons">
@@ -144,6 +147,10 @@ export default {
         this.postInput.image.file = file;
         this.postInput.image.url = reader.result;
       };
+    },
+    removeImageFromPost() {
+      this.postInput.image.file = null;
+      this.postInput.image.url = null;
     },
   },
 }

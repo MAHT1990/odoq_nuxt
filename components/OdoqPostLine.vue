@@ -20,7 +20,13 @@
     >{{post.blind_text}} </div>
     <div v-else class="comment_line_content">{{post.content}}</div>
     <div v-if="post.img_url && !post.blind" class="comment_line_image">
-      <img :src="post.img_url" alt="이미지로드 실패"/>
+      <button @click="toggleShowImg">
+        <i class="fa-solid fa-image"></i><span>&nbsp;&nbsp;{{showImg ? '숨기기' : '보기'}}</span>
+      </button>
+      <img
+        v-if="showImg"
+        :src="post.img_url"
+        alt="이미지로드 실패"/>
     </div>
     <div class="comment_line_cocomment_and_like">
       <button class="comment_line_open_cocomment">
@@ -48,6 +54,9 @@ export default {
       type: Boolean
     }
   },
+  data: () => ({
+    showImg: false,
+  }),
   computed: {
     isLiked: {
       get() {
@@ -66,6 +75,9 @@ export default {
     },
   },
   methods: {
+    toggleShowImg() {
+      this.showImg = !this.showImg;
+    },
     openToolBox(e){
       // console.log('ToolBox goes heeeeeere');
       new this.$popup.PopToolBox({
