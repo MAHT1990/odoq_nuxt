@@ -27,7 +27,7 @@
             cols="40"
             rows="1"
             maxlength="500"
-            placeholder="댓글을 입력해주세요."
+            placeholder="댓글(풀이 이미지)를 입력해주세요."
             @blur="onBoxBlur"
             @focus="onBoxFocus"
           />
