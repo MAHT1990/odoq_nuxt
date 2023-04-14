@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Abel&family=Abril+Fatface&family=Fjalla+One&family=Nanum+Gothic&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Abel&family=Abril+Fatface&family=Fjalla+One&family=Nanum+Gothic&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 @keyframes blink {
   0% {
     opacity: 1;
@@ -37,6 +38,10 @@
   }
 }
 
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
 title {
     font-family: 'Abril Fatface', cursive;
 }
@@ -46,6 +51,11 @@ body {
   padding: 0;
   font-size: 0;
   font-family:나눔바른고딕;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 input, button {
@@ -58,26 +68,230 @@ input, button {
 }
 
 .thumb_nail {
-    display : none;
+  display : none;
 }
 
-nav {
-    /* width : 100%; */
-    position : fixed;
-    width : 100%;
-    height : 50px;
-    box-sizing: border-box;
+/*nav {*/
+/*  !* width : 100%; *!*/
+/*  position : fixed;*/
+/*  width : 100%;*/
+/*  height : 50px;*/
+/*  box-sizing: border-box;*/
+/*  background-color : #fff;*/
+/*  border-bottom: 4px solid #0051c8;*/
+/*  z-index: 1;*/
+/*}*/
+
+/*HEADER*/
+header{
+  max-width : 550px;
+  margin : 0 auto;
+
+  opacity: 0;
+  animation-name: fade-in;
+  animation-duration: 2s;
+  animation-delay: 0.1s;
+  animation-fill-mode: forwards;
+}
+
+.header_pseudo_box {
+  height : 70px;
+  width : 100%;
+}
+
+.header_container {
+  /*font-size: 25px;*/
+  /*padding : 0 0 0 20px;*/
+  position: relative;
+}
+.header_container .header_top {
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  border-bottom: 4px solid #0051c8;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  z-index: 9999;
+  max-width: 550px;
+}
+
+.header_container h1 {
+  font-size: 24px;
+  margin: 0;
+  color: #1a1a1a;
+  font-weight: 800;
+}
+.header_container h2 {
+  margin: 16px 0 0;
+  font-size: 14px;
+  color: #0051c8;
+  font-weight: 500;
+}
+
+.header_box {
+  margin-top: 60px;
+  font-size: 70px;
+  padding: 20px;
+  display : flex;
+  justify-content : space-between;
+  color: #0051c8;
+}
+
+.header_box a h3 {
+  font-size: 22px;
+  margin: 0;
+  font-weight: 400;
+  white-space: nowrap;
+  text-indent: 3px;
+}
+.header_box a h4 {
+  font-size: 50px;
+  font-weight: 600;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.header_box img{
+  width : 65%;
+  object-fit : contain;
+}
+
+/* LOGIN */
+.login_box_container {
+}
+.login_box {
+  display: flex;
+  margin: 32px 0 0 10px;
+}
+.login_box form {
+  font-size: 0.8rem;
+}
+.login_box .input_wrap {
+  display: flex;
+}
+.login_box form label {
+  min-width: 45px;
+  height: 22px;
+  padding-top: 8px;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+.login_box form input {
+  display : block;
+  width : 100%;
+  height: 10px;
+  border: 1px solid #9d9d9d;
+  padding : 5px 0;
+  margin : 8px 0;
+  background: #fcfcfc !important;
+  /*border-radius: 3px;*/
+  text-indent: 5px;
+  font-size: 12px;
+}
+.login_box form input:focus {
+  border-color: #0051c8;
+  outline: none;
+}
+
+.login_box_buttons {
+  display : flex;
+  margin-left: 5px;
+}
+
+.login_box_buttons button {
+  width: 25px;
+  height: 60px;
+  border : 0;
+  /* background-color : transparent; */
+  cursor : pointer;
+  padding : 5px;
+  margin : 8px 5px 0 0;
+  background-color : #0051c8;
+
+  font-size : 0.8rem;
+  font-family: 'Fjalla One', sans-serif;
+  /* line-height: 35.46px; 부모 .answer_button_box의 height */
+  color : white;
+  font-weight: 500;
+}
+.login_box_buttons button:first-child {
+  margin-right: 5px;
+}
+.login_box_buttons button:last-child {
+  background: #fff;
+  color: #0051c8;
+  border: 1px solid #0051c8;
+  font-weight: 500;
+}
+.login_box_buttons button:hover {
+  background-color : rgba(0,41,100,255);
+}
+
+/* IS_LOGIN */
+.login_box_container .is_login {
+ /*display: block;*/
+  margin: 0;
+}
+.login_box p {
+  font-size:15px;
+  margin: 0;
+}
+.login_box span {
+  color :rgba(0,81,200,255);
+}
+.login_box_container .is_login .login_box_buttons {
+  /*display: block;*/
+}
+.login_box_container .is_login .login_box_buttons button {
+  height: 95px;
+  margin: 0 5px 0 0;
+}
+.sms_pseudo_container {
+  /*position: absolute;*/
+  /*top: 60px;*/
+  /*right: 100px;*/
+}
+.sms_box{
+  box-sizing : border-box;
+  padding : 10px 0  10px;
+  width : 50px;
+  height : 70px;
+  float : right;
+  /*margin-top : -80px;*/
+  cursor : pointer;
+  color : rgba(0,81,200,255);
+}
+
+.sms_box:hover {
+  /*color : rgba(50,141,200,255);*/
+  background-color : rgba(242,248,252,255);
+  /*border : 1px solid rgba(0,81,200,255);*/
+  border-radius: 3px;
+}
+
+.sms_box img{
+  display : block;
+  height : 40%;
+  margin : auto;
+}
+
+.sms_box p {
+  font-size: 10px;
+  margin : 1px;
+  text-align: center;
+}
+
+
+.plan_logo_menu_container {
     background-color : rgba(0,81,200,255);
-    z-index: 1;
+    height : 50px;
+    width : 100%;
+    max-width: 550px;
+    margin : auto;
 }
-
-    .plan_logo_menu_container {
-        background-color : rgba(0,81,200,255);
-        height : 50px;
-        width : 100%;
-        max-width: 550px;
-        margin : auto;
-    }
 
         .plan_box {
             width : 50px;
@@ -155,129 +369,6 @@ nav {
         .logo_box img:hover {
             opacity: 0.8;
         }
-
-
-header{
-    max-width : 550px;
-    margin : 0 auto;
-
-    opacity: 0;
-    animation-name: fade-in;
-    animation-duration: 2s;
-    animation-delay: 0.1s;
-    animation-fill-mode: forwards;
-}
-
-.header_pseudo_box {
-    height : 70px;
-    width : 100%;
-}
-
-.header_container {
-    font-size: 25px;
-    padding : 0 0 0 20px;
-}
-
-.header_box {
-    font-size: 70px;
-    font-family: 'Abril Fatface', cursive;
-    margin-bottom : 20px;
-    padding-right : 45px;
-    display : flex;
-    justify-content : space-between;
-}
-
-    .header_box img{
-        width : 65%;
-        object-fit : contain;
-    }
-
-.login_box_container {
-  width: 25%;
-  height: 100%;
-  padding: 10px 10px 0 10px;
-}
-.login_box {
-    font-family: initial;
-}
-    .login_box form {
-      font-size: 0.8rem;
-    }
-    .login_box form input {
-        display : block;
-        width : 100%;
-        border : 0;
-        padding : 5px 0;
-        margin : 8px 0;
-        background-color : rgba(242,248,252,255);
-        border : 1px solid rgba(0,81,200,255);
-        border-radius: 3px;
-        text-indent: 5px;
-    }
-
-    .login_box p {
-        font-size:15px;
-        margin : 10px 0;
-        padding : 0;
-    }
-
-    .login_box span {
-        color :rgba(0,81,200,255);
-    }
-
-.login_box_buttons {
-    display : flex;
-    justify-content : flex-start;
-    height: 33%;
-}
-
-    .login_box_buttons button {
-        border : 0;
-        /* background-color : transparent; */
-        cursor : pointer;
-        padding : 5px;
-        margin : 0 5px 0 0;
-        background-color : rgba(0,81,200,255);
-
-        font-size : 0.8rem;
-        font-family: 'Fjalla One', sans-serif;
-        /* line-height: 35.46px; 부모 .answer_button_box의 height */
-        color : white;
-        font-weight: normal;
-    }
-    .login_box_buttons button:hover {
-        background-color : rgba(0,41,100,255);
-    }
-
-.sms_box{
-    box-sizing : border-box;
-    padding : 10px 0  10px;
-    width : 50px;
-    height : 70px;
-    float : right;
-    margin-top : -80px;
-    cursor : pointer;
-    color : rgba(0,81,200,255);
-}
-
-.sms_box:hover {
-    /*color : rgba(50,141,200,255);*/
-    background-color : rgba(242,248,252,255);
-    /*border : 1px solid rgba(0,81,200,255);*/
-    border-radius: 3px;
-}
-
-    .sms_box img{
-        display : block;
-        height : 40%;
-        margin : auto;
-    }
-
-    .sms_box p {
-        font-size: 10px;
-        margin : 1px;
-        text-align: center;
-    }
 
 .verticalLine1 {
     width : 100%;

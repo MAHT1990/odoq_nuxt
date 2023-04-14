@@ -1,26 +1,36 @@
 <template>
     <header>
-        <div class="header_pseudo_box">
-        </div>
+<!--        <div class="header_pseudo_box">-->
+<!--        </div>-->
         <div class="header_container">
+          <Nuxt-Link to="" class="header_top">
+            <h1>PROJ.ODOQ.&nbsp;</h1>
+            <h2>One Day One Question!</h2>
+          </Nuxt-Link>
           <div class="header_box">
-            <img src="@/assets/img/ODOQ_LOGO.png" alt="Odoq2.com">
+            <Nuxt-Link to="">
+              <h3>하루 한 문제!</h3>
+              <h4>오돜!</h4>
+            </Nuxt-Link>
+<!--            <img src="@/assets/img/ODOQ_LOGO.png" alt="Odoq2.com">-->
+            <div>
               <OdoqLoginBox></OdoqLoginBox>
-          </div>
-          <div class="sms_pseudo_container">
-            <div
-              class="sms_box"
-              @click="checkAcceptSms"
-              :style="isAcceptSms ? 'opacity: 1;' : 'opacity: 0.4'"
-            >
-              <img
-                src="@/assets/img/sms.png"
-                alt="sms알림"
-              >
-              <p>SMS</p>
-              <p>알 림</p>
             </div>
           </div>
+<!--          <div class="sms_pseudo_container">-->
+<!--            <div-->
+<!--              class="sms_box"-->
+<!--              @click="checkAcceptSms"-->
+<!--              :style="isAcceptSms ? 'opacity: 1;' : 'opacity: 0.4'"-->
+<!--            >-->
+<!--              <img-->
+<!--                src="@/assets/img/sms.png"-->
+<!--                alt="sms알림"-->
+<!--              >-->
+<!--              <p>SMS</p>-->
+<!--              <p>알 림</p>-->
+<!--            </div>-->
+<!--          </div>-->
         </div>
     </header>
 </template>
