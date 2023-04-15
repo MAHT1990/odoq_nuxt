@@ -30,7 +30,7 @@ const actions = {
     commit('setAnswerHistory', res.data);
   },
   async getAnswerLive({ commit }, query) {
-    const res = await this.$axios.get('question/answer_live',
+    const res = await this.$axios.get('question/answer_live/',
       {
         params: {
           ...query

@@ -436,6 +436,30 @@ header{
                 font-weight: normal;
             }
 
+.answer_live_container
+{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid grey;
+  font-size: 1rem;
+  height: 10rem;
+}
+
+.asnwer_live_title_and_count {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-bottom: 1px solid grey;
+}
+
+.answer_live_box {
+  overflow-y: auto;
+}
+
+.answer_live_box_content
+{
+  display: flex;
+}
 .comment_input_box {
     border : 0.5px solid grey;
     border-radius : 3px;
