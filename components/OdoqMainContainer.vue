@@ -16,6 +16,11 @@
       :question="question"
       :user-info="userInfo"
     />
+    <odoq-answer-live
+      v-if="isWriter"
+      :question="question"
+      :user-info="userInfo"
+    />
     <odoq-post-container/>
     <odoq-footer/>
   </div>
@@ -40,6 +45,9 @@ export default {
     }),
     isAvailable() {
       return this.availableDays.includes(this.weekday);
+    },
+    isWriter() {
+      return [1, 2].includes(this.userInfo.userGrade);
     }
   },
   methods: {
