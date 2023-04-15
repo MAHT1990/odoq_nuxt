@@ -1,33 +1,40 @@
 <template>
   <div class="login_box_container">
-    <div v-if="isLogin" class="login_box">
-      <p><span>{{ userInfo.userName }}님</span></p>
-      <p>반갑습니다.</p>
+    <div v-if="isLogin" class="login_box is_login">
+      <div>
+        <p><span>{{ userInfo.userName }}님</span><br>반갑습니다.</p>
+      </div>
       <div class="login_box_buttons">
-        <button @click="logout">Log Out</button>
-        <button @click="linkToMyPage">MyPage</button>
+        <button @click="logout">로그아웃</button>
+        <button @click="linkToMyPage">마이페이지</button>
       </div>
     </div>
     <div v-else class="login_box">
       <form action="">
-        <input
-          v-model.lazy="input.email"
-          type="text"
-          placeholder="ODOQ ID"
-          required
-          @keyup.enter="userLogin"
-        >
-        <input
+        <div class="input_wrap">
+          <label for="">EMAIL</label>
+          <input
+            v-model.lazy="input.email"
+            type="text"
+            placeholder="ODOQ ID"
+            required
+            @keyup.enter="userLogin"
+          >
+        </div>
+        <div class="input_wrap">
+          <label for="">PW</label>
+          <input
           v-model.lazy="input.password"
           type="password"
           placeholder="PASSWORD"
           required
           @keyup.enter="userLogin"
         >
+        </div>
       </form>
       <div class="login_box_buttons">
-        <button @click="userLogin">Log In</button>
-        <button @click="linkToSignUp">Sign Up</button>
+        <button @click="userLogin">로그인</button>
+        <button @click="linkToSignUp">가입</button>
       </div>
     </div>
   </div>

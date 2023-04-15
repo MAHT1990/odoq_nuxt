@@ -1,14 +1,15 @@
 <template>
   <nav class="navbar">
-    <div class="plan_logo_menu_container">
-      <div class="plan_box" @click="openPlanPopup">
-        <img src="@/assets/img/info_asset.png" alt="Plan">
-        <p>공지</p>
-      </div>
-      <div class="logo_box">
-        <a href="http://odoq2.com" rel="noopener noreferrer"><img src="@/assets/img/ODOQ_NAV_LOGO.png" alt=""></a>
-      </div>
-    </div>
+<!--    <h1>PROJ. ODO<span>One Day One Question!</span></h1>-->
+<!--    <div class="plan_logo_menu_container">-->
+<!--      <div class="plan_box" @click="openPlanPopup">-->
+<!--        <img src="@/assets/img/info_asset.png" alt="Plan">-->
+<!--        <p>공지</p>-->
+<!--      </div>-->
+<!--      <div class="logo_box">-->
+<!--        <a href="http://odoq2.com" rel="noopener noreferrer"><img src="@/assets/img/ODOQ_NAV_LOGO.png" alt=""></a>-->
+<!--      </div>-->
+<!--    </div>-->
     <!--        <div class="plan_popup" @click="closePlanPopup">-->
     <!--            <div class="plan_popup_contents">-->
     <!--                <div class="plan_popup_contents_header_verticalline">-->
