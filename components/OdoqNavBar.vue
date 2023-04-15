@@ -1,5 +1,11 @@
 <template>
   <nav class="navbar">
+    <Nuxt-Link to="" class="header_top">
+      <div class="flex">
+        <h1>PROJ.ODOQ.&nbsp;</h1>
+        <h2>One Day One Question!</h2>
+      </div>
+  </Nuxt-Link>
 <!--    <h1>PROJ. ODO<span>One Day One Question!</span></h1>-->
 <!--    <div class="plan_logo_menu_container">-->
 <!--      <div class="plan_box" @click="openPlanPopup">-->

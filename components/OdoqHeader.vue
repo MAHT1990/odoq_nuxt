@@ -3,10 +3,6 @@
 <!--        <div class="header_pseudo_box">-->
 <!--        </div>-->
         <div class="header_container">
-          <Nuxt-Link to="" class="header_top">
-            <h1>PROJ.ODOQ.&nbsp;</h1>
-            <h2>One Day One Question!</h2>
-          </Nuxt-Link>
           <div class="header_box">
             <Nuxt-Link to="">
               <h3>하루 한 문제!</h3>

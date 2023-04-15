@@ -1,7 +1,7 @@
 <template>
   <div id="index">
     <OdoqHeader/>
-    <div class="verticalLine1"></div>
+<!--    <div class="verticalLine1"></div>-->
     <OdoqMainContainer/>
   </div>
 </template>
