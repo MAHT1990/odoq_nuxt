@@ -18,6 +18,7 @@
     />
     <odoq-answer-live
       v-if="isWriter"
+      v-show="isAvailable"
       :question="question"
       :user-info="userInfo"
     />

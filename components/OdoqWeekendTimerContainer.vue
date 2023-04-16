@@ -19,13 +19,16 @@ export default {
   computed: {
     timerFormat() {
       if (typeof this.secondRemain === 'number'){
-        const hour = parseInt(this.secondRemain / 3600);
-        const min = parseInt((this.secondRemain % 3600) / 60);
-        const sec = parseInt(this.secondRemain % 60);
+        const formatter = (num) => {
+          return num < 10 ? `0${num}` : num
+        }
+        const hour = formatter(parseInt(this.secondRemain / 3600));
+        const min = formatter(parseInt((this.secondRemain % 3600) / 60));
+        const sec = formatter(parseInt(this.secondRemain % 60));
 
-        return `${this.timerFormatter(hour)}:${this.timerFormatter(min)}:${this.timerFormatter(sec)}`;
+        return `${hour}:${min}:${sec}`;
       }
-      return this.secondRemain
+      return 'COMING SOON'
     }
   },
   watch: {
@@ -41,9 +44,6 @@ export default {
     this.timerStarter();
   },
   methods: {
-    timerFormatter(num) {
-      return num < 10 ? `0${num}` : num
-    },
     timerStarter() {
       this.intervalId = setInterval(() => {
         this.secondRemain --;
@@ -54,9 +54,12 @@ export default {
       // 주말은 6, 0이다.
       const now = moment();
       console.log('## OdoqWeekendTimerContainer\'s calcRemainTime > now is ', now);
-      const nextWeek = moment().add(7 - (now.day() + 6)%7, 'days').hour(0).minute(0).second(0);
-      console.log('## OdoqWeekendTimerContainer\'s calcRemainTime > nextWeek is ', nextWeek);
-      const remainTime = nextWeek.diff(now);
+      const trgtDay = this.$store.getters['common/availableDays'][0];
+      const nextFirst = moment()
+        .add((7 + (trgtDay - now.day()))%7, 'days')
+        .hour(0).minute(0).second(0);
+      console.log('## OdoqWeekendTimerContainer\'s calcRemainTime > nextFirst is ', nextFirst);
+      const remainTime = nextFirst.diff(now);
       return parseInt(remainTime / 1000);
     }
   },

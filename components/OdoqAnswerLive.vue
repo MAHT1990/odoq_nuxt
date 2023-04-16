@@ -58,7 +58,8 @@ export default {
       return answr.is_solved ? '맞음' : '틀림';
     },
     createdAt(answr) {
-      return moment(answr.created_at).format('YYYY-MM-DD HH:mm:ss');
+      // return moment(answr.created_at).format('YYYY-MM-DD HH:mm:ss');
+      return moment(answr.created_at).format('HH:mm:ss');
     },
   }
 }
