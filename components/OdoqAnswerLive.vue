@@ -46,8 +46,18 @@ export default {
     const intervalId = setInterval(this.getAnswerLive, 10000);
     this.intervalIds.push(intervalId);
   },
+  unmounted() {
+    this.stopAllInterval();
+  },
   destroyed() {
     this.stopAllInterval();
+  },
+  beforeUnload() {
+    this.stopAllInterval();
+  },
+  beforeRouteLeave(to, from, next) {
+    this.stopAllInterval();
+    next();
   },
   methods: {
     stopAllInterval() {
