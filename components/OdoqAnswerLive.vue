@@ -67,6 +67,7 @@ export default {
       this.intervalIds = [];
     },
     getAnswerLive() {
+      console.error('now and intervalIds', new Date(), this.intervalIds);
       this.$store.dispatch('question/questionStore/getAnswerLive', {
         questionId: this.question.id
       });
