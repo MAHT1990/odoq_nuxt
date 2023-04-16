@@ -55,17 +55,12 @@ const mutations = {
    */
   setQuestion(state, axiosResData) {
     // console.log('axiosResData is ', axiosResData);
-    let resData;
-    if (Object.keys(axiosResData.data).length === 0) {
-      resData = {};
-    }
-    else {
-      resData = {
+    state.question = Object.keys(axiosResData.data).length === 0
+      ? {}
+      : {
         ...axiosResData.data,
         img_url: Utils.getImgUrl(axiosResData.data.img_url)
-      }
-    }
-    state.question = resData;
+      };
     console.log('questionStore > setQuestion > state.question is ', state.question);
   },
   setAnswerHistory(state, axiosResData) {

@@ -11,6 +11,7 @@
 </template>
 
 <script>
+
 export default {
   props: {
     question: {
@@ -42,12 +43,15 @@ export default {
       return this.question;
     },
     timerFormat() {
+      const formatter = (num) => {
+        return num < 10 ? `0${num}` : num;
+      }
       if (typeof this.secondRemain === 'number'){
-        const hour = parseInt(this.secondRemain / 3600);
-        const min = parseInt((this.secondRemain % 3600) / 60);
-        const sec = parseInt(this.secondRemain % 60);
+        const hour = formatter(parseInt(this.secondRemain / 3600));
+        const min = formatter(parseInt((this.secondRemain % 3600) / 60));
+        const sec = formatter(parseInt(this.secondRemain % 60));
 
-        return `${this.timerFormatter(hour)}:${this.timerFormatter(min)}:${this.timerFormatter(sec)}`;
+        return `${hour}:${min}:${sec}`;
       }
       return this.secondRemain
     }
@@ -67,9 +71,6 @@ export default {
     this.timerStarter();
   },
   methods: {
-    timerFormatter(num) {
-      return num < 10 ? `0${num}` : num;
-    },
     timerStarter() {
       if (this.question.second_remain > 0) {
         this.secondRemain = this.question.second_remain;

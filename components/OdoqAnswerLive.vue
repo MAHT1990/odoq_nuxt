@@ -31,7 +31,7 @@ export default {
   },
   data() {
     return {
-      intervalId: null,
+      intervalIds: [],
     }
   },
   computed: {
@@ -41,18 +41,26 @@ export default {
     // make answr.is_solved to '맞음' or '틀림'
   },
   created() {
+    this.stopAllInterval();
     this.getAnswerLive();
-    this.intervalId = setInterval(this.getAnswerLive, 10000);
+    const intervalId = setInterval(this.getAnswerLive, 10000);
+    this.intervalIds.push(intervalId);
   },
   destroyed() {
-    clearInterval(this.intervalId);
+    this.stopAllInterval();
   },
   methods: {
+    stopAllInterval() {
+      for (const intervalId of this.intervalIds) {
+        clearInterval(intervalId);
+      }
+      this.intervalIds = [];
+    },
     getAnswerLive() {
       this.$store.dispatch('question/questionStore/getAnswerLive', {
         questionId: this.question.id
       });
-      console.log('## OdoqAnswerLive > getAnswerLive: ', this.answerLive);
+      // console.log('## OdoqAnswerLive > getAnswerLive: ', this.answerLive);
     },
     isSolved(answr) {
       return answr.is_solved ? '맞음' : '틀림';
