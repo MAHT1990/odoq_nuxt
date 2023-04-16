@@ -38,12 +38,12 @@
     }
 
 
-    .main_container{
-        padding : 0 10px 0 10px;
-        box-sizing : border-box;
-        width : 100%;
-        max-width : 550px;
-    }
+    /*.main_container{*/
+    /*    padding : 0 10px 0 10px;*/
+    /*    box-sizing : border-box;*/
+    /*    width : 100%;*/
+    /*    max-width : 550px;*/
+    /*}*/
 
     .header_pseudo_box {
         height : 55px;

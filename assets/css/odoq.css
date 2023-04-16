@@ -124,7 +124,7 @@ input, button {
 header{
   width: 100%;
   margin : 0 auto;
-  border-bottom: 1px solid #000;
+  /*border-bottom: 1px solid #000;*/
   opacity: 0;
   animation-name: fade-in;
   animation-duration: 2s;
@@ -407,8 +407,10 @@ header{
     animation-fill-mode: forwards;
 }
 
+
+/* MAIN*/
 .main_container{
-    padding : 0 20px 20px 20px;
+    /*padding : 0 20px 20px 20px;*/
     max-width : 550px;
     margin : 0 auto;
     opacity: 0;
@@ -416,7 +418,44 @@ header{
     animation-delay: 0.3s;
     animation-fill-mode: forwards;
 }
-
+.main_container .tab_wrap {
+  height: 50px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.main_container .tab_wrap .on {
+  font-weight: 700;
+  position: relative;
+}
+.main_container .tab_wrap .on:before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 60%;
+  height: 4px;
+  background: #0051c8;
+}
+/*.main_container .tab_wrap span {*/
+/*  position: absolute;*/
+/*  left: 0;*/
+/*  bottom: 0;*/
+/*  display: block;*/
+/*  width: 80px;*/
+/*  height: 4px;*/
+/*  background: #0051c8;*/
+/*  transition: .2s;*/
+/*}*/
+.main_container .tab_wrap button {
+  border: 0;
+  height: 100%;
+  width: 80px;
+  background: #fff;
+}
+.main_container .tab_wrap button:last-child {
+  color: #ff5a5a;
+}
 .question_container {
     margin : 0;
 }
