@@ -40,7 +40,7 @@ export default {
      }),
     // make answr.is_solved to '맞음' or '틀림'
   },
-  created() {
+  mounted() {
     this.stopAllInterval();
     this.getAnswerLive();
     const intervalId = setInterval(this.getAnswerLive, 10000);
