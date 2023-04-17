@@ -23,7 +23,7 @@ export default {
     return {
       hasImg: true,
       secondRemain: null,
-      intervalId: null,
+      intervalIds: [],
     }
   },
   computed: {
@@ -59,25 +59,40 @@ export default {
   watch: {
     secondRemain(timeRemain) {
       if (timeRemain <= 0) {
-        clearInterval(this.intervalId)
+        this.clearTimer();
         this.$emit('nextQuestionLoadEvent')
       }
     },
     question(oldQuestion) {
-      setTimeout(this.timerStarter, 1000);
+      setTimeout(this.timerStarter, 500);
     }
   },
-  created() {
+  mounted() {
     this.timerStarter();
   },
   methods: {
+    startTimer() {
+      const intervalId = setInterval(() => {
+        this.secondRemain--
+      }, 1000);
+      this.intervalIds.push(intervalId);
+    },
+    clearTimer() {
+      this.intervalIds.forEach(intervalId => {
+        clearInterval(intervalId);
+      });
+      this.intervalIds = [];
+    },
     timerStarter() {
       if (this.question.second_remain > 0) {
         this.secondRemain = this.question.second_remain;
         // Timer 시작.
-        this.intervalId = setInterval(() => {
-          this.secondRemain--
-        }, 1000)
+        if (this.intervalIds.length === 0) {
+          this.startTimer();
+        } else {
+          this.clearTimer();
+          this.startTimer();
+        }
       } else {
         this.secondRemain = 'COMING SOON';
       }
