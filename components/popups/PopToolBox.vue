@@ -20,7 +20,7 @@ export default Vue.extend({
   mixins: [popupMixin],
   methods: {
     postEditOpen() {
-      console.log('postEditOpen');
+      // console.log('postEditOpen');
     },
     postBlind() {
       // console.log('postBlind');

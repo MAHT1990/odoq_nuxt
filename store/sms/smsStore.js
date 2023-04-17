@@ -15,7 +15,7 @@ const actions = {
         userId: data.userId
       }
     });
-    console.log('## smsStore > getAcceptSms > res.data is ', res.data)
+    // console.log('## smsStore > getAcceptSms > res.data is ', res.data)
     if (res.data.result === 'success') {
       commit('setAcceptSms', res.data);
     }
@@ -25,7 +25,7 @@ const actions = {
    */
   async checkAcceptSms({commit}, data) {
     const res = await this.$axios.patch('user/accept_sms/', data);
-    console.log('## smsStore > checkAcceptSms > res.data is ', res.data)
+    // console.log('## smsStore > checkAcceptSms > res.data is ', res.data)
     if (res.data.result === 'success') {
       commit('setAcceptSms', res.data);
     }

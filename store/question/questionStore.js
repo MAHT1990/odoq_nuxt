@@ -16,7 +16,7 @@ const state = () => ({
 const actions = {
   async getQuestion({ commit }) {
     const res = await this.$axios.get('question');
-    console.log('questionStore > getQuestion > res.data is ', res.data);
+    // console.log('questionStore > getQuestion > res.data is ', res.data);
     commit('setQuestion', res.data);
   },
   async getAnswerHistory({ commit }, query) {
@@ -26,7 +26,7 @@ const actions = {
           ...query
         }
       });
-    console.log('questionStore > getAnswerHistory > res.data is ', res.data);
+    // console.log('questionStore > getAnswerHistory > res.data is ', res.data);
     commit('setAnswerHistory', res.data);
   },
   async getAnswerLive({ commit }, query) {
@@ -61,7 +61,7 @@ const mutations = {
         ...axiosResData.data,
         img_url: Utils.getImgUrl(axiosResData.data.img_url)
       };
-    console.log('questionStore > setQuestion > state.question is ', state.question);
+    // console.log('questionStore > setQuestion > state.question is ', state.question);
   },
   setAnswerHistory(state, axiosResData) {
     state.question.can_answer_remain_time = axiosResData.data.can_answer_remain_time;
@@ -83,7 +83,7 @@ const mutations = {
    * @param axiosResData
    */
   updateQuestionAnswerStatus(state, axiosResData) {
-    console.log('questionStore > updateQuestionAnswerStatus > axiosResData is ', axiosResData);
+    // console.log('questionStore > updateQuestionAnswerStatus > axiosResData is ', axiosResData);
     state.question.answer_count = axiosResData.data.answer_count;
     state.question.solve_count = axiosResData.data.solve_count;
     state.question.can_answer_remain_time = axiosResData.data.can_answer_remain_time;

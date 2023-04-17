@@ -19,7 +19,7 @@ const actions = {
       commit('setTodayPosts', res.data.data.today_posts);
       commit('setCurrentPage', res.data.data.current_page);
       commit('setTotalPages', res.data.data.total_pages);
-      console.log('postStore의 getPost의 결과: ', res.data.data);
+      // console.log('postStore의 getPost의 결과: ', res.data.data);
       // console.dir(res.data.data.posts, {
       //   showHidden: true,
       //   colors: true,

@@ -12,7 +12,7 @@ import Utils from "@/plugins/utils";
 
 export default {
   async asyncData({ store, req }) {
-    console.log('## asyncData in index.vue called');
+    // console.log('## asyncData in index.vue called');
     // 로그인 CHECK.
     try {
       const cookie = req? req.headers.cookie : document.cookie;
@@ -53,7 +53,7 @@ export default {
 
   },
   mounted() {
-    console.log(this.$utils);
+    // console.log(this.$utils);
   }
 }
 </script>

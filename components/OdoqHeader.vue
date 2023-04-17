@@ -35,9 +35,9 @@ export default {
   },
   methods: {
     async checkAcceptSms() {
-      console.log('## checkAcceptSms button is pushed');
-      console.log('## this.$store is ', this.$store);
-      console.log('## this.$store.getters[\'user/userAuthStore/isLogin\']: ', this.$store.getters['user/userAuthStore/isLogin'])
+      // console.log('## checkAcceptSms button is pushed');
+      // console.log('## this.$store is ', this.$store);
+      // console.log('## this.$store.getters[\'user/userAuthStore/isLogin\']: ', this.$store.getters['user/userAuthStore/isLogin'])
       if (this.$store.getters['user/userAuthStore/isLogin']) {
         const res = await this.$store.dispatch('sms/smsStore/checkAcceptSms', {
           userId: this.$store.getters['user/userAuthStore/userInfo'].userId,
@@ -45,7 +45,7 @@ export default {
         });
 
         if (res.result === 'success') {
-          console.log('## this.isAcceptSms: ', this.isAcceptSms);
+          // console.log('## this.isAcceptSms: ', this.isAcceptSms);
           this.$popup.showAlertPopup('SMS 알림이 ' + (this.isAcceptSms ? '설정' : '해제') + '되었습니다.');
         }
       }

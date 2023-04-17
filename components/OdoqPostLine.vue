@@ -63,7 +63,7 @@ export default {
         return this.post.liked_users.includes(this.userInfo.userId);
       },
       set(v) {
-        console.log('new Value in isLiked: ', v);
+        // console.log('new Value in isLiked: ', v);
       }
     },
     isWriter() {

@@ -63,7 +63,7 @@ export default {
     },
     question: {
       handler: function (newQuestion) {
-        console.log('## OdoqAnswerContainer > watch reacted: ', newQuestion);
+        // console.log('## OdoqAnswerContainer > watch reacted: ', newQuestion);
         this.timerStarter();
       },
       deep: true,
@@ -81,8 +81,8 @@ export default {
   },
   created() {
     this.timerStarter();
-    console.log('## OdoqAnswerContainer > created: ', this.question);
-    console.log(this.$store.getters['question/questionStore/question']);
+    // console.log('## OdoqAnswerContainer > created: ', this.question);
+    // console.log(this.$store.getters['question/questionStore/question']);
   },
   methods: {
     answerPost: async function () {
@@ -141,7 +141,7 @@ export default {
     },
     timerStarter() {
       if (this.question.can_answer_remain_time > 0) {
-        console.log('## OdoqAnswerContainer > timerStarter', this.question.can_answer_remain_time);
+        // console.log('## OdoqAnswerContainer > timerStarter', this.question.can_answer_remain_time);
         this.canAnswersecondRemain = this.question.can_answer_remain_time;
         // Timer 시작.
         this.canAnswerintervalId = setInterval(() => {
