@@ -1,31 +1,37 @@
 <template>
   <div class="main_container">
     <div class="tab_wrap">
-      <span id="line"></span>
-      <button @click="onTab(idx)"
+<!--      <span id="line"></span>-->
+      <button @click="onTab(idx)" class="tab_btn"
               :id="item" v-for="(item, idx) in tabs"
               :key="item"
               :class="currentIdx === idx ? 'on' : ''"
       >{{item}}
       </button>
     </div>
+    <div class="open_label" id="openLabel" @click="openTest" v-if="currentIdx === 0">
+      <img src="data:image/svg+xml,%3Csvg width='45' height='68' viewBox='0 0 45 68' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.000419178 0H44.9085V38.1914L45 67.3638L22.4542 49.3991L22.4546 49.3989H22.4235L22.4474 49.412L0 67.362L0.0172961 49.3989H0.000419178V0Z' fill='%230051C8'/%3E%3C/svg%3E%0A" alt="문제접기">
+      <div id="labelText">문제<br>접기</div>
+    </div>
     <div v-if="currentIdx === 0">
-      <odoq-question-container
-        v-show="isAvailable"
-        :question="question"
-        @nextQuestionLoadEvent="loadNext"
-      />
+      <div id="questionContainer">
+        <odoq-question-container
+          v-show="isAvailable"
+          :question="question"
+          @nextQuestionLoadEvent="loadNext"
+        />
+        <odoq-answer-container
+          v-show="isAvailable"
+          :question="question"
+          :user-info="userInfo"
+        />
+      </div>
       <odoq-weekend-timer-container
         v-show="!isAvailable"
         @nextQuestionLoadEvent="loadNext"
       />
       <div class="verticalLine2"></div>
       <div>{{ weekday }}</div>
-      <odoq-answer-container
-        v-show="isAvailable"
-        :question="question"
-        :user-info="userInfo"
-      />
       <odoq-post-container/>
     </div>
     <odoq-footer/>
@@ -61,29 +67,25 @@ export default {
       this.weekday = new Date().getDay();
       await this.$store.dispatch('question/questionStore/getQuestion');
     },
-    // onTab(e) {
-    //   // this.tab = idx;
-    //   const tab = e.target.id;
-    //   console.log(tab);
-    //   document.getElementById('line').style.width =
-    //     e.target.offsetWidth + "px";
-    //   document.getElementById('line').style.top =
-    //     e.target.offsetTop + e.target.offsetHeight - 3 +"px";
-    //   document.getElementById('line').style.left =
-    //     e.target.offsetLeft + "px";
-    //   if (tab === '전체글') {
-    //     this.content = 0;
-    //     console.log(this.content);
-    //   } else if (tab === '공지') {
-    //     this.content = 1;
-    //     console.log(this.content);
-    //   } else if (tab === '인기글') {
-    //     this.content = 2;
-    //     console.log(this.content);
-    //   }
-    // },
     onTab(idx) {
       this.currentIdx = idx;
+    },
+    openTest() {
+      this.open = !this.open;
+      const question = document.getElementById('questionContainer');
+      const openBtn = document.getElementById('openLabel');
+      if (this.open === true) {
+        question.style.height = '0';
+        question.style.overflow = 'hidden';
+        openBtn.firstChild.src = 'data:image/svg+xml,%3Csvg width=\'45\' height=\'68\' viewBox=\'0 0 45 68\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath fill-rule=\'evenodd\' clip-rule=\'evenodd\' d=\'M0 0H44.9084V38.1722L45 67.3642L22.454 49.3994L22.4542 49.3993H22.4236L22.4475 49.4125L0 67.3626L0.0172968 49.3993H0V0Z\' fill=\'%239D9D9D\'/%3E%3C/svg%3E%0A';
+        openBtn.lastChild.innerHTML = '문제<br>펼치기';
+        openBtn.lastChild.color = '#0051c8';
+      } else {
+        question.style.height = 'unset';
+        openBtn.firstChild.src = 'data:image/svg+xml,%3Csvg width=\'45\' height=\'68\' viewBox=\'0 0 45 68\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath fill-rule=\'evenodd\' clip-rule=\'evenodd\' d=\'M0.000419178 0H44.9085V38.1914L45 67.3638L22.4542 49.3991L22.4546 49.3989H22.4235L22.4474 49.412L0 67.362L0.0172961 49.3989H0.000419178V0Z\' fill=\'%230051C8\'/%3E%3C/svg%3E%0A';
+        openBtn.lastChild.innerHTML = '문제<br>접기';
+        openBtn.lastChild.color = '#fff';
+      }
     },
   },
   created() {
