@@ -101,7 +101,7 @@ input, button {
   z-index: 9999;
 }
 .navbar .header_top>div {
-  max-width: 550px;
+  max-width: 545px;
   margin: 0 auto;
   justify-content: space-between;
   width: 100%;
@@ -410,20 +410,30 @@ header{
 
 /* MAIN*/
 .main_container{
-    /*padding : 0 20px 20px 20px;*/
-    max-width : 550px;
-    margin : 0 auto;
-    opacity: 0;
-    animation: fade-in 2s ease-in-out;
-    animation-delay: 0.3s;
-    animation-fill-mode: forwards;
+  /*padding : 0 20px 20px 20px;*/
+  max-width : 550px;
+  margin : 0 auto;
+  opacity: 0;
+  animation: fade-in 2s ease-in-out;
+  animation-delay: 0.3s;
+  animation-fill-mode: forwards;
+  position: relative;
+
 }
 .main_container .tab_wrap {
   height: 50px;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
 }
-.main_container .tab_wrap .on {
+.main_container .tab_wrap .tab_btn {
+  border: 0;
+  height: 100%;
+  width: 80px;
+  background: #fff;
+  font-size: 16px;
+  font-weight: 500;
+}
+.main_container .tab_wrap .tab_btn.on {
   font-weight: 700;
   position: relative;
 }
@@ -437,163 +447,174 @@ header{
   height: 4px;
   background: #0051c8;
 }
-/*.main_container .tab_wrap span {*/
-/*  position: absolute;*/
-/*  left: 0;*/
-/*  bottom: 0;*/
-/*  display: block;*/
-/*  width: 80px;*/
-/*  height: 4px;*/
-/*  background: #0051c8;*/
-/*  transition: .2s;*/
-/*}*/
-.main_container .tab_wrap button {
-  border: 0;
-  height: 100%;
-  width: 80px;
-  background: #fff;
-}
-.main_container .tab_wrap button:last-child {
+.main_container .tab_wrap .tab_btn:nth-child(3) {
   color: #ff5a5a;
 }
-.question_container {
-    margin : 0;
+.main_container .open_label {
+  position: absolute;
+  width: 55px;
+  height: 70px;
+  top: 0px;
+  right: 25px;
+  cursor: pointer;
+}
+.main_container .open_label img {
+  width: 55px;
+  height: 70px;
+}
+.main_container .open_label > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin-top: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
 }
 
+/* QUESTION */
+#questionContainer {
+  transition: all .5s ease-in-out;
+  padding: 0 20px;
+}
+.question_container {
+  margin : 0;
+  padding-top: 15px;
+}
 .question_container_header{
     padding : 0 10px;
-        font-size: 20px;
-        font-family: 'Fjalla One', sans-serif;
-        display : flex;
-        cursor : default;
-    }
+    font-size: 20px;
+    font-family: 'Fjalla One', sans-serif;
+    display : flex;
+    cursor : default;
+}
+.season_box {
+  flex : 1;
+  display : inline-block;
+}
+.countdown_box {
+  flex : 1;
+  display : inline_block;
+  text-align : right;
+  color : rgba(0,81,200,255);
+}
 
-        .season_box {
-            flex : 1;
-            display : inline-block;
-        }
-        .countdown_box {
-            flex : 1;
-            display : inline_block;
-            text-align : right;
-            color : rgba(0,81,200,255);
-        }
+.question_box {
+margin : 0 auto;
+opacity: 0;
+/* background-color : olive; */
+animation: fade-in 2s ease-in-out;
+animation-delay: 1s;
+animation-fill-mode: forwards;
+}
 
-    .question_box {
-        margin : 0 auto;
-        opacity: 0;
-        /* background-color : olive; */
-        animation: fade-in 2s ease-in-out;
-        animation-delay: 1s;
-        animation-fill-mode: forwards;
-    }
-
-        .question_box img {
-            display : block;
-            /* padding : 10px; */
-            width : 100%;
-            max-width : 550px;
-            margin :auto;
-        }
-
+.question_box img {
+  display : block;
+  /* padding : 10px; */
+  width : 100%;
+  max-width : 550px;
+  margin :auto;
+}
 .verticalLine2 {
     width : 100%;
     height : 2px;
 }
 
+/* ANSWER CONTAINER */
 .answer_container {
-    /* background-color: bisque; */
-    padding : 20px 10px 15px 10px;
-    display : flex;
+  display : flex;
+  justify-content: center;
+  height: 50px;
 }
-
-    .answer_header {
-        display : inline-block;
-        flex : 1;
-        padding : 0.3em 10px 0.3em 0;
-        font-size : 20px;
-        font-family: 'Fjalla One', sans-serif;
-    }
-
-    .answer_container .answer_input_button_box {
-        display : inline-block;
-        flex : 6;
-    }
+.answer_header {
+  display : inline-block;
+  font-size : 17px;
+  line-height: 50px;
+  color: #0051c8;
+  font-weight: 900;
+  /*font-family: 'Fjalla One', sans-serif;*/
+}
+.answer_container .answer_input_button_box {
+  display : inline-block;
+  /*flex : 6;*/
+}
 
     /* .answer_header span {
         line-height: 40px;
     } */
 
-        .answer_box {
-            width : 150px;
-            padding : 0.3em 10px 0.3em 0;
-            text-align : center;
-            font-size : 20px;
-        }
+.answer_box {
+  width : 150px;
+  text-align : center;
+  font-size : 16px;
+  margin: 0 10px 0 5px;
+}
 
-            .answer_box input {
-                /* border-radius : 4px; */
-                display : block;
-                background-image: url(https://cdn2.iconfinder.com/data/icons/dottie-design-part-2/24/design_081-pencil-pen-draw-write-256.png);
-                background-size: contain;
-                background-position: 15px center;
-                background-repeat: no-repeat;
+.answer_box input {
+  /* border-radius : 4px; */
+  width : 100%;
+  height: 30px;
+  padding : 0;
+  margin: 10px 0;
+  display : block;
+  box-sizing: border-box;
+  /*background-image: url(https://cdn2.iconfinder.com/data/icons/dottie-design-part-2/24/design_081-pencil-pen-draw-write-256.png);*/
+  /*background-size: contain;*/
+  /*background-position: 15px center;*/
+  /*background-repeat: no-repeat;*/
+  background-color: #eee;
+  text-indent: 10px;
+  border : 1px solid #9d9d9d;
+  font-size : 16px;
+}
 
-                text-indent: 10px;
-                padding : 0;
-                width : 100%;
-                border : 10px;
-                font-size : 20px;
-            }
+.answer_box input:focus {
+  background-image: none;
+  border: 1px solid #0051c8;
+}
 
-            .answer_box input:focus {
-                background-image: none;
-                border:0px;
-            }
+.answer_box input:focus-visible{
+  outline:0;
+}
 
-            .answer_box input:focus-visible{
-                outline:0;
-            }
+.answer_button_box {
+  width : 80px;
+  height: 30px;
+  box-sizing : border-box;
+  /* padding : 2px 0 2px 0; */
+}
 
-        .answer_button_box {
-            float : right;
-            width : 80px;
-            height : 35.46px; /*answer_header의 높이 + padding*/
-            box-sizing : border-box;
-            /* padding : 2px 0 2px 0; */
-        }
+#answer_button {
+  width : 100%;
+  height : 100%;
+  line-height: 30px;
+  border : 0;
+  margin: 10px 0;
+  background-color : #0051c8;
+  font-size : 16px;
+  color : #fff;
+  /*font-family: 'Fjalla One', sans-serif;*/
+}
 
-            #answer_button {
-                width : 100%;
-                height : 100%;
-                border : 0;
-                padding : 0;
-                background-color : rgba(0,81,200,255);
-
-                font-size : 20px;
-                font-family: 'Fjalla One', sans-serif;
-                line-height: 35.46px; /*부모 .answer_button_box의 height*/
-                color : white;
-                font-weight: normal;
-            }
-
-            #answer_button:hover {
-                width : 100%;
-                height : 100%;
-                border : 0;
-                padding : 0;
-                background-color : rgba(0,41,100,255);
-                cursor: pointer;
-
-                font-size : 20px;
-                font-family: 'Fjalla One', sans-serif;
-                line-height: 35.46px; /*부모 .answer_button_box의 height*/
-                color : whitesmoke;
-                font-weight: normal;
-            }
+#answer_button:hover {
+  width : 100%;
+  height : 100%;
+  border : 0;
+  padding : 0;
+  background-color : rgba(0,41,100,255);
+  cursor: pointer;
+  font-size : 16px;
+  /*font-family: 'Fjalla One', sans-serif;*/
+  /*line-height: 35.46px; !*부모 .answer_button_box의 height*!*/
+  color : whitesmoke;
+  font-weight: normal;
+}
 
 .comment_input_box {
-    border : 0.5px solid grey;
+    border : 1px solid grey;
     border-radius : 3px;
     padding : 10px;
 }
@@ -681,6 +702,9 @@ header{
         cursor : pointer;
     }
 
+.comment_container {
+  padding: 20px 10px;
+}
 .comment_container_header {
     padding : 10px;
     margin : 10px 0 10px 0;
@@ -744,26 +768,30 @@ header{
     font-size : 15px;
 }
 
+/* POSTLINE - COMMENTLINE */
 .comment_line {
-    padding : 13px 0 0 0;
+  padding : 15px 0;
+  border-bottom: 1px solid #1a1a1a;
+}
+.comment_line:hover {
+  background-color : rgba(250,250,250,255);
+  /*background-color: #b3b3b3;*/
 }
 .cocomment_line {
     padding : 10px 0 10px 10px;
     border-left : 6px solid grey;
 }
 
-.comment_line:hover {
-    background-color : rgba(250,250,250,255);
-    /*background-color: #b3b3b3;*/
-}
-
 .cocomment_line:hover {
     border-color: rgba(0,41,100,255);
 }
-
-.comment_line_user_and_updated_at_and_tool_box{
-    display : flex;
-    justify-content : space-between;
+.comment_line_user_and_updated_at_and_tool_box {
+  display : flex;
+  justify-content : space-between;
+}
+.comment_line_user_and_updated_at{
+  width: 100%;
+  display : flex;
 }
 .cocomment_line_user_and_updated_at_and_tool_box{
     display : flex;
@@ -776,22 +804,24 @@ header{
         padding : 0;
     }
 
-        .comment_line_user {
-            display : inline-block;
-            font-size : 12px;
-            color : rgba(49, 49, 49, 0.8);
-        }
-        .cocomment_line_user {
-            display : inline-block;
-            font-size : 12px;
-            color : rgba(49, 49, 49, 0.8);
-        }
+.comment_line_user {
+  display : inline-block;
+  font-size : 12px;
+  color : rgba(49, 49, 49, 0.8);
+  margin-top: 10px;
+}
+.cocomment_line_user {
+  display : inline-block;
+  font-size : 12px;
+  color : rgba(49, 49, 49, 0.8);
+}
 
-        .comment_line_updated_at {
-            display : inline-block;
-            font-size: 10px;
-            color : rgba(168,168,168,255);
-        }
+.comment_line_updated_at {
+  display : inline-block;
+  font-size: 10px;
+  color : rgba(168,168,168,255);
+  margin-top: 10px;
+}
         .cocomment_line_updated_at {
             display : inline-block;
             font-size : 10px;
@@ -994,9 +1024,6 @@ header{
 }
 
 .comment_line_cocomment_and_like {
-    padding : 10px;
-    display : flex;
-    justify-content : space-between;
 }
 .cocomment_line_like {
     padding : 0 10px;

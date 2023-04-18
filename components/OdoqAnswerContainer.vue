@@ -1,7 +1,13 @@
 <template>
   <div class="answer_container">
-    <div class="answer_header">
-      Answer.
+    <div class="answer_header">Answer.</div>
+    <div class="answer_box">
+      <input
+        id="answer_input"
+        v-model="inputAnswer"
+        type="text"
+        @keydown.enter="answerPost"
+        @input="hideIcon">
     </div>
     <div class="answer_input_button_box">
       <div class="answer_button_box">
@@ -17,16 +23,8 @@
           id="answer_button"
           @click="answerPost"
         >
-          채점.
+          채점
         </button>
-      </div>
-      <div class="answer_box">
-        <input
-          id="answer_input"
-          v-model="inputAnswer"
-          type="text"
-          @keydown.enter="answerPost"
-          @input="hideIcon">
       </div>
     </div>
   </div>

@@ -1,18 +1,18 @@
 <template>
   <div class="comment_list_container">
-    <div class="comment_list_filter">
-      <button
-        ref="buttonOrderAll"
-        @click="orderPost('latest')"
-      >최신순<i class="fa-solid fa-angle-down"></i>
-      </button>
-      <button
-        ref="buttonOrderMy"
-        @click="orderPost('likeCount')"
-      >추천순<i class="fa-solid fa-angle-down"></i>
-      </button>
-    </div>
-    <div class="comment_list_filter_vertical_line"></div>
+<!--    <div class="comment_list_filter">-->
+<!--      <button-->
+<!--        ref="buttonOrderAll"-->
+<!--        @click="orderPost('latest')"-->
+<!--      >최신순<i class="fa-solid fa-angle-down"></i>-->
+<!--      </button>-->
+<!--      <button-->
+<!--        ref="buttonOrderMy"-->
+<!--        @click="orderPost('likeCount')"-->
+<!--      >추천순<i class="fa-solid fa-angle-down"></i>-->
+<!--      </button>-->
+<!--    </div>-->
+<!--    <div class="comment_list_filter_vertical_line"></div>-->
     <div class="comment_list_box">
       <OdoqPostLine
         v-for="post in arrayPosts"
