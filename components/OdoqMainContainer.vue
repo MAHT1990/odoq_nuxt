@@ -34,6 +34,7 @@
       <div>{{ weekday }}</div>
       <odoq-post-container/>
     </div>
+    <odoq-notice-list v-if="currentIdx === 0 || currentIdx === 1" />
     <odoq-footer/>
   </div>
 </template>

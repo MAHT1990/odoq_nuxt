@@ -1,6 +1,6 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Abel&family=Abril+Fatface&family=Fjalla+One&family=Nanum+Gothic&display=swap');*/
-/*@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');*/
-@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800;900&display=swap');*/
 @keyframes blink {
   0% {
     opacity: 1;
@@ -40,8 +40,12 @@
 }
 
 * {
-  /*font-family: 'Noto Sans KR', sans-serif;*/
-  font-family: 'Gothic A1', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
+  /*font-family: 'Gothic A1', sans-serif;*/
+  font-size: inherit;
+}
+li {
+  text-decoration: none;
 }
 
 title {
@@ -90,7 +94,7 @@ input, button {
 }
 .navbar .header_top {
   width: 100%;
-  padding: 10px 20px 7px;
+  padding: 0 20px 7px;
   display: flex;
   border-bottom: 4px solid #0051c8;
   position: fixed;
@@ -412,13 +416,12 @@ header{
 .main_container{
   /*padding : 0 20px 20px 20px;*/
   max-width : 550px;
-  margin : 0 auto;
+  margin : 0 auto 50px;
   opacity: 0;
   animation: fade-in 2s ease-in-out;
   animation-delay: 0.3s;
   animation-fill-mode: forwards;
   position: relative;
-
 }
 .main_container .tab_wrap {
   height: 50px;
@@ -590,7 +593,7 @@ animation-fill-mode: forwards;
 #answer_button {
   width : 100%;
   height : 100%;
-  line-height: 30px;
+  line-height: 28px;
   border : 0;
   margin: 10px 0;
   background-color : #0051c8;
@@ -613,94 +616,124 @@ animation-fill-mode: forwards;
   font-weight: normal;
 }
 
-.comment_input_box {
-    border : 1px solid grey;
-    border-radius : 3px;
-    padding : 10px;
+/* NOTICE */
+.notice_wrap {
+  font-size: 14px;
 }
 
+/* WRITE */
+.write_wrap {
+  max-width: 545px;
+  margin: 0 auto;
+}
+.write_header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+}
+.write_header button {
+  border: 0;
+  background: #fff;
+}
+.write_header .close_btn img {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+.write_header .regist_btn {
+  background: #0051c8;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.write_wrap .textarea_wrap {
+  padding: 0 10px;
+}
+
+.comment_input_box {
+    border_bottom : 1px solid grey;
+    /*border-radius : 3px;*/
+    /*padding : 10px;*/
+}
 .comment_input_box:focus {
     border-color :  rgba(0,41,100,255);
 }
 
+.comment_input_box textarea {
+    display : block;
+    box-sizing : border-box;
+    width : 100%;
+    /* height : 40px; */
+    border-radius: 3px;
+    padding : 10px;
+    font-size : 15px;
+    border:0;
+    resize : none;
 
-    .comment_input_box textarea {
-        display : block;
-        box-sizing : border-box;
-        width : 100%;
-        /* height : 40px; */
-        border-radius: 3px;
-        padding : 10px;
-        font-size : 15px;
-        border:0;
-        resize : none;
+    outline-color : rgba(0,41,100,255);
+}
+.comment_input_box img {
+  /*display: block;*/
+  /*box-sizing : border-box;*/
+  /*max-width: 65%;*/
+  /*border-radius: 3px;*/
+  /*padding: 5px;*/
+  /*cursor: pointer;*/
+  /*margin: auto;*/
+}
+.comment_input_box img:hover {
+  opacity: 0.2;
+}
+.comment_input_box_charnumbs_and_button {
+    font-size : 15px;
+    display : flex;
+    justify-content : space-between;
+    height : 35px;
+  padding: 0 10px;
+}
 
-        outline-color : rgba(0,41,100,255);
-    }
+.comment_input_box_charnumbs {
+}
 
-    .comment_input_box img {
-      display: block;
-      box-sizing : border-box;
-      max-width: 65%;
-      border-radius: 3px;
-      border : 0.5px transparent;
-      padding: 5px;
-      cursor: pointer;
-      margin: auto;
-    }
+.comment_input_box_charnumbs span{
+    line-height : 35px;
+}
+.comment_input_box_charnumbs_and_button label {
+  display: inline-block;
+  line-height: 35px;
+  border: 0;
+  background-color: transparent;
+  font-size: 25px;
+  color : rgba(0,41,100,255);
+  cursor : pointer;
+  margin: 0 10px;
+}
 
-    .comment_input_box img:hover {
-      opacity: 0.2;
-    }
+.comment_input_box_charnumbx_and_button label:hover {
+  color: rgba(0,81,100,255);
+}
 
-    .comment_input_box_charnumbs_and_button {
-        font-size : 15px;
-        display : flex;
-        justify-content : space-between;
-        height : 35px;
-    }
+.comment_input_box_charnumbs_and_button button {
+    line-height: 35px;
+    border : 0;
+    background-color: transparent;
+    font-size: 25px;
+    color : rgba(0,41,100,255);
+    cursor : pointer;
+}
 
-    .comment_input_box_charnumbs {
-    }
+.comment_input_box_charnumbs_and_button button:hover {
+    color: rgba(0,81,100,255);
+}
 
-    .comment_input_box_charnumbs span{
-        line-height : 35px;
-    }
-    .comment_input_box_charnumbs_and_button label {
-      display: inline-block;
-      line-height: 35px;
-      border: 0;
-      background-color: transparent;
-      font-size: 25px;
-      color : rgba(0,41,100,255);
-      cursor : pointer;
-      margin: 0 10px;
-    }
-
-    .comment_input_box_charnumbx_and_button label:hover {
-      color: rgba(0,81,100,255);
-    }
-
-    .comment_input_box_charnumbs_and_button button {
-        line-height: 35px;
-        border : 0;
-        background-color: transparent;
-        font-size: 25px;
-        color : rgba(0,41,100,255);
-        cursor : pointer;
-    }
-
-    .comment_input_box_charnumbs_and_button button:hover {
-        color: rgba(0,81,100,255);
-    }
-
-    .cocomment_input_box_charnumbs_and_button button {
-        border : 0;
-        background-color: transparent;
-        font-size: 15px;
-        color : rgba(0,41,100,255);
-        cursor : pointer;
-    }
+.cocomment_input_box_charnumbs_and_button button {
+    border : 0;
+    background-color: transparent;
+    font-size: 15px;
+    color : rgba(0,41,100,255);
+    cursor : pointer;
+}
 
 .comment_container {
   padding: 20px 10px;
@@ -994,6 +1027,20 @@ animation-fill-mode: forwards;
     word-break :break-all;
     white-space : pre-wrap;
 }
+.comment_line_content .title {
+  position: relative;
+  padding-left: 10px;
+}
+.comment_line_content .title:before {
+  content: '';
+  position: absolute;
+  background-image: url("data:image/svg+xml,%3Csvg width='3' height='3' viewBox='0 0 3 3' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1.5' cy='1.5' r='1.5' fill='%230051C8'/%3E%3C/svg%3E%0A");
+  width: 3px;
+  height: 3px;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
 .cocomment_line_content {
     padding : 10px 0;
     word-break :break-all;
@@ -1209,7 +1256,8 @@ footer {
 
 
 .caution_container {
-    padding : 15px 0;
+    /*padding : 15px 0;*/
+  padding-bottom: 51px;
 }
 
 .caution_header {
@@ -1468,4 +1516,43 @@ top:0;
     margin-top: 8px;
     font-weight: 700;
     font-size: 12px;
+}
+
+/*DOCK BAR*/
+.dockbar_wrap {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  border-top: 3px solid #0051c8;
+}
+.dockbar_list {
+  max-width: 545px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 15px;
+  box-sizing: border-box;
+}
+.dockbar_group {
+  display: flex;
+}
+.dockbar_group >div:first-child {
+  margin-right: 30px;
+}
+.dockbar_list >div img {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  display: block;
+}
+.dockbar_list >div span {
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 3px;
+  color: #0051c8;
+  white-space: nowrap;
 }
