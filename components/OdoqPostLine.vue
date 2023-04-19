@@ -5,7 +5,9 @@
       class="comment_line_content"
       style="color: #707070; text-decoration-line: line-through; font-style: italic;"
     >{{post.blind_text}} </div>
-    <div v-else class="comment_line_content">{{post.content}}</div>
+    <div v-else class="comment_line_content">
+      <div class="title">{{ post.content }}</div>
+    </div>
     <div v-if="post.img_url && !post.blind" class="comment_line_image">
       <button @click="toggleShowImg">
         <i class="fa-solid fa-image"></i><span>&nbsp;&nbsp;{{showImg ? '숨기기' : '보기'}}</span>
