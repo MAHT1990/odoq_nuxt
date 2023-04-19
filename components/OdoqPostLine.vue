@@ -1,24 +1,13 @@
 <template>
   <div class="comment_line">
-    <div class="comment_line_user_and_updated_at_and_tool_box">
-      <div class="comment_line_user_and_updated_at">
-        <div class="comment_line_user">{{post.user_name}} &nbsp;<i v-if="post.user_grade" class="fa-solid fa-crown" style="color:rgba(255, 171, 0, 0.8);"></i></div>
-        <div class="comment_line_updated_at">{{formattedUpdatedTime}}</div>
-      </div>
-      <div class="comment_line_tool_box_btn_and_box">
-        <button
-          v-if="isWriter"
-          class="comment_line_tool_box_btn"
-          @click="openToolBox"
-        ><i class="fa-solid fa-ellipsis-vertical"></i></button>
-      </div>
-    </div>
     <div
       v-if="post.blind === true"
       class="comment_line_content"
       style="color: #707070; text-decoration-line: line-through; font-style: italic;"
     >{{post.blind_text}} </div>
-    <div v-else class="comment_line_content">{{post.content}}</div>
+    <div v-else class="comment_line_content">
+      <div class="title">{{ post.content }}</div>
+    </div>
     <div v-if="post.img_url && !post.blind" class="comment_line_image">
       <button @click="toggleShowImg">
         <i class="fa-solid fa-image"></i><span>&nbsp;&nbsp;{{showImg ? '숨기기' : '보기'}}</span>
@@ -28,15 +17,28 @@
         :src="post.img_url"
         alt="이미지로드 실패"/>
     </div>
-    <div class="comment_line_cocomment_and_like">
-      <button class="comment_line_open_cocomment">
-<!--        <i class="fa-solid fa-caret-down"></i>답글 (댓글 개수)-->
-      </button>
-      <button class="comment_like">
-        <i v-if="isLiked" class="fa-solid fa-thumbs-up" @click="likePost"></i><i v-else class="fa-regular fa-thumbs-up" @click="likePost"></i>&nbsp;<span>{{post.like_count}}</span>
-      </button>
+    <div class="comment_line_user_and_updated_at_and_tool_box">
+      <div class="comment_line_user_and_updated_at">
+        <div class="comment_line_user">{{post.user_name}} &nbsp;<i v-if="post.user_grade" class="fa-solid fa-crown" style="color:rgba(255, 171, 0, 0.8);"></i></div>
+        <div class="comment_line_updated_at">{{formattedUpdatedTime}}</div>
+        <div class="comment_line_cocomment_and_like">
+          <button class="comment_line_open_cocomment">
+            <!--        <i class="fa-solid fa-caret-down"></i>답글 (댓글 개수)-->
+          </button>
+          <button class="comment_like">
+            <i v-if="isLiked" class="fa-solid fa-thumbs-up" @click="likePost"></i><i v-else class="fa-regular fa-thumbs-up" @click="likePost"></i>&nbsp;<span>{{post.like_count}}</span>
+          </button>
+        </div>
+      </div>
+      <div class="comment_line_tool_box_btn_and_box">
+        <button
+          v-if="isWriter"
+          class="comment_line_tool_box_btn"
+          @click="openToolBox"
+        ><i class="fa-solid fa-ellipsis-vertical"></i></button>
+      </div>
     </div>
-    <div class="comment_line_vertical_line"></div>
+<!--    <div class="comment_line_vertical_line"></div>-->
   </div>
 </template>
 

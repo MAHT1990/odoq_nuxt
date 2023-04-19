@@ -2,6 +2,7 @@
   <div id="layout">
     <OdoqNavBar></OdoqNavBar>
     <Nuxt />
+    <odoq-dockbar />
   </div>
 </template>
 
