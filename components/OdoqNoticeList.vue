@@ -1,13 +1,18 @@
 <template>
   <div class="notice_wrap">
-    <ul>
-      <li>[공지] {{}}</li>
-    </ul>
+    <nuxt-link to="">
+      <ul>
+        <li>[공지] {{ item.title }}</li>
+      </ul>
+    </nuxt-link>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    item: Object,
+  },
   methods: {
   }
 }

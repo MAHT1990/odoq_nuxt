@@ -1,8 +1,8 @@
 <template>
-  <div class="comment_line">
+  <div class="comment_line_box">
     <div
       v-if="post.blind === true"
-      class="comment_line_content"
+      class="comment_line_content blind_text"
       style="color: #707070; text-decoration-line: line-through; font-style: italic;"
     >{{post.blind_text}} </div>
     <div v-else class="comment_line_content">
@@ -17,16 +17,22 @@
         :src="post.img_url"
         alt="이미지로드 실패"/>
     </div>
-    <div class="comment_line_user_and_updated_at_and_tool_box">
-      <div class="comment_line_user_and_updated_at">
-        <div class="comment_line_user">{{post.user_name}} &nbsp;<i v-if="post.user_grade" class="fa-solid fa-crown" style="color:rgba(255, 171, 0, 0.8);"></i></div>
-        <div class="comment_line_updated_at">{{formattedUpdatedTime}}</div>
+    <div class="content_info_box">
+      <div class="content_info_tools">
+        <div class="comment_line_user">
+          <span class="grade">{{ post.user_grade }}</span>
+          <span class="nick_name">{{ post.user_name }}</span>
+<!--          <i v-if="post.user_grade" class="fa-solid fa-crown" style="color:rgba(255, 171, 0, 0.8);"></i>-->
+        </div>
+        <div class="updated_at">{{formattedUpdatedTime.split(' ')[0]}}</div>
+        <div class="hits">조회수 13</div>
         <div class="comment_line_cocomment_and_like">
           <button class="comment_line_open_cocomment">
             <!--        <i class="fa-solid fa-caret-down"></i>답글 (댓글 개수)-->
           </button>
           <button class="comment_like">
-            <i v-if="isLiked" class="fa-solid fa-thumbs-up" @click="likePost"></i><i v-else class="fa-regular fa-thumbs-up" @click="likePost"></i>&nbsp;<span>{{post.like_count}}</span>
+            <i v-if="isLiked" class="fa-solid fa-thumbs-up" @click="likePost"></i><i v-else class="fa-regular fa-thumbs-up" @click="likePost"></i>
+            <span>{{post.like_count}}</span>
           </button>
         </div>
       </div>

@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar">
-    <Nuxt-Link to="" class="header_top">
+    <Nuxt-Link to="/" class="header_top">
       <div class="flex">
         <h1>PROJ.ODOQ.&nbsp;</h1>
         <h2>One Day One Question!</h2>
