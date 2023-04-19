@@ -500,7 +500,7 @@ header{
 }
 .countdown_box {
   flex : 1;
-  display : inline_block;
+  display : inline-block;
   text-align : right;
   color : rgba(0,81,200,255);
 }
@@ -548,14 +548,12 @@ animation-fill-mode: forwards;
     /* .answer_header span {
         line-height: 40px;
     } */
-
-<<<<<<< HEAD
-        .answer_box {
-            width : 150px;
-            padding : 0.3em 10px 0.3em 0;
-            text-align : center;
-            font-size : 20px;
-        }
+.answer_box {
+  width : 150px;
+  text-align : center;
+  font-size : 16px;
+  margin: 0 10px 0 5px;
+}
 
             .answer_box input {
                 /* border-radius : 4px; */
@@ -643,16 +641,9 @@ animation-fill-mode: forwards;
   display: flex;
 }
 .comment_input_box {
-    border : 0.5px solid grey;
-    border-radius : 3px;
-    padding : 10px;
-=======
-.answer_box {
-  width : 150px;
-  text-align : center;
-  font-size : 16px;
-  margin: 0 10px 0 5px;
->>>>>>> 41af37d9607eb82837317b23205d26f2e5463fe0
+  border: 0.5px solid grey;
+  border-radius: 3px;
+  padding: 10px;
 }
 
 .answer_box input {
