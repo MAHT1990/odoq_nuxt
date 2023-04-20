@@ -64,6 +64,9 @@ export default {
       isLogin: 'user/userAuthStore/isLogin',
     }),
   },
+  created() {
+    console.log(this.arrayPosts);
+  },
   watch: {
     /**
      * @description

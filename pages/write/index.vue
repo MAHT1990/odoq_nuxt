@@ -17,7 +17,15 @@
         <div class="comment_input_box_textarea_and_charnumbs_and_button">
           <div class="textarea_wrap">
             <textarea
+              v-model="postInput.title"
+              class="title"
+              maxlength="100"
+              placeholder="제목"
+              cols="1"
+            />
+            <textarea
               ref="textareaContent"
+              class="content"
               v-model="postInput.content"
               cols="40"
               rows="1"
