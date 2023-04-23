@@ -9,6 +9,7 @@
       >{{item}}
       </button>
     </div>
+<!--    <odoq-tabs @onTab="currentIdx = $event" />-->
     <div class="open_label" id="openLabel" @click="openTest" v-if="currentIdx === 0">
       <img src="data:image/svg+xml,%3Csvg width='45' height='68' viewBox='0 0 45 68' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.000419178 0H44.9085V38.1914L45 67.3638L22.4542 49.3991L22.4546 49.3989H22.4235L22.4474 49.412L0 67.362L0.0172961 49.3989H0.000419178V0Z' fill='%230051C8'/%3E%3C/svg%3E%0A" alt="문제접기">
       <div id="labelText">문제<br>접기</div>

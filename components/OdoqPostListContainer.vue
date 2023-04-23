@@ -127,7 +127,11 @@ export default {
         orderingFlag: this.orderingFlag,
         userId: this.userInfo.userId,
       });
-    }
+    },
+    // movePage() {
+    //   const query = { id: post.id };
+    //   this.$router.push({ path:'/post_detail', query})
+    // },
   }
 }
 </script>
