@@ -424,12 +424,14 @@ header{
   animation-fill-mode: forwards;
   position: relative;
 }
-.main_container .tab_wrap {
+.main_container .tab_wrap,
+.post_detail_wrap .tab_wrap {
   height: 50px;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
 }
-.main_container .tab_wrap .tab_btn {
+.main_container .tab_wrap .tab_btn,
+.post_detail_wrap .tab_wrap .tab_btn {
   border: 0;
   height: 100%;
   width: 80px;
@@ -437,7 +439,8 @@ header{
   font-size: 16px;
   font-weight: 500;
 }
-.main_container .tab_wrap .tab_btn.on {
+.main_container .tab_wrap .tab_btn.on,
+.post_detail_wrap .tab_wrap .tab_btn.on {
   font-weight: 700;
   position: relative;
 }
@@ -1657,7 +1660,118 @@ top:0;
     font-size: 12px;
 }
 
-/*DOCK BAR*/
+/* POST DETAIL */
+.post_detail_wrap {
+  margin-bottom: 75px;
+}
+.post_detail_contents_wrap {
+  /*margin-top: 105px;*/
+  font-size: 12px;
+  margin-top: 13px;
+}
+.post_detail_contents_wrap .title_box {
+  height: 70px;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 10px 20px;
+}
+.post_detail_contents_wrap .title_box textarea {
+  font-size: 18px;
+  width: 100%;
+  height: 50%;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  resize: none;
+}
+.post_detail_contents_wrap .post_info_box {
+  color: #9d9d9d;
+  font-size: 12px;
+}
+.post_detail_contents_wrap .post_info_box .level {
+  background: #ddd;
+  font-size: 8px;
+  padding: 0 6px;
+  color: #0051c8;
+  margin-right: 3px;
+}
+.post_detail_contents_wrap .nick_name,
+.post_detail_contents_wrap .date {
+  position: relative;
+  padding-right: 8px;
+}
+.post_detail_contents_wrap .nick_name::before {
+  position: absolute;
+  content: '';
+  width: 1px;
+  background: #9d9d9d;
+  height: 60%;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.post_detail_contents_wrap .date::before {
+  position: absolute;
+  content: '';
+  width: 1px;
+  background: #9d9d9d;
+  height: 60%;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.post_detail_contents_wrap .post_info_box .report {
+  width: 24px;
+  float: right;
+  font-size: 10px;
+  color: #9d9d9d;
+  text-align: center;
+  margin-top: -5px;
+}
+.post_info_box .report img {
+  width: 16px;
+  margin: 0 auto;
+  display: block;
+}
+.post_detail_contents_wrap .content_wrap {
+  margin: 10px 20px;
+}
+.post_detail_contents_wrap .content_wrap textarea {
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  height: auto;
+  border: none;
+  resize: none;
+  outline: none;
+}
+.post_detail_contents_wrap .recommend_btn {
+  width: 24px;
+  margin: 0 auto;
+}
+.post_detail_contents_wrap .recommend_btn img {
+  width: 100%;
+}
+.post_detail_contents_wrap .recommend_btn span {
+  display: inline-block;
+  text-align: center;
+  width: 24px;
+  color: #0051c8;
+  font-size: 14px;
+  font-weight: 600;
+}
+.post_detail_contents_wrap .ad_area {
+  margin: 10px 0;
+}
+.post_detail_contents_wrap .ad_area img {
+  width: 100%;
+}
+.empty_line {
+  width: 100%;
+  height: 15px;
+  background: #f5f5f5;
+}
+
+  /*DOCK BAR*/
 .dockbar_wrap {
   position: fixed;
   width: 100%;
@@ -1682,15 +1796,16 @@ top:0;
   margin-right: 30px;
 }
 .dockbar_list >div img {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   margin: 0 auto;
   display: block;
 }
 .dockbar_list >div span {
   display: block;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 500;
   margin-top: 3px;
   color: #0051c8;
   white-space: nowrap;

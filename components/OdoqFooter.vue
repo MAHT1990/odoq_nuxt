@@ -1,6 +1,6 @@
 <template>
   <div class="footer_container">
-    <div class="verticalLine3"></div>
+<!--    <div class="verticalLine3"></div>-->
     <div class="footer_image_container">
       <div class="footer_image_container_img">
         <img src="@/assets/img/footer_img.png">

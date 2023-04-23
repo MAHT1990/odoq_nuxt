@@ -30,8 +30,8 @@
           <button class="comment_line_open_cocomment">
             <!--        <i class="fa-solid fa-caret-down"></i>답글 (댓글 개수)-->
           </button>
-          <button class="comment_like">
-            <i v-if="isLiked" class="fa-solid fa-thumbs-up" @click="likePost"></i><i v-else class="fa-regular fa-thumbs-up" @click="likePost"></i>
+          <button class="comment_like" @click="likePost">
+            <i v-if="isLiked" class="fa-solid fa-thumbs-up"></i><i v-else class="fa-regular fa-thumbs-up" @click="likePost"></i>
             <span>{{post.like_count}}</span>
           </button>
         </div>
