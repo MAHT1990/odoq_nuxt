@@ -48,6 +48,9 @@ ul {
   list-style: none;
   padding: 0;
 }
+button {
+  font-size: 12px;
+}
 
 title {
     font-family: 'Abril Fatface', cursive;
@@ -1735,7 +1738,7 @@ top:0;
 .post_detail_contents_wrap .content_wrap {
   margin: 10px 20px;
 }
-.post_detail_contents_wrap .content_wrap textarea {
+.post_detail_contents_wrap .content_wrap .content {
   font-size: 14px;
   width: 100%;
   box-sizing: border-box;
@@ -1809,4 +1812,72 @@ top:0;
   margin-top: 3px;
   color: #0051c8;
   white-space: nowrap;
+}
+
+/* OdoqComments - 게시물 댓글 */
+.comments_wrap .comment {
+  padding: 10px 0;
+  margin: 0 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e5e5e5;
+}
+.comments_wrap .user_info_box .level {
+  background: #ddd;
+  font-size: 8px;
+  padding: 0 6px;
+  color: #0051c8;
+  margin: 3px 15px 0 0;
+}
+.comments_wrap .user_info_box .nick_name {
+  font-size: 14px;
+  font-weight: 600;
+}
+.comments_wrap .user_info_box .nick_name::before {
+  display: none;
+}
+.comments_wrap .comment_content {
+  /*resize: none;*/
+  /*outline: none;*/
+  width: 100%;
+  /*height: auto;*/
+  /*box-sizing: border-box;*/
+  margin-top: 10px;
+}
+.comments_wrap .content_info_box {
+  margin-top: 5px;
+  display: inline-block;
+  font-size: 11px;
+  color: #9d9d9d;
+}
+.comments_wrap .content_info_box .date {
+  margin-right: 5px;
+}
+.comments_wrap .content_info_box .reply_btn {
+  border: 0;
+  font-size: 11px;
+  color: #0051c8;
+  text-decoration: underline;
+  background: #fff;
+  margin-left: 15px;
+}
+.comments_wrap .write_comment_box {
+  padding: 10px;
+}
+.comments_wrap .write_comment_box textarea {
+  box-sizing: border-box;
+  width: 100%;
+  resize: none;
+  outline: none;
+  border: 1px solid #ddd;
+  margin-right: 10px;
+  padding: 5px;
+}
+.comments_wrap .write_comment_box .comment_regist_btn {
+  width: 50px;
+  border: none;
+  background: #0051c8;
+  color: #fff;
+}
+.comments_wrap .write_comment_box .comment_regist_btn:active {
+  background: rgba(0,41,100,255);
 }
