@@ -47,12 +47,25 @@ const actions = {
    */
   async getUserInfo({commit}, data) {
     const res = await this.$axios.post('user/login/', data);
-    console.log('## userAuthStore > actions > getUserInfo > res is ', res.data);
+    // console.log('## userAuthStore > actions > getUserInfo > res is ', res.data);
     if (res.data.result === 'success') {
       commit ('setUserInfo', res.data);
     }
     return res.data;
   },
+  async checkLogin({commit}, cookie) {
+    const res = await this.$axios.get('user/login/', {
+      params: {
+        userId: Utils.getUserId(cookie)
+      }
+    });
+    console.log('## userAuthStore > actions > checkLogin > res is ', res.data);
+    if (res.data.result === 'success') {
+      commit ('checkLogin', cookie);
+    } else {
+        this.$router.go(0);
+    }
+  }
 };
 
 const mutations = {
@@ -97,16 +110,8 @@ const mutations = {
    * @param isLogin - UserAuthMixin.js 에서 asyncData로 체크후, 넘겨줌.
    * @param cookie - UserAuthMixin.js 에서 asyncData로 체크후, 넘겨줌.
    */
-  checkLogin(state, {isLogin, cookie}) {
-    const checkUserId = cookie? (parseInt(Utils.getUserId(cookie), 10) || 0 ) : 0;
-    // console.log('## userAuthStore > mutations > checkLogin > checkUserId is ', Utils.getUserId(cookie));
-    if (!checkUserId) {
-      console.log('## userAuthStore > mutations > checkLogin > checkUserId is ', checkUserId);
-      Utils.removeCookie('jwt');
-      this.$router.go(0);
-      return;
-    };
-    state.isLogin = isLogin;
+  checkLogin(state, cookie) {
+    state.isLogin = true;
     state.userInfo.userId = cookie ? (parseInt(Utils.getUserId(cookie), 10) || 0 ) : 0;
     state.userInfo.userName = cookie ? Utils.getUserName(cookie) : '';
     state.userInfo.userGrade = cookie ? (parseInt(Utils.getUserGrade(cookie), 10) || 0 ) : 0;

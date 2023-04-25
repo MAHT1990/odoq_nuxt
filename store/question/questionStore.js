@@ -16,7 +16,7 @@ const state = () => ({
 const actions = {
   async getQuestion({ commit }) {
     const res = await this.$axios.get('question');
-    console.log('questionStore > getQuestion > res.data is ', res.data);
+    // console.log('questionStore > getQuestion > res.data is ', res.data);
     commit('setQuestion', res.data);
   },
   async getAnswerHistory({ commit }, query) {
@@ -26,8 +26,9 @@ const actions = {
           ...query
         }
       });
-    console.log('questionStore > getAnswerHistory > res.data is ', res.data);
+    // console.log('questionStore > getAnswerHistory > res.data is ', res.data);
     commit('setAnswerHistory', res.data);
+    return res.data;
   },
   async getAnswerLive({ commit }, query) {
     const res = await this.$axios.get('question/answer_live/',
@@ -66,7 +67,7 @@ const mutations = {
       }
     }
     state.question = resData;
-    console.log('questionStore > setQuestion > state.question is ', state.question);
+    // console.log('questionStore > setQuestion > state.question is ', state.question);
   },
   setAnswerHistory(state, axiosResData) {
     state.question.can_answer_remain_time = axiosResData.data.can_answer_remain_time;

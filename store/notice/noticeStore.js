@@ -6,7 +6,7 @@ const state = () => ({
 
 const actions = {
   async getNotice({ commit }) {
-    await console.log('action to getNotice is here');
+    // console.log('action to getNotice is here');
     const res = await this.$axios.get('notice');
     if (res.data.result === 'success') {
       commit('setNotice', res.data);

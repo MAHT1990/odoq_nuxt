@@ -19,7 +19,12 @@ const getCookie = (cookie, key) => {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 };
 
-const removeCookie = (key) => {
+/**
+ * 쿠키 삭제 in Client
+ * @param key
+ * @param cookie
+ */
+const removeCookie = (key, cookie) => {
   if (typeof document === 'undefined') return;
   document.cookie = `${key}=; expires=-1; path=/;`;
 };
@@ -31,9 +36,9 @@ const getUserId = (cookie) => {
     const info = JSON.parse(atob(jwt.split('.')[1]));
     const grade = parseInt(info.info.split('_')[1], 10);
     if (grade >= 0) userId = info.info.split('_')[0];
-    console.log('## plugins/utils.js getUserId > info', info);
-    console.log('## plugins/utils.js getUserId > grade', grade);
-    console.log('## plugins/utils.js getUserId > userId', userId);
+    // console.log('## plugins/utils.js getUserId > info', info);
+    // console.log('## plugins/utils.js getUserId > grade', grade);
+    // console.log('## plugins/utils.js getUserId > userId', userId);
   }
   return userId;
 };
