@@ -109,11 +109,12 @@ input, button {
   z-index: 9999;
 }
 .navbar .header_top>div {
-  max-width: 545px;
+  max-width: 550px;
   margin: 0 auto;
   justify-content: space-between;
   width: 100%;
   padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .navbar h1 {
@@ -1665,7 +1666,8 @@ top:0;
 
 /* POST DETAIL */
 .post_detail_wrap {
-  margin-bottom: 75px;
+  margin: 0 auto 75px;
+  max-width: 550px;
 }
 .post_detail_contents_wrap {
   /*margin-top: 105px;*/
