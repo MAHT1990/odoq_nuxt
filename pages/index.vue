@@ -18,27 +18,28 @@ export default {
     if (Utils.getCookie(cookie, 'jwt')) {
         await store.dispatch('user/userAuthStore/checkLogin', cookie)
     }
+
     // SMS 동의여부 받아오기.
-    store.dispatch('sms/smsStore/getAcceptSms', {
+    await store.dispatch('sms/smsStore/getAcceptSms', {
       userId: store.getters['user/userAuthStore/userInfo'].userId,
     })
     // 문제 받아오기
-    store.dispatch('question/questionStore/getQuestion');
+    await store.dispatch('question/questionStore/getQuestion');
 
     // 문항 관련 사용자 History 받아오기.
-    store.dispatch('question/questionStore/getAnswerHistory',
+    await store.dispatch('question/questionStore/getAnswerHistory',
       {
         userId: store.getters['user/userAuthStore/userInfo'].userId,
         questionId: store.getters['question/questionStore/question'].id,
       }
     )
     // 댓글 받아오기
-    store.dispatch('post/postStore/getPost', {
+    await store.dispatch('post/postStore/getPost', {
       pageNumber: 1,
       pageSize: 7,
     });
     // 공지사항 받아오기
-    store.dispatch('notice/noticeStore/getNotice');
+    await store.dispatch('notice/noticeStore/getNotice');
 
   },
   mounted() {
