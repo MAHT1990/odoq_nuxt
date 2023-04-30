@@ -25,6 +25,7 @@ const getCookie = (cookie, key) => {
  * @param cookie
  */
 const removeCookie = (key, cookie) => {
+  // console.log(document.cookie);
   if (typeof document === 'undefined') return;
   document.cookie = `${key}=; expires=-1; path=/;`;
 };

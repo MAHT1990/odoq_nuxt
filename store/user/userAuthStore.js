@@ -47,8 +47,9 @@ const actions = {
    */
   async getUserInfo({commit}, data) {
     const res = await this.$axios.post('user/login/', data);
-    // console.log('## userAuthStore > actions > getUserInfo > res is ', res.data);
+    console.log('## userAuthStore > actions > getUserInfo > res is ', res.data);
     if (res.data.result === 'success') {
+      // console.log('## userAuthStore > actions > getUserInfo > res.data is ', res.data);
       commit ('setUserInfo', res.data);
     }
     return res.data;
@@ -120,6 +121,13 @@ const mutations = {
     // console.log('## userAuthStore > mutations > checkLogin > isLogin is ', isLogin);
     // console.log('## userAuthStore > mutations > checkLogin > userId is ', Utils.getUserId(cookie));
   },
+  logOut(state) {
+    state.isLogin = false;
+    state.userInfo.userId = 0;
+    state.userInfo.userName = '';
+    state.userInfo.userGrade = 0;
+    Utils.removeCookie('jwt');
+  }
 };
 
 const getters = {

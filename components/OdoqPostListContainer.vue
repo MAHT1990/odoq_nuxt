@@ -130,7 +130,7 @@ export default {
     },
     // movePage() {
     //   const query = { id: post.id };
-    //   this.$router.push({ path:'/post_detail', query})
+    //   this.$router.push({ path:'/post', query})
     // },
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="comment_line_box">
+  <div class="comment_line_box" @click="movePostDetail">
     <div
       v-if="post.blind === true"
       class="comment_line_content blind_text"
@@ -8,15 +8,15 @@
     <div v-else class="comment_line_content">
       <div class="title">{{ post.content }}</div>
     </div>
-    <div v-if="post.img_url && !post.blind" class="comment_line_image">
-      <button @click="toggleShowImg">
-        <i class="fa-solid fa-image"></i><span>&nbsp;&nbsp;{{showImg ? '숨기기' : '보기'}}</span>
-      </button>
-      <img
-        v-if="showImg"
-        :src="post.img_url"
-        alt="이미지로드 실패"/>
-    </div>
+<!--    <div v-if="post.img_url && !post.blind" class="comment_line_image">-->
+<!--      <button @click="toggleShowImg">-->
+<!--        <i class="fa-solid fa-image"></i><span>&nbsp;&nbsp;{{showImg ? '숨기기' : '보기'}}</span>-->
+<!--      </button>-->
+<!--      <img-->
+<!--        v-if="showImg"-->
+<!--        :src="post.img_url"-->
+<!--        alt="이미지로드 실패"/>-->
+<!--    </div>-->
     <div class="content_info_box">
       <div class="content_info_tools">
         <div class="comment_line_user">
@@ -36,13 +36,13 @@
           </button>
         </div>
       </div>
-      <div class="comment_line_tool_box_btn_and_box">
-        <button
-          v-if="isWriter"
-          class="comment_line_tool_box_btn"
-          @click="openToolBox"
-        ><i class="fa-solid fa-ellipsis-vertical"></i></button>
-      </div>
+<!--      <div class="comment_line_tool_box_btn_and_box">-->
+<!--        <button-->
+<!--          v-if="isWriter"-->
+<!--          class="comment_line_tool_box_btn"-->
+<!--          @click="openToolBox"-->
+<!--        ><i class="fa-solid fa-ellipsis-vertical"></i></button>-->
+<!--      </div>-->
     </div>
 <!--    <div class="comment_line_vertical_line"></div>-->
   </div>
@@ -83,22 +83,27 @@ export default {
     },
   },
   methods: {
-    toggleShowImg() {
-      this.showImg = !this.showImg;
-    },
-    openToolBox(e){
-      // console.log('ToolBox goes heeeeeere');
-      new this.$popup.PopToolBox({
-        propsData: {
-          initValue: {
-            post: this.post,
-            userInfo: this.userInfo,
-            isLogin: this.isLogin,
-            left: e.pageX,
-            top: e.pageY,
-          }
-        }
-      }).$mount();
+    // toggleShowImg() {
+    //   this.showImg = !this.showImg;
+    // },
+    // openToolBox(e){
+    //   // console.log('ToolBox goes heeeeeere');
+    //   new this.$popup.PopToolBox({
+    //     propsData: {
+    //       initValue: {
+    //         post: this.post,
+    //         userInfo: this.userInfo,
+    //         isLogin: this.isLogin,
+    //         left: e.pageX,
+    //         top: e.pageY,
+    //       }
+    //     }
+    //   }).$mount();
+    // },
+    movePostDetail() {
+      this.$router.push({
+        path: `/post/${this.post.id}`,
+      });
     },
     async likePost(){
       if (this.isLogin) {

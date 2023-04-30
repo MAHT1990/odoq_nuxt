@@ -32,7 +32,10 @@
 
 <script>
 export default {
-  name: "index",
+  async asyncData({ store, params }) {
+    console.log(params);
+    await store.dispatch('post/getPost', params.id);
+  },
   data: () => ({
     contents: {
       title: '국어 수학 어려움',

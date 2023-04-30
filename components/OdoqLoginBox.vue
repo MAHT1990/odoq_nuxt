@@ -82,6 +82,7 @@ export default {
           if (res.result !== 'success') {
             that.$utils.removeCookie('jwt');
             that.message.login = res.message;
+            that.$popup.showAlertPopup(that.message.login);
           } else {
             that.$store.dispatch('sms/smsStore/getAcceptSms', {
               userId: that.$store.getters['user/userAuthStore/userInfo'].userId,
@@ -89,6 +90,7 @@ export default {
           }
         } else {
           that.message.login += '를 입력해주세요.';
+          that.$popup.showAlertPopup(that.message.login);
         }
       }
     },
@@ -101,10 +103,7 @@ export default {
     logout() {
       this.$utils.removeCookie('jwt');
       this.$utils.removeCookie('lgn_tgt');
-      this.$store.commit('user/userAuthStore/checkLogin', {
-        isLogin: false,
-        cookie: null,
-      });
+      this.$store.commit('user/userAuthStore/logOut');
     }
   }
 }
