@@ -1,50 +1,57 @@
 <template>
   <div class="comment_line_box" @click="movePostDetail">
-    <div
-      v-if="post.blind === true"
-      class="comment_line_content blind_text"
-      style="color: #707070; text-decoration-line: line-through; font-style: italic;"
-    >{{post.blind_text}} </div>
-    <div v-else class="comment_line_content">
-      <div class="title">{{ post.content }}</div>
-    </div>
-<!--    <div v-if="post.img_url && !post.blind" class="comment_line_image">-->
-<!--      <button @click="toggleShowImg">-->
-<!--        <i class="fa-solid fa-image"></i><span>&nbsp;&nbsp;{{showImg ? '숨기기' : '보기'}}</span>-->
-<!--      </button>-->
-<!--      <img-->
-<!--        v-if="showImg"-->
-<!--        :src="post.img_url"-->
-<!--        alt="이미지로드 실패"/>-->
-<!--    </div>-->
-    <div class="content_info_box">
-      <div class="content_info_tools">
-        <div class="comment_line_user">
-          <span class="grade">{{ post.user_grade }}</span>
-          <span class="nick_name">{{ post.user_name }}</span>
-<!--          <i v-if="post.user_grade" class="fa-solid fa-crown" style="color:rgba(255, 171, 0, 0.8);"></i>-->
-        </div>
-        <div class="updated_at">{{formattedUpdatedTime.split(' ')[0]}}</div>
-        <div class="hits">조회수 13</div>
-        <div class="comment_line_cocomment_and_like">
-          <button class="comment_line_open_cocomment">
-            <!--        <i class="fa-solid fa-caret-down"></i>답글 (댓글 개수)-->
-          </button>
-          <button class="comment_like" @click="likePost">
-            <i v-if="isLiked" class="fa-solid fa-thumbs-up"></i><i v-else class="fa-regular fa-thumbs-up" @click="likePost"></i>
-            <span>{{post.like_count}}</span>
-          </button>
-        </div>
+    <div>
+      <div
+        v-if="post.blind === true"
+        class="comment_line_content blind_text"
+        style="color: #707070; text-decoration-line: line-through; font-style: italic;"
+      >{{ post.blind_text }}
       </div>
-<!--      <div class="comment_line_tool_box_btn_and_box">-->
-<!--        <button-->
-<!--          v-if="isWriter"-->
-<!--          class="comment_line_tool_box_btn"-->
-<!--          @click="openToolBox"-->
-<!--        ><i class="fa-solid fa-ellipsis-vertical"></i></button>-->
-<!--      </div>-->
+      <div v-else class="comment_line_content">
+        <div class="title">{{ post.content }}</div>
+      </div>
+      <!--    <div v-if="post.img_url && !post.blind" class="comment_line_image">-->
+      <!--      <button @click="toggleShowImg">-->
+      <!--        <i class="fa-solid fa-image"></i><span>&nbsp;&nbsp;{{showImg ? '숨기기' : '보기'}}</span>-->
+      <!--      </button>-->
+      <!--      <img-->
+      <!--        v-if="showImg"-->
+      <!--        :src="post.img_url"-->
+      <!--        alt="이미지로드 실패"/>-->
+      <!--    </div>-->
+      <div class="content_info_box">
+        <div class="content_info_tools">
+          <div class="comment_line_user">
+            <span class="grade">{{ post.user_grade }}</span>
+            <span class="nick_name">{{ post.user_name }}</span>
+            <!--          <i v-if="post.user_grade" class="fa-solid fa-crown" style="color:rgba(255, 171, 0, 0.8);"></i>-->
+          </div>
+          <div class="updated_at">{{ formattedUpdatedTime.split(' ')[0] }}</div>
+          <div class="hits">조회수 13</div>
+          <div class="comment_line_cocomment_and_like">
+            <button class="comment_line_open_cocomment">
+              <!--        <i class="fa-solid fa-caret-down"></i>답글 (댓글 개수)-->
+            </button>
+            <button class="comment_like" @click="likePost">
+              <i v-if="isLiked" class="fa-solid fa-thumbs-up"></i><i v-else class="fa-regular fa-thumbs-up"
+                                                                     @click="likePost"></i>
+              <span>{{ post.like_count }}</span>
+            </button>
+          </div>
+        </div>
+        <!--      <div class="comment_line_tool_box_btn_and_box">-->
+        <!--        <button-->
+        <!--          v-if="isWriter"-->
+        <!--          class="comment_line_tool_box_btn"-->
+        <!--          @click="openToolBox"-->
+        <!--        ><i class="fa-solid fa-ellipsis-vertical"></i></button>-->
+        <!--      </div>-->
+      </div>
+      <!--    <div class="comment_line_vertical_line"></div>--></div>
+    <div class="comment_count_box">
+      <div class="comment_count" :class="commentCount > 0 ? 'on' : ''">{{commentCount}}</div>
+      <span>댓글</span>
     </div>
-<!--    <div class="comment_line_vertical_line"></div>-->
   </div>
 </template>
 
@@ -64,6 +71,7 @@ export default {
   },
   data: () => ({
     showImg: false,
+    commentCount: 1,
   }),
   computed: {
     isLiked: {
