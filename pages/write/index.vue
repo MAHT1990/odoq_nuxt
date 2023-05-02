@@ -13,31 +13,14 @@
           등록
         </button>
       </div>
-      <div class="comment_input_box_form">
-        <div class="comment_input_box_textarea_and_charnumbs_and_button">
-          <div class="textarea_wrap">
-            <textarea
-              v-model="postInput.title"
-              class="title"
-              maxlength="100"
-              placeholder="제목"
-              cols="1"
-            />
-            <textarea
-              ref="textareaContent"
-              class="content"
-              v-model="postInput.content"
-              cols="40"
-              rows="1"
-              maxlength="500"
-              placeholder="댓글(풀이 이미지)를 입력해주세요."
-              @blur="onBoxBlur"
-              @focus="onBoxFocus"
-            />
-          </div>
-          <img
-            :src="postInput.image.url"
-            @click="removeImageFromPost"
+      <div class="write_contents">
+        <div class="textarea_wrap">
+          <textarea
+            v-model="postInput.title"
+            class="title"
+            maxlength="100"
+            placeholder="제목"
+            cols="1"
           />
           <div class="comment_input_box_charnumbs_and_button">
             <div class="comment_input_box_charnumbs"><span>{{contentLength}}</span></div>
@@ -53,16 +36,32 @@
                 accept="image/*"
                 style="display: none;"
               />
-<!--              <button-->
-<!--                class="comment_input_box_button"-->
-<!--                type="button"-->
-<!--                @click="createPost"-->
-<!--              >-->
-<!--                <i class="fa-solid fa-pen"></i>-->
-<!--              </button>-->
+              <!--              <button-->
+              <!--                class="comment_input_box_button"-->
+              <!--                type="button"-->
+              <!--                @click="createPost"-->
+              <!--              >-->
+              <!--                <i class="fa-solid fa-pen"></i>-->
+              <!--              </button>-->
             </div>
           </div>
+          <textarea
+            ref="textareaContent"
+            class="content"
+            v-model="postInput.content"
+            cols="40"
+            rows="1"
+            maxlength="500"
+            placeholder="내용을 입력하세요."
+            @blur="onBoxBlur"
+            @focus="onBoxFocus"
+          />
         </div>
+        <img
+          class="attached_img"
+          :src="postInput.image.url"
+          @click="removeImageFromPost"
+        />
       </div>
     </div>
   </div>
@@ -102,7 +101,7 @@ export default {
     onBoxBlur(e) {
       setTimeout(() => {
         if (e.target.value.length === 0) e.target.rows = 1;
-        else e.target.style.border = '2px solid #e0e0e0';
+        // else e.target.style.border = '2px solid #e0e0e0';
       }, 100);
     },
     async createPost() {

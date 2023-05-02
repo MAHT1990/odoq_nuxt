@@ -12,6 +12,17 @@
           <span class="hits">조회수 {{ item.hits }}</span>
           <button class="reply_btn">답글쓰기</button>
         </div>
+        <ul class="cocomment_list" v-if="item.cocomments">
+          <li class="cocomment" v-for="cocomment in item.cocomments" :key="cocomment">
+            <div class="user_info_box flex">
+              <div class="level">{{ cocomment.level }}</div>
+              <div class="nick_name">{{ cocomment.nickName }}</div>
+            </div>
+            <div class="comment_content" v-html="cocomment.content"></div>
+            <span class="date">{{ cocomment.create_at.split('T')[0] }}</span>
+            <span class="date">{{ cocomment.create_at.split('T')[1] }}</span>
+          </li>
+        </ul>
       </li>
     </ul>
     <div class="write_comment_box flex">

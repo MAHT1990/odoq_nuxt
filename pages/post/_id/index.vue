@@ -27,7 +27,7 @@
       <div class="empty_line"></div>
       <odoq-comments :comments="comments" />
     </div>
-    <odoq-post-list-container />
+    <odoq-post-list-conainer />
     <nuxt-link to="/" class="back_list_btn">목록으로</nuxt-link>
   </div>
 </template>
@@ -57,6 +57,20 @@ export default {
         content: '아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음',
         create_at: '16:30',
         hits: 123,
+        cocomments: [
+          {
+            level: 12,
+            nickName: '강아지',
+            content: '아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음',
+            create_at: '2023.04.09T16:30',
+          },
+          {
+            level: 23,
+            nickName: '오리',
+            content: '로또 1등 당첨되면 하고 싶은 것은?',
+            create_at: '2023.04.09T02:23',
+          },
+        ],
       },
       {
         level: 2,
