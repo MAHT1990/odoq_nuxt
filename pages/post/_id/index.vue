@@ -27,6 +27,8 @@
       <div class="empty_line"></div>
       <odoq-comments :comments="comments" />
     </div>
+    <odoq-post-list-container />
+    <nuxt-link to="/" class="back_list_btn">목록으로</nuxt-link>
   </div>
 </template>
 
