@@ -1798,6 +1798,9 @@ top:0;
   resize: none;
   outline: none;
 }
+.post_detail_contents_wrap .content_wrap .image {
+  width: 100%;
+}
 .post_detail_contents_wrap .recommend_btn {
   width: 24px;
   margin: 0 auto;

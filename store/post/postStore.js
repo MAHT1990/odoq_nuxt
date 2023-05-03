@@ -6,10 +6,27 @@ const state = () => ({
   totalPosts: 0,
   currentPage: 0,
   totalPages: 0,
+  post: {
+    id: 0,
+    user_id: 0,
+    user_grade: 0,
+    user_level: 0,
+    user_name: '',
+    title: '',
+    content: '',
+    img_urL: null,
+    hit_count: 0,
+    like_count: 0,
+    liked_users: [],
+    created_at: '',
+    updated_at: '',
+    blind: false,
+    blind_text: '',
+  },
 });
 
 const actions = {
-  async getPost({ commit }, objAboutPage) {
+  async getPosts({ commit }, objAboutPage) {
     const res = await this.$axios.get('post/', {
       params: objAboutPage,
     });
@@ -25,6 +42,13 @@ const actions = {
       //   colors: true,
       //   depth: 4
       // });
+    }
+  },
+  async getPost({ commit }, postId) {
+    const res = await this.$axios.get(`post/${postId}`);
+    if (res.data.result === 'success') {
+      console.log('post is ', res.data.data.post);
+      commit('setPost', res.data.data.post);
     }
   },
   async createPost({ commit }, postData) {
@@ -88,6 +112,12 @@ const mutations = {
   setTotalPages(state, axiosTotalPages) {
     state.totalPages = axiosTotalPages;
   },
+  setPost(state, axiosPost) {
+    state.post = {
+      ...axiosPost,
+      img_url: axiosPost.img_url? Utils.getImgUrl(axiosPost.img_url) : null,
+    };
+  },
   modifyPostLike(state, axiosLikePost) {
     // console.log('postStore > mutations > modifyPostLike axiosLikePost is ', axiosLikePost)
     const postIndex = state.arrayPosts.findIndex((post) => post.id === axiosLikePost.post_id);
@@ -116,6 +146,7 @@ const getters = {
   todayPosts: (state) => (state.todayPosts),
   currentPage: (state) => (state.currentPage),
   totalPages: (state) => (state.totalPages),
+  post: (state) => (state.post),
 };
 
 export default {

@@ -33,8 +33,8 @@ export default {
         questionId: store.getters['question/questionStore/question'].id,
       }
     )
-    // 댓글 받아오기
-    await store.dispatch('post/postStore/getPost', {
+    // 게시글 받아오기
+    await store.dispatch('post/postStore/getPosts', {
       pageNumber: 1,
       pageSize: 7,
     });

@@ -8,7 +8,7 @@
       >{{ post.blind_text }}
       </div>
       <div v-else class="comment_line_content">
-        <div class="title">{{ post.content }}</div>
+        <div class="title">{{ post.title }}  <i v-if="post.img_url && !post.blind" class="fa-solid fa-image"></i></div>
       </div>
       <!--    <div v-if="post.img_url && !post.blind" class="comment_line_image">-->
       <!--      <button @click="toggleShowImg">-->
@@ -27,7 +27,7 @@
             <!--          <i v-if="post.user_grade" class="fa-solid fa-crown" style="color:rgba(255, 171, 0, 0.8);"></i>-->
           </div>
           <div class="updated_at">{{ formattedUpdatedTime.split(' ')[0] }}</div>
-          <div class="hits">조회수 13</div>
+          <div class="hits">조회수 {{ post.hit_count }}</div>
           <div class="comment_line_cocomment_and_like">
             <button class="comment_line_open_cocomment">
               <!--        <i class="fa-solid fa-caret-down"></i>답글 (댓글 개수)-->

@@ -74,7 +74,7 @@ export default {
      * @return {Promise<void>}
      */
     async filteringFlag() {
-      await this.$store.dispatch('post/postStore/getPost', {
+      await this.$store.dispatch('post/postStore/getPosts', {
         pageNumber: 1,
         pageSize: 7,
         filteringFlag: this.filteringFlag,
@@ -102,7 +102,7 @@ export default {
     orderPost(orderingFlag) {
       if (this.orderingFlag === orderingFlag) return
       this.orderingFlag = orderingFlag;
-      this.$store.dispatch('post/postStore/getPost', {
+      this.$store.dispatch('post/postStore/getPosts', {
         pageNumber: 1,
         pageSize: 7,
         filteringFlag: this.filteringFlag,
@@ -111,7 +111,7 @@ export default {
       });
     },
     prevPage() {
-      this.$store.dispatch('post/postStore/getPost', {
+      this.$store.dispatch('post/postStore/getPosts', {
         pageNumber: this.currentPage === 1 ? this.currentPage : this.currentPage - 1,
         pageSize: 7,
         filteringFlag: this.filteringFlag,
@@ -120,7 +120,7 @@ export default {
       });
     },
     nextPage() {
-      this.$store.dispatch('post/postStore/getPost', {
+      this.$store.dispatch('post/postStore/getPosts', {
         pageNumber: this.currentPage === this.totalPages ? this.currentPage : this.currentPage + 1,
         pageSize: 7,
         filteringFlag: this.filteringFlag,
