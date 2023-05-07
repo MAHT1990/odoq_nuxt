@@ -38,10 +38,15 @@ const state = () => ({
     cocomments: [
       {
         id: 0,
+        user_id: 0,
+        user_grade: 0,
         user_level: 0,
         user_name: '',
         content: '',
         created_at: '',
+        updated_at: '',
+        blind: false,
+        blind_text: '',
       }
     ],
   }],
@@ -128,6 +133,14 @@ const actions = {
     }
     return res.data
   },
+  async createCocomment({ commit }, {postId, formData}) {
+    const res = await this.$axios.post(`post/${postId}/comment/`, formData);
+    if (res.data.result === 'success') {
+      console.log('comments is ', res.data.data.comments);
+      commit('setComments', res.data.data.comments);
+    }
+    return res.data
+  }
 };
 
 const mutations = {
