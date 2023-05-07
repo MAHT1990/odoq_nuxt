@@ -65,7 +65,7 @@ export default {
     }),
   },
   created() {
-    console.log(this.arrayPosts);
+    // console.log(this.arrayPosts);
   },
   watch: {
     /**

@@ -22,7 +22,29 @@ const state = () => ({
     updated_at: '',
     blind: false,
     blind_text: '',
+    comments_count: 0,
   },
+  comments: [{
+    id: 0,
+    user_id: 0,
+    user_grade: 0,
+    user_level: 0,
+    user_name: '',
+    content: '',
+    created_at: '',
+    updated_at: '',
+    blind: false,
+    blind_text: '',
+    cocomments: [
+      {
+        id: 0,
+        user_level: 0,
+        user_name: '',
+        content: '',
+        created_at: '',
+      }
+    ],
+  }],
 });
 
 const actions = {
@@ -49,6 +71,13 @@ const actions = {
     if (res.data.result === 'success') {
       console.log('post is ', res.data.data.post);
       commit('setPost', res.data.data.post);
+    }
+  },
+  async getComments({ commit }, postId) {
+    const res = await this.$axios.get(`post/${postId}/comment`);
+    if (res.data.result === 'success') {
+      console.log('comments is ', res.data.data.comments);
+      commit('setComments', res.data.data.comments);
     }
   },
   async createPost({ commit }, postData) {
@@ -90,7 +119,15 @@ const actions = {
       commit('modifyPostBlind', res.data.data);
     }
     return res.data;
-  }
+  },
+  async createComment({ commit }, {postId, formData}) {
+    const res = await this.$axios.post(`post/${postId}/comment/`, formData);
+    if (res.data.result === 'success') {
+      console.log('comments is ', res.data.data.comments);
+      commit('setComments', res.data.data.comments);
+    }
+    return res.data
+  },
 };
 
 const mutations = {
@@ -137,6 +174,9 @@ const mutations = {
     } else {
       state.arrayPosts[postIndex].blind = false;
     };
+  },
+  setComments(state, axiosComments) {
+    state.comments = axiosComments;
   }
 };
 
@@ -147,6 +187,7 @@ const getters = {
   currentPage: (state) => (state.currentPage),
   totalPages: (state) => (state.totalPages),
   post: (state) => (state.post),
+  comments: (state) => (state.comments),
 };
 
 export default {

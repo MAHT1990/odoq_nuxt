@@ -107,7 +107,7 @@ export default {
     async createPost() {
       // this.$refs.textareaContent.rows = 1;
       if (this.postInput.content.length === 0) {
-        this.$popup.showAlertPopup('댓글을 입력해주세요.');
+        this.$popup.showAlertPopup('내용을 입력해주세요.');
         return;
       }
       const formData = new FormData();

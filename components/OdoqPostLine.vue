@@ -49,7 +49,7 @@
       </div>
       <!--    <div class="comment_line_vertical_line"></div>--></div>
     <div class="comment_count_box">
-      <div class="comment_count" :class="commentCount > 0 ? 'on' : ''">{{commentCount}}</div>
+      <div class="comment_count" :class="post.comments_count > 0 ? 'on' : ''">{{post.comments_count}}</div>
       <span>댓글</span>
     </div>
   </div>
@@ -71,7 +71,6 @@ export default {
   },
   data: () => ({
     showImg: false,
-    commentCount: 1,
   }),
   computed: {
     isLiked: {

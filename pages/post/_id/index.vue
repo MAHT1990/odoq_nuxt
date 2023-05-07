@@ -26,7 +26,7 @@
         <img src="@/assets/img/ad_test.png" alt="광고">
       </div>
       <div class="empty_line"></div>
-      <odoq-comments :comments="comments" />
+      <odoq-comments-list-container :comments="comments" />
     </div>
     <odoq-post-list-container/>
     <nuxt-link to="/" class="back_list_btn">목록으로</nuxt-link>
@@ -40,12 +40,16 @@ import Utils from "@/plugins/utils";
 
 export default {
   async asyncData({ store, req, params }) {
+    // 쿠키 확인해서 로그인 정보 확인 및 갱신.
     const cookie = req? req.headers.cookie : document.cookie;
     if (Utils.getCookie(cookie, 'jwt')) {
       await store.dispatch('user/userAuthStore/checkLogin', cookie)
     }
+    // 게시글 정보 받아오기
     await store.dispatch('post/postStore/getPost', params.id);
-    // 게시글 받아오기
+    // 댓글 정보 받아오기
+    await store.dispatch('post/postStore/getComments', params.id);
+    // 게시글 목록 받아오기
     await store.dispatch('post/postStore/getPosts', {
       pageNumber: 1,
       pageSize: 7,
@@ -56,40 +60,43 @@ export default {
       post: 'post/postStore/post',
       userInfo: 'user/userAuthStore/userInfo',
       isLogin: 'user/userAuthStore/isLogin',
+      comments: 'post/postStore/comments'
     }),
   },
-  data: () => ({
-    comments: [
-      {
-        level: 1,
-        nickName: '고양이',
-        content: '아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음',
-        create_at: '16:30',
-        hits: 123,
-        cocomments: [
-          {
-            level: 12,
-            nickName: '강아지',
-            content: '아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음',
-            create_at: '2023.04.09T16:30',
-          },
-          {
-            level: 23,
-            nickName: '오리',
-            content: '로또 1등 당첨되면 하고 싶은 것은?',
-            create_at: '2023.04.09T02:23',
-          },
-        ],
-      },
-      {
-        level: 2,
-        nickName: '공룡고기',
-        content: '이거보고 정신이 번쩍 들어서 모닝 코딩',
-        create_at: '06:30',
-        hits: 321,
-      }
-    ],
-  }),
+  // data: () => ({
+  //   comments: [
+  //     {
+  //       id: 1,
+  //       user_level: 1,
+  //       user_name: '고양이',
+  //       content: '아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음',
+  //       created_at: '16:30',
+  //       cocomments: [
+  //         {
+  //           id: 1,
+  //           user_level: 12,
+  //           user_name: '강아지',
+  //           content: '아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음아 대학 학점도 지금 가망이 없음',
+  //           created_at: '2023.04.09T16:30',
+  //         },
+  //         {
+  //           id: 2,
+  //           level: 23,
+  //           nickName: '오리',
+  //           content: '로또 1등 당첨되면 하고 싶은 것은?',
+  //           created_at: '2023.04.09T02:23',
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       id: 2,
+  //       user_level: 2,
+  //       user_name: '공룡고기',
+  //       content: '이거보고 정신이 번쩍 들어서 모닝 코딩',
+  //       created_at: '06:30',
+  //     }
+  //   ],
+  // }),
   methods: {
     createdAt(post) {
       // return moment(post.created_at).format('YYYY-MM-DD HH:mm:ss');
