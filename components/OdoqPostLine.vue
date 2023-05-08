@@ -32,9 +32,9 @@
             <button class="comment_line_open_cocomment">
               <!--        <i class="fa-solid fa-caret-down"></i>답글 (댓글 개수)-->
             </button>
-            <button class="comment_like" @click="likePost">
-              <i v-if="isLiked" class="fa-solid fa-thumbs-up"></i><i v-else class="fa-regular fa-thumbs-up"
-                                                                     @click="likePost"></i>
+            <button class="comment_like">
+              <i v-if="isLiked" class="fa-solid fa-thumbs-up"></i>
+              <i v-else class="fa-regular fa-thumbs-up"></i>
               <span>{{ post.like_count }}</span>
             </button>
           </div>
@@ -73,6 +73,13 @@ export default {
     showImg: false,
   }),
   computed: {
+    isWriter() {
+      return parseInt(this.userInfo.userId, 10) === parseInt(this.post.user_id, 10) || parseInt(this.userInfo.userGrade, 10) === 2;
+      // code above is too long, so I changed it to below:
+    },
+    formattedUpdatedTime() {
+      return moment(this.post.updated_at).format('YYYY-MM-DD HH:mm');
+    },
     isLiked: {
       get() {
         return this.post.liked_users.includes(this.userInfo.userId);
@@ -80,13 +87,6 @@ export default {
       set(v) {
         console.log('new Value in isLiked: ', v);
       }
-    },
-    isWriter() {
-      return parseInt(this.userInfo.userId, 10) === parseInt(this.post.user_id, 10) || parseInt(this.userInfo.userGrade, 10) === 2;
-      // code above is too long, so I changed it to below:
-    },
-    formattedUpdatedTime() {
-      return moment(this.post.updated_at).format('YYYY-MM-DD HH:mm');
     },
   },
   methods: {
@@ -111,19 +111,6 @@ export default {
       this.$router.push({
         path: `/post/${this.post.id}`,
       });
-    },
-    async likePost(){
-      if (this.isLogin) {
-        const resData = await this.$store.dispatch('post/postStore/likePost', {
-          postId: this.post.id,
-          userId: this.userInfo.userId,
-        });
-        // console.log('resData: ', resData);
-        if (resData.result !== 'success') this.$popup.showAlertPopup('좋아요 실패');
-        // console.log(this.post);
-      } else {
-        this.$popup.showAlertPopup('로그인이 필요한 서비스입니다.');
-      }
     },
   },
   mounted() {

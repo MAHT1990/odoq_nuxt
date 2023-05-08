@@ -88,6 +88,14 @@ const getImgUrl = (imgUrlWithoutDomain) => {
   return process.env.BASE_URL + imgUrlWithoutDomain
 }
 
+const setPageNumber = (pageNumber) => {
+  sessionStorage.setItem('pageNumber', pageNumber);
+}
+
+const getPageNumber = () => {
+  return parseInt(sessionStorage.getItem('pageNumber') || 1, 10);
+}
+
 const Utils = {
   atob,
   addCookie,
@@ -100,6 +108,8 @@ const Utils = {
   getUserGrade,
   getUserGradeByJwt,
   getImgUrl,
+  setPageNumber,
+  getPageNumber,
 };
 
 export default Utils;

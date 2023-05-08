@@ -38,6 +38,7 @@ export default {
   },
   computed: {
     userInfo() { return this.$store.getters['user/userAuthStore/userInfo'] },
+    isLogin() { return this.$store.getters['user/userAuthStore/isLogin'] },
     postId() { return this.$route.params.id },
   },
   methods: {
@@ -49,6 +50,10 @@ export default {
       this.showInputUI = !this.showInputUI;
     },
     async createCocomment() {
+      if (!this.isLogin) {
+        this.$popup.showAlertPopup('로그인 후 이용해주세요.');
+        return;
+      }
       if (this.cocommentInput.content.length === 0) {
         this.$popup.showAlertPopup('내용을 입력해주세요.');
         return;
@@ -79,6 +84,7 @@ export default {
       if (res.result === 'success') {
         this.cocommentInput.content = '';
         // this.commentInput.image.file = null;
+        this.$popup.showAlertPopup('답글이 등록되었습니다.');
       }
     },
   },

@@ -77,6 +77,7 @@ const actions = {
       console.log('post is ', res.data.data.post);
       commit('setPost', res.data.data.post);
     }
+    return res.data;
   },
   async getComments({ commit }, postId) {
     const res = await this.$axios.get(`post/${postId}/comment`);
@@ -172,11 +173,14 @@ const mutations = {
     // console.log('postStore > mutations > modifyPostLike axiosLikePost is ', axiosLikePost)
     const postIndex = state.arrayPosts.findIndex((post) => post.id === axiosLikePost.post_id);
     if (state.arrayPosts[postIndex].like_count < axiosLikePost.like_count) {
-      state.arrayPosts[postIndex].liked_users.push(axiosLikePost.user_id)
+      state.arrayPosts[postIndex].liked_users.push(axiosLikePost.user_id);
+      state.post.liked_users.push(axiosLikePost.user_id);
     } else {
-      state.arrayPosts[postIndex].liked_users.pop(axiosLikePost.user_id)
+      state.arrayPosts[postIndex].liked_users.pop(axiosLikePost.user_id);
+      state.post.liked_users.pop(axiosLikePost.user_id);
     };
     state.arrayPosts[postIndex].like_count = axiosLikePost.like_count;
+    state.post.like_count = axiosLikePost.like_count;
   },
   modifyPostBlind(state, axiosBlindPost) {
     // console.log('axiosBlindPost is ', axiosBlindPost);

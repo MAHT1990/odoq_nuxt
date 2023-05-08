@@ -111,22 +111,26 @@ export default {
       });
     },
     prevPage() {
+      const pageNumber = this.currentPage === 1 ? this.currentPage : this.currentPage - 1;
       this.$store.dispatch('post/postStore/getPosts', {
-        pageNumber: this.currentPage === 1 ? this.currentPage : this.currentPage - 1,
+        pageNumber,
         pageSize: 7,
         filteringFlag: this.filteringFlag,
         orderingFlag: this.orderingFlag,
         userId: this.userInfo.userId,
       });
+      this.$utils.setPageNumber(pageNumber);
     },
     nextPage() {
+      const pageNumber = this.currentPage === this.totalPages ? this.currentPage : this.currentPage + 1;
       this.$store.dispatch('post/postStore/getPosts', {
-        pageNumber: this.currentPage === this.totalPages ? this.currentPage : this.currentPage + 1,
+        pageNumber,
         pageSize: 7,
         filteringFlag: this.filteringFlag,
         orderingFlag: this.orderingFlag,
         userId: this.userInfo.userId,
       });
+      this.$utils.setPageNumber(pageNumber);
     },
     // movePage() {
     //   const query = { id: post.id };

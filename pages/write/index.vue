@@ -74,6 +74,7 @@ export default {
   data: () => ({
     filteringFlag: 'all',
     postInput: {
+      title: '',
       content: '',
       image: {
         file: null,
@@ -111,6 +112,7 @@ export default {
         return;
       }
       const formData = new FormData();
+      formData.append('title', this.postInput.title);
       formData.append('user', this.userInfo.userId);
       formData.append('content', this.postInput.content);
       formData.append('filteringFlag', this.filteringFlag);
@@ -133,6 +135,7 @@ export default {
         this.postInput.image.url = null;
         this.$refs.textareaContent.rows = 1;
         this.$popup.showAlertPopup('댓글이 등록되었습니다.');
+        this.$router.replace('/');
       }
     },
     addImageToPost(e) {

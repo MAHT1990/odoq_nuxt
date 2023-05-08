@@ -26,10 +26,15 @@ export default {
   }),
   computed: {
     userInfo() { return this.$store.getters['user/userAuthStore/userInfo'] },
+    isLogin() { return this.$store.getters['user/userAuthStore/isLogin'] },
     postId() { return this.$route.params.id },
   },
   methods: {
     async createComment() {
+      if (!this.isLogin) {
+        this.$popup.showAlertPopup('로그인 후 이용해주세요.');
+        return;
+      }
       if (this.commentInput.content.length === 0) {
         this.$popup.showAlertPopup('내용을 입력해주세요.');
         return;
