@@ -78,7 +78,7 @@ export default {
       // code above is too long, so I changed it to below:
     },
     formattedUpdatedTime() {
-      return moment(this.post.updated_at).format('YYYY-MM-DD HH:mm');
+      return moment(this.post.created_at).format('YYYY-MM-DD HH:mm');
     },
     isLiked: {
       get() {
