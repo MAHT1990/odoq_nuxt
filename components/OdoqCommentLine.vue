@@ -1,8 +1,14 @@
 <template>
   <li class="comment">
     <div class="user_info_box flex">
-      <div class="level">{{ comment.user_level }}</div>
-      <div class="nick_name">{{ comment.user_name }}</div>
+      <div class="flex">
+        <div class="level">{{ comment.user_level }}</div>
+        <div class="nick_name">{{ comment.user_name }}</div>
+      </div>
+      <div class="text_tool_box">
+        <span>수정</span>
+        <span>삭제</span>
+      </div>
     </div>
     <div v-if="!comment.blind" class="comment_content" v-html="comment.content"></div>
     <div v-else class="comment_content" v-html="comment.blind_text"></div>

@@ -2,8 +2,14 @@
   <ul class="cocomment_list">
     <li class="cocomment" v-for="cocomment in cocomments" :key="cocomment.id">
       <div class="user_info_box flex">
-        <div class="level">{{ cocomment.user_level }}</div>
-        <div class="nick_name">{{ cocomment.user_name }}</div>
+        <div class="flex">
+          <div class="level">{{ cocomment.user_level }}</div>
+          <div class="nick_name">{{ cocomment.user_name }}</div>
+        </div>
+        <div class="text_tool_box">
+          <span>수정</span>
+          <span>삭제</span>
+        </div>
       </div>
       <div class="comment_content" v-html="cocomment.content"></div>
       <span class="date">{{ createdAt(cocomment) }}</span>
