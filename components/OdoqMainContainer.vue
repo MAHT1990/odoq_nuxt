@@ -16,17 +16,19 @@
     </div>
     <div>
       <div v-if="currentIdx === 0">
-        <div id="questionContainer">
-          <odoq-question-container
-            v-show="isAvailable"
-            :question="question"
-            @nextQuestionLoadEvent="loadNext"
-          />
-          <odoq-answer-container
-            v-show="isAvailable"
-            :question="question"
-            :user-info="userInfo"
-          />
+        <div class="hidden">
+          <div id="questionContainer">
+            <odoq-question-container
+              v-show="isAvailable"
+              :question="question"
+              @nextQuestionLoadEvent="loadNext"
+            />
+            <odoq-answer-container
+              v-show="isAvailable"
+              :question="question"
+              :user-info="userInfo"
+            />
+          </div>
         </div>
         <odoq-weekend-timer-container
           v-show="!isAvailable"
@@ -108,14 +110,14 @@ export default {
       const question = document.getElementById('questionContainer');
       const openBtn = document.getElementById('openLabel');
       if (this.open === true) {
-        question.style.height = '0';
+        question.style.marginTop = '-100%';
         question.style.overflow = 'hidden';
         openBtn.firstChild.src = 'data:image/svg+xml,%3Csvg width=\'45\' height=\'68\' viewBox=\'0 0 45 68\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath fill-rule=\'evenodd\' clip-rule=\'evenodd\' d=\'M0 0H44.9084V38.1722L45 67.3642L22.454 49.3994L22.4542 49.3993H22.4236L22.4475 49.4125L0 67.3626L0.0172968 49.3993H0V0Z\' fill=\'%239D9D9D\'/%3E%3C/svg%3E%0A';
         openBtn.lastChild.innerHTML = '문제<br>펼치기';
         openBtn.lastChild.color = '#0051c8';
         // document.getElementById('questionContainer').style.padding = '0 20px';
       } else {
-        question.style.height = 'unset';
+        question.style.marginTop = '0';
         openBtn.firstChild.src = 'data:image/svg+xml,%3Csvg width=\'45\' height=\'68\' viewBox=\'0 0 45 68\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath fill-rule=\'evenodd\' clip-rule=\'evenodd\' d=\'M0.000419178 0H44.9085V38.1914L45 67.3638L22.4542 49.3991L22.4546 49.3989H22.4235L22.4474 49.412L0 67.362L0.0172961 49.3989H0.000419178V0Z\' fill=\'%230051C8\'/%3E%3C/svg%3E%0A';
         openBtn.lastChild.innerHTML = '문제<br>접기';
         openBtn.lastChild.color = '#fff';
