@@ -98,50 +98,56 @@ const actions = {
     }
     return res;
   },
-  /**
-   * post의 like를 누르는 함수
-   * flag를 설정 : 'like' or 'update'
-   * @param commit
-   * @param postAndUserData
-   * @return {Promise<AxiosResponse<any>>}
-   */
   async likePost({ commit }, postAndUserData) {
     // console.log('likePost path is here');
     postAndUserData.flag = 'like';
     const res = await this.$axios.patch('post/', postAndUserData);
-    if (res.data.result === 'success') {
-      // console.log(res.data.data);
-      commit('modifyPostLike', res.data.data);
-    }
-    return res.data;
-  },
-  async blindPost({ commit }, postData) {
-    // console.log('blindPost path is here');
-    postData.flag = 'blind';
-    const res = await this.$axios.patch('post/', postData);
-    // console.log('blindPost의 res.data는 ', res.data);
-    if (res.data.result === 'success') {
-      // console.log(res.data.data);
-      commit('modifyPostBlind', res.data.data);
-    }
+    if (res.data.result === 'success') commit('modifyPostLike', res.data.data);
     return res.data;
   },
   async createComment({ commit }, {postId, formData}) {
     const res = await this.$axios.post(`post/${postId}/comment/`, formData);
-    if (res.data.result === 'success') {
-      console.log('comments is ', res.data.data.comments);
-      commit('setComments', res.data.data.comments);
-    }
+    if (res.data.result === 'success') commit('setComments', res.data.data.comments);
     return res.data
+  },
+  async editComment({ commit }, commentData) {
+    // console.log('editComment path is here');
+    commentData.flag = 'edit';
+    const res = await this.$axios.patch(`post/${commentData.postId}/comment/`, commentData);
+    if (res.data.result === 'success') commit('editComment', res.data.data);
+    return res.data;
+  },
+  async blindComment({ commit }, commentData) {
+    // console.log('blindPost path is here');
+    commentData.flag = 'blind';
+    const res = await this.$axios.patch(`post/${commentData.postId}/comment/`, commentData);
+    // console.log('blindPost의 res.data는 ', res.data);
+    if (res.data.result === 'success') commit('blindComment', res.data.data);
+    return res.data;
   },
   async createCocomment({ commit }, {postId, formData}) {
     const res = await this.$axios.post(`post/${postId}/comment/`, formData);
-    if (res.data.result === 'success') {
-      console.log('comments is ', res.data.data.comments);
-      commit('setComments', res.data.data.comments);
-    }
+    if (res.data.result === 'success') commit('setComments', res.data.data.comments);
     return res.data
-  }
+  },
+  async editCocomment({ commit }, cocommentData) {
+    // console.log('editCocomment path is here');
+    cocommentData.flag = 'edit';
+    const res = await this.$axios.patch(`post/${cocommentData.postId}/comment/`, cocommentData);
+    if (res.data.result === 'success') {
+      // console.log(res.data.data);
+      commit('editCocomment', res.data.data);
+    }
+    return res.data;
+  },
+  async blindCocomment({ commit }, cocommentData) {
+    // console.log('blindPost path is here');
+    cocommentData.flag = 'blind';
+    const res = await this.$axios.patch(`post/${cocommentData.postId}/comment/`, cocommentData);
+    // console.log('blindPost의 res.data는 ', res.data);
+    if (res.data.result === 'success') commit('blindCocomment', res.data.data);
+    return res.data;
+  },
 };
 
 const mutations = {
@@ -164,36 +170,52 @@ const mutations = {
     state.totalPages = axiosTotalPages;
   },
   setPost(state, axiosPost) {
-    state.post = {
-      ...axiosPost,
-      img_url: axiosPost.img_url? Utils.getImgUrl(axiosPost.img_url) : null,
-    };
-  },
-  modifyPostLike(state, axiosLikePost) {
-    // console.log('postStore > mutations > modifyPostLike axiosLikePost is ', axiosLikePost)
-    const postIndex = state.arrayPosts.findIndex((post) => post.id === axiosLikePost.post_id);
-    if (state.arrayPosts[postIndex].like_count < axiosLikePost.like_count) {
-      state.arrayPosts[postIndex].liked_users.push(axiosLikePost.user_id);
-      state.post.liked_users.push(axiosLikePost.user_id);
-    } else {
-      state.arrayPosts[postIndex].liked_users.pop(axiosLikePost.user_id);
-      state.post.liked_users.pop(axiosLikePost.user_id);
-    };
-    state.arrayPosts[postIndex].like_count = axiosLikePost.like_count;
-    state.post.like_count = axiosLikePost.like_count;
-  },
-  modifyPostBlind(state, axiosBlindPost) {
-    // console.log('axiosBlindPost is ', axiosBlindPost);
-    const postIndex = state.arrayPosts.findIndex((post) => post.id === axiosBlindPost.post_id);
-    if (state.arrayPosts[postIndex].blind === false) {
-      state.arrayPosts[postIndex].blind = true;
-      state.arrayPosts[postIndex].blind_text = axiosBlindPost.blind_text;
-    } else {
-      state.arrayPosts[postIndex].blind = false;
-    };
+    state.post = { ...axiosPost, img_url: axiosPost.img_url? Utils.getImgUrl(axiosPost.img_url) : null};
   },
   setComments(state, axiosComments) {
     state.comments = axiosComments;
+  },
+  modifyPostLike(state, axiosLikePost) {
+    // console.log('postStore > mutations > modifyPostLike axiosLikePost is ', axiosLikePost)
+    const postInList = state.arrayPosts.find((post) => post.id === axiosLikePost.post_id);
+    // 목록내 좋아요 개수 변경
+    if (state.post.like_count < axiosLikePost.like_count) {
+      state.post.liked_users.push(axiosLikePost.user_id);
+      if (postInList) postInList.liked_users.push(axiosLikePost.user_id);
+    } else {
+      state.post.liked_users.pop(axiosLikePost.user_id);
+      if (postInList) postInList.liked_users.pop(axiosLikePost.user_id);
+    }
+    state.post.like_count = axiosLikePost.like_count;
+    if (postInList) postInList.like_count = axiosLikePost.like_count;
+  },
+  editComment(state, axiosEditComment) {
+    // console.log('axiosEditComment is ', axiosEditComment);
+    const comment = state.comments.find((cmt) => cmt.id === axiosEditComment.target_id);
+    comment.content = axiosEditComment.content;
+  },
+  blindComment(state, axiosBlindComment) {
+    // console.log('axiosBlindComment is ', axiosBlindComment);
+    const commentIndex = state.comments.findIndex((cmt) => cmt.id === axiosBlindComment.target_id);
+    state.comments[commentIndex].blind = axiosBlindComment.blind;
+    state.comments[commentIndex].blind_text = axiosBlindComment.blind_text;
+  },
+  editCocomment(state, axiosEditCocomment) {
+    // console.log('axiosEditCocomment is ', axiosEditCocomment);
+    const cocomment = state.comments.reduce(
+      (acc, cur) => {
+        return acc.concat(cur.cocomments);
+      }, [])
+      .find((cmt) => cmt.id === axiosEditCocomment.target_id);
+    cocomment.content = axiosEditCocomment.content;
+  },
+  blindCocomment(state, axiosBlindCocomment) {
+    // console.log('axiosBlindCocomment is ', axiosBlindCocomment);
+    const cocomments = state.comments.reduce(
+      (acc, cur) => acc.concat(cur.cocomments), []);
+    const cocommentIndex = cocomments.findIndex((cmt) => cmt.id === axiosBlindCocomment.target_id);
+    cocomments[cocommentIndex].blind = axiosBlindCocomment.blind;
+    cocomments[cocommentIndex].blind_text = axiosBlindCocomment.blind_text;
   }
 };
 

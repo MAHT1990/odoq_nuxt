@@ -94,7 +94,7 @@ export default {
       return this.availableDays.includes(this.weekday);
     },
     isWriter() {
-      return [1, 2].includes(this.userInfo.userGrade);
+      return [1, 2].includes(parseInt(this.userInfo.userGrade), 10);
     }
   },
   methods: {

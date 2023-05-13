@@ -10,10 +10,10 @@
           <span class="date">{{ createdAt(post) }}</span>
           <span class="hits">조회수 {{ post.hit_count }}</span>
           <span class="layer" @click="writeMore">
-            <img src="data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 20C11.45 20 10.979 19.804 10.587 19.412C10.195 19.02 9.99934 18.5493 10 18C10 17.45 10.196 16.979 10.588 16.587C10.98 16.195 11.4507 15.9993 12 16C12.55 16 13.021 16.196 13.413 16.588C13.805 16.98 14.0007 17.4507 14 18C14 18.55 13.804 19.021 13.412 19.413C13.02 19.805 12.5493 20.0007 12 20ZM12 14C11.45 14 10.979 13.804 10.587 13.412C10.195 13.02 9.99934 12.5493 10 12C10 11.45 10.196 10.979 10.588 10.587C10.98 10.195 11.4507 9.99934 12 10C12.55 10 13.021 10.196 13.413 10.588C13.805 10.98 14.0007 11.4507 14 12C14 12.55 13.804 13.021 13.412 13.413C13.02 13.805 12.5493 14.0007 12 14ZM12 8C11.45 8 10.979 7.804 10.587 7.412C10.195 7.02 9.99934 6.54934 10 6C10 5.45 10.196 4.979 10.588 4.587C10.98 4.195 11.4507 3.99934 12 4C12.55 4 13.021 4.196 13.413 4.588C13.805 4.98 14.0007 5.45067 14 6C14 6.55 13.804 7.021 13.412 7.413C13.02 7.805 12.5493 8.00067 12 8Z' fill='%239D9D9D'/%3E%3C/svg%3E%0A" alt="더보기">
+            <img v-if="isAuthor || isWriter" src="data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 20C11.45 20 10.979 19.804 10.587 19.412C10.195 19.02 9.99934 18.5493 10 18C10 17.45 10.196 16.979 10.588 16.587C10.98 16.195 11.4507 15.9993 12 16C12.55 16 13.021 16.196 13.413 16.588C13.805 16.98 14.0007 17.4507 14 18C14 18.55 13.804 19.021 13.412 19.413C13.02 19.805 12.5493 20.0007 12 20ZM12 14C11.45 14 10.979 13.804 10.587 13.412C10.195 13.02 9.99934 12.5493 10 12C10 11.45 10.196 10.979 10.588 10.587C10.98 10.195 11.4507 9.99934 12 10C12.55 10 13.021 10.196 13.413 10.588C13.805 10.98 14.0007 11.4507 14 12C14 12.55 13.804 13.021 13.412 13.413C13.02 13.805 12.5493 14.0007 12 14ZM12 8C11.45 8 10.979 7.804 10.587 7.412C10.195 7.02 9.99934 6.54934 10 6C10 5.45 10.196 4.979 10.588 4.587C10.98 4.195 11.4507 3.99934 12 4C12.55 4 13.021 4.196 13.413 4.588C13.805 4.98 14.0007 5.45067 14 6C14 6.55 13.804 7.021 13.412 7.413C13.02 7.805 12.5493 8.00067 12 8Z' fill='%239D9D9D'/%3E%3C/svg%3E%0A" alt="더보기">
           </span>
           <ul class="layer_list" id="layerList">
-            <li class="edit_text">수정하기</li>
+            <li class="edit_text" @click="editPost">수정하기</li>
             <li class="delete_text">삭제하기</li>
           </ul>
           <div class="report">
@@ -75,10 +75,15 @@ export default {
     }),
     isLikedInPage() {
       return this.post.liked_users.includes(this.userInfo.userId);
-    }
+    },
+    isAuthor() {
+      return this.post.user_id === this.userInfo.userId;
+    },
+    isWriter() {
+      return [1, 2].includes(this.userInfo.userGrade);
+    },
   },
-  async created() {
-    this.isLikedInPage = this.post.liked_users.includes(this.userInfo.userId);
+  async mounted() {
     // 게시글 목록 받아오기
     await this.$store.dispatch('post/postStore/getPosts', {
       pageNumber: this.$utils.getPageNumber(),
@@ -111,6 +116,9 @@ export default {
       } else {
         list.style.display = 'none';
       }
+    },
+    editPost() {
+      console.log('way to edit Post');
     },
   },
 }

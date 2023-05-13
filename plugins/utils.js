@@ -93,7 +93,7 @@ const setPageNumber = (pageNumber) => {
 }
 
 const getPageNumber = () => {
-  return parseInt(sessionStorage.getItem('pageNumber') || 1, 10);
+  return parseInt(sessionStorage.getItem('pageNumber') || 1, 10) || 1;
 }
 
 const Utils = {
