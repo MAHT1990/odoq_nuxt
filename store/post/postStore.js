@@ -79,13 +79,6 @@ const actions = {
     }
     return res.data;
   },
-  async getComments({ commit }, postId) {
-    const res = await this.$axios.get(`post/${postId}/comment`);
-    if (res.data.result === 'success') {
-      console.log('comments is ', res.data.data.comments);
-      commit('setComments', res.data.data.comments);
-    }
-  },
   async createPost({ commit }, postData) {
     // console.log('createPost path is here');
     const res = await this.$axios.post('post/', postData);
@@ -104,6 +97,19 @@ const actions = {
     const res = await this.$axios.patch('post/', postAndUserData);
     if (res.data.result === 'success') commit('modifyPostLike', res.data.data);
     return res.data;
+  },
+  async deletePost({ commit }, postData) {
+    // console.log('deletePost path is here');
+    const res = await this.$axios.delete(`post/${postData.postId}/`);
+    if (res.data.result === 'success') commit('modifyPostLike', res.data.data);
+    return res.data;
+  },
+  async getComments({ commit }, postId) {
+    const res = await this.$axios.get(`post/${postId}/comment`);
+    if (res.data.result === 'success') {
+      console.log('comments is ', res.data.data.comments);
+      commit('setComments', res.data.data.comments);
+    }
   },
   async createComment({ commit }, {postId, formData}) {
     const res = await this.$axios.post(`post/${postId}/comment/`, formData);

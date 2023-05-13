@@ -36,13 +36,6 @@
                 accept="image/*"
                 style="display: none;"
               />
-              <!--              <button-->
-              <!--                class="comment_input_box_button"-->
-              <!--                type="button"-->
-              <!--                @click="createPost"-->
-              <!--              >-->
-              <!--                <i class="fa-solid fa-pen"></i>-->
-              <!--              </button>-->
             </div>
           </div>
           <textarea
@@ -134,7 +127,7 @@ export default {
         this.postInput.image.file = null;
         this.postInput.image.url = null;
         this.$refs.textareaContent.rows = 1;
-        this.$popup.showAlertPopup('댓글이 등록되었습니다.');
+        this.$popup.showAlertPopup('게시글이 등록되었습니다.');
         this.$router.replace('/');
       }
     },

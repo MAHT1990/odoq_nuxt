@@ -14,7 +14,7 @@
           </span>
           <ul class="layer_list" id="layerList">
             <li class="edit_text" @click="editPost">수정하기</li>
-            <li class="delete_text">삭제하기</li>
+            <li class="delete_text" @click="deletePost">삭제하기</li>
           </ul>
           <div class="report">
             <img src="@/assets/img/alert.png" alt="">신고
@@ -118,7 +118,25 @@ export default {
       }
     },
     editPost() {
-      console.log('way to edit Post');
+      // console.log('way to edit Post');
+      this.$popup.showAlertPopup('게시글 수정은 준비중입니다.');
+    },
+    deletePost() {
+      // console.log('way to delete Post');
+      new this.$popup.PopConfirm({
+        propsData: {
+          title: '게시글을 삭제하시겠습니까?',
+          okCallback: async (params) => {
+            const res = await this.$store.dispatch('post/postStore/deletePost', {
+              postId: this.post.id,
+            });
+            this.$popup.showAlertPopup(res.message);
+            params.$destroy();
+            this.$router.replace('/');
+          },
+        },
+      }
+      ).$mount();
     },
   },
 }
