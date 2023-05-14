@@ -97,21 +97,18 @@ const getPageNumber = () => {
 }
 
 const setReadPost = (postId) => {
-  let readPost = sessionStorage.getItem('readPost')
+  let readPost = localStorage.getItem('readPost')
   if (readPost) readPost += ',' + postId
   else readPost = postId
-  sessionStorage.setItem('readPost', readPost);
+  localStorage.setItem('readPost', readPost);
   // sessionStorage.setItem('readPost', postId);
   // I want to add postId to readPostList
 }
 
 const getReadPost = () => {
-  if(process.client) {
-    return sessionStorage
-      ? Storage.getItem('readPost').split(',')
-        .map((postId) => parseInt(postId, 10))
+    return localStorage.getItem('readPost')
+      ? localStorage.getItem('readPost').split(',').map((postId) => parseInt(postId, 10))
       : null;
-  }
 }
 
 const Utils = {

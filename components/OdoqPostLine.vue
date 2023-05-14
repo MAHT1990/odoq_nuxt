@@ -77,6 +77,8 @@ export default {
     showImg: false,
     defaultColor: '#000000',
     readColor: 'darkgray',
+    isRead: false,
+    currentPost: false,
   }),
   computed: {
     isWriter() {
@@ -93,15 +95,6 @@ export default {
       set(v) {
         console.log('new Value in isLiked: ', v);
       }
-    },
-    isRead() {
-      return Utils.getReadPost()
-        ? Utils.getReadPost().includes(this.post.id)
-        : false;
-    },
-    currentPost() {
-      if (this.$route.params?.id) return parseInt(this.post.id, 10) === parseInt(this.$route.params.id, 10);
-      else return false;
     },
     computedStyle() {
       return {
@@ -134,12 +127,14 @@ export default {
       });
     },
   },
-  mounted() {
+  beforeMount() {
     // console.log('OdoqPostLine mounted');
     // console.log('userInfo: ', this.userInfo);
     // console.log('post를 좋아한 유저는', this.post.liked_users);
     // console.log('현재 user가 이 댓글을 좋아했나 ', this.post.liked_users.includes(this.userInfo.userId));
     this.isLiked = this.post.liked_users.includes(this.userInfo.userId);
+    this.isRead = Utils.getReadPost() ? Utils.getReadPost().includes(this.post.id) : false;
+    this.currentPost = parseInt(this.$route.params.id, 10) === parseInt(this.post.id, 10);
   }
 }
 </script>
