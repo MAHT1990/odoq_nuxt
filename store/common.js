@@ -1,5 +1,5 @@
 const state = () => ({
-  availableDays: [0, 1, 2, 3, 4, 5, 6], // 화요일부터 토요일까지
+  availableDays: [2, 3, 4, 5, 6], // 화요일부터 토요일까지
 });
 
 const actions = {
