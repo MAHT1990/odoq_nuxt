@@ -110,7 +110,7 @@ input, button {
   left: 50%;
   transform: translateX(-50%);
   background: #fff;
-  z-index: 9999;
+  z-index: 1;
 }
 .navbar .header_top>div {
   max-width: 550px;
@@ -493,7 +493,6 @@ header{
 
 /* QUESTION */
 #questionContainer {
-  transition: all 1s linear;
   padding: 0 10px 0px;
   border-bottom: 1px solid #eee;
   margin-top: 0;
@@ -940,6 +939,9 @@ animation-fill-mode: forwards;
   background-color : rgba(250,250,250,255);
   /*background-color: #b3b3b3;*/
 }
+.title:hover {
+  text-decoration: underline;
+}
 .content_info_box {
   display : flex;
   justify-content : space-between;
@@ -1006,6 +1008,7 @@ animation-fill-mode: forwards;
 .comment_line_box .comment_count_box {
   box-sizing: border-box;
   margin-right: 10px;
+  min-width: 23px;
 }
 .comment_line_box .comment_count_box .comment_count {
   text-align: center;
@@ -1232,6 +1235,10 @@ animation-fill-mode: forwards;
   position: relative;
   padding-left: 15px;
   font-size: 14px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  /*width: 500px;*/
 }
 .comment_line_content .title:before {
   content: '';
@@ -1381,6 +1388,9 @@ animation-fill-mode: forwards;
     padding : 10px;
     display : flex;
     justify-content: center;
+}
+.pagination_btn {
+  font-size: 13px;
 }
 
 .comment_list_navigator button {
@@ -1760,8 +1770,8 @@ top:0;
   position: relative;
 }
 .post_detail_contents_wrap .post_info_box .level {
-  background: #ddd;
-  font-size: 8px;
+  background: #eee;
+  font-size: 12px;
   padding: 0 6px;
   color: #0051c8;
   margin-right: 3px;
@@ -1838,7 +1848,6 @@ top:0;
 }
 .post_detail_contents_wrap .content_wrap {
   margin: 10px;
-  height: 300px;
 }
 .post_detail_contents_wrap .content_wrap .content {
   font-size: 16px;
@@ -1913,6 +1922,9 @@ top:0;
   justify-content: space-between;
   padding: 5px 10px;
   box-sizing: border-box;
+}
+.dockbar_list a {
+  cursor: pointer;
 }
 .dockbar_list a:hover span {
   color: #002964;
@@ -1991,7 +2003,7 @@ top:0;
   cursor: pointer;
 }
 .comments_wrap .user_info_box .level {
-  background: #ddd;
+  background: #eee;
   font-size: 8px;
   padding: 0 6px;
   color: #0051c8;

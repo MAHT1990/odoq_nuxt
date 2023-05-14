@@ -26,7 +26,7 @@
 <!--        </div>-->
       </div>
       <div class="content_wrap">
-        <textarea class="content" readonly v-html="post.content"></textarea>
+        <div class="content" v-html="post.content"></div>
         <img v-if="post.img_url" class="image" :src="post.img_url" alt="load Error">
       </div>
       <div class="recommend_btn" @click="likePost">

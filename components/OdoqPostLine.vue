@@ -3,7 +3,7 @@
     class="comment_line_box"
     @click="movePostDetail"
     :style="computedStyle">
-    <div>
+    <div style="width: 90%">
       <div
         v-if="post.blind === true"
         class="comment_line_content blind_text"
