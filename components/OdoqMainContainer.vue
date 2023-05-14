@@ -43,6 +43,10 @@
         />
       </div>
       <odoq-post-container v-if="currentIdx === 0"/>
+      <odoq-post-list-container
+        v-if="currentIdx === 2"
+        :filtering-flag="'solution'"
+      />
     </div>
     <odoq-footer/>
   </div>
@@ -57,7 +61,7 @@ export default {
       weekday: null,
       onOffSeason: true,
       content: 0,
-      tabs: ['전체글', '공지', '인기글'],
+      tabs: ['전체글', '공지', '풀이', '인기글'],
       currentIdx: 0,
       noticeList: [
         {

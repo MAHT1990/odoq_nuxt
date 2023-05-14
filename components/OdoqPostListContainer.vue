@@ -72,8 +72,14 @@ export default {
     //     : this.arrayPosts.filter(post => post.type !== `solution_${this.question.id}`);
     // },
   },
-  created() {
+  async created() {
     // console.log(this.arrayPosts);
+    await this.$store.dispatch('post/postStore/getPosts', {
+      pageNumber: 1,
+      pageSize: 7,
+      filteringFlag: this.filteringFlag,
+      userId: this.userInfo.userId,
+    });
   },
   watch: {
     /**

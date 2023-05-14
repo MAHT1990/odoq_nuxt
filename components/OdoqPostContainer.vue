@@ -124,11 +124,6 @@ export default {
       if (this.postInput.image.file) {
         formData.append('img', this.postInput.image.file);
       }
-      // const formDataReform = {};
-      // for (const key of formData.keys()) {
-      //   formDataReform[key] = formData.get(key);
-      // }
-      // console.log('## PostContainer formDataReform', formDataReform);
       const res = await this.$store.dispatch(
         'post/postStore/createPost',
         formData,
