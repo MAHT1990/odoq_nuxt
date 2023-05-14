@@ -96,6 +96,20 @@ const getPageNumber = () => {
   return parseInt(sessionStorage.getItem('pageNumber') || 1, 10) || 1;
 }
 
+const setReadPost = (postId) => {
+  let readPost = localStorage.getItem('readPost')
+  if (readPost) readPost += ',' + postId
+  else readPost = postId
+  localStorage.setItem('readPost', readPost);
+  // localStorage.setItem('readPost', postId);
+  // I want to add postId to readPostList
+}
+
+const getReadPost = () => {
+  return localStorage.getItem('readPost').split(',')
+    .map((postId) => parseInt(postId, 10));
+}
+
 const Utils = {
   atob,
   addCookie,
@@ -110,6 +124,8 @@ const Utils = {
   getImgUrl,
   setPageNumber,
   getPageNumber,
+  setReadPost,
+  getReadPost,
 };
 
 export default Utils;

@@ -65,6 +65,14 @@ import Utils from "@/plugins/utils";
 
 export default {
   props: {},
+  /**
+   * 페이지를 새로고침하면, store 데이터를 초기화 시킨다.
+   * 그러므로, 사용자 정보와 문항정보를 다시 가져와야함.
+   * 비정상적인 접근을 막기위해.
+   * @param store
+   * @param req
+   * @returns {Promise<void>}
+   */
   async asyncData({ store, req }) {
     // 로그인 check & 사용자정보 가져오기
     const cookie = req? req.headers.cookie : document.cookie;
@@ -89,7 +97,7 @@ export default {
     ...mapGetters({
       isLogin: 'user/userAuthStore/isLogin',
       userInfo: 'user/userAuthStore/userInfo',
-      // todayPosts: 'post/postStore/todayPosts',
+      question: 'question/questionStore/question',
     }),
     contentLength() {
       if (this.postInput.content.length > 0) {
@@ -99,10 +107,21 @@ export default {
     },
   },
   mounted() {
+    // console.log('## WriteSolution mounted');
+    // console.log('# isLogin', this.isLogin);
+    // console.log('# userInfo', this.userInfo);
+    // console.log('# question', this.question);
     if (!this.isLogin) {
       this.$popup.showAlertPopup('로그인 후 이용해주세요.');
       this.$router.replace('/');
-    };
+      return
+    }
+    if (!this.question.solved_users.includes(this.userInfo.userId)) {
+      this.$popup.showAlertPopup('정답 제출 이후 등록이 가능해요.');
+      this.$router.replace('/');
+      return
+    }
+    this.postInput.title = `[풀이][${this.question.code}]${this.userInfo.userName}님의 풀이`
   },
   methods: {
     onBoxFocus(e) {

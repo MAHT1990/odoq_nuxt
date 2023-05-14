@@ -89,6 +89,8 @@ export default {
       pageNumber: this.$utils.getPageNumber(),
       pageSize: 7,
     });
+    Utils.setReadPost(this.post.id);
+    console.log('localStorage: ', localStorage);
   },
   methods: {
     createdAt(post) {

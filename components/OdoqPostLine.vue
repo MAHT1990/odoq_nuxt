@@ -1,5 +1,8 @@
 <template>
-  <div class="comment_line_box" @click="movePostDetail">
+  <div
+    class="comment_line_box"
+    @click="movePostDetail"
+    :style="computedStyle">
     <div>
       <div
         v-if="post.blind === true"
@@ -57,6 +60,7 @@
 
 <script>
 import moment from 'moment';
+import Utils from "@/plugins/utils";
 export default {
   props: {
     post: {
@@ -71,6 +75,8 @@ export default {
   },
   data: () => ({
     showImg: false,
+    defaultColor: '#000000',
+    readColor: 'darkgray',
   }),
   computed: {
     isWriter() {
@@ -88,6 +94,19 @@ export default {
         console.log('new Value in isLiked: ', v);
       }
     },
+    isRead() {
+      return Utils.getReadPost().includes(this.post.id);
+    },
+    currentPost() {
+      if (this.$route.params?.id) return parseInt(this.post.id, 10) === parseInt(this.$route.params.id, 10);
+      else return false;
+    },
+    computedStyle() {
+      return {
+        backgroundColor: this.currentPost ? '#f5f5f5' : 'white',
+        color: this.isRead || this.currentPost ? this.readColor : this.defaultColor,
+      }
+    }
   },
   methods: {
     // toggleShowImg() {

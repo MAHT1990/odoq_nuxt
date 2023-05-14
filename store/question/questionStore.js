@@ -2,8 +2,14 @@ import Utils from "@/plugins/utils";
 
 const state = () => ({
   question: {
+    id: 0,
+    code: '',
+    season: '',
+    img_url: '',
+    answer: 0,
     answer_count: 0,
     solve_count: 0,
+    solved_users: [],
     can_answer_remain_time: 0,
   },
   answerLive: {
@@ -93,6 +99,7 @@ const mutations = {
     state.question.answer_count = axiosResData.data.answer_count;
     state.question.solve_count = axiosResData.data.solve_count;
     state.question.can_answer_remain_time = axiosResData.data.can_answer_remain_time;
+    state.question.solved_users = axiosResData.data.solved_users;
   }
 }
 
