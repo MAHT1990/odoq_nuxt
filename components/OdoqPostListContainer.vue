@@ -24,11 +24,13 @@
     </div>
     <div class="comment_list_navigator">
       <button
+        class="pagination_btn"
         id="comment_list_navigator_prev"
         @click="prevPage"
       ><i class="fa-solid fa-angle-left"></i>&nbsp;이전</button>
       <div id="comment_list_navigator_page_numbering">{{currentPage}}/{{totalPages}}</div>
       <button
+        class="pagination_btn"
         id="comment_list_navigator_next"
         @click="nextPage"
       >다음&nbsp;<i class="fa-solid fa-angle-right"></i></button>
