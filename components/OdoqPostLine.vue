@@ -95,7 +95,9 @@ export default {
       }
     },
     isRead() {
-      return Utils.getReadPost().includes(this.post.id);
+      return Utils.getReadPost()
+        ? Utils.getReadPost().includes(this.post.id)
+        : false;
     },
     currentPost() {
       if (this.$route.params?.id) return parseInt(this.post.id, 10) === parseInt(this.$route.params.id, 10);
