@@ -64,7 +64,13 @@ export default {
       totalPages: 'post/postStore/totalPages',
       userInfo: 'user/userAuthStore/userInfo',
       isLogin: 'user/userAuthStore/isLogin',
+      question: 'question/questionStore/question',
     }),
+    // filteredPosts() {
+    //   return this.question.solved_users.includes(this.userInfo.userId)
+    //     ? this.arrayPosts
+    //     : this.arrayPosts.filter(post => post.type !== `solution_${this.question.id}`);
+    // },
   },
   created() {
     // console.log(this.arrayPosts);

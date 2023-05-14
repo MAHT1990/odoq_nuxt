@@ -8,6 +8,7 @@ const state = () => ({
   totalPages: 0,
   post: {
     id: 0,
+    type: 'normal',
     user_id: 0,
     user_grade: 0,
     user_level: 0,
@@ -158,10 +159,13 @@ const actions = {
 
 const mutations = {
   setArrayPosts(state, axiosPostData) {
-    state.arrayPosts = axiosPostData.map((post) => {
-      post.img_url = post.img_url? Utils.getImgUrl(post.img_url) : null;
-      return post;
-    });
+    console.log('axiosPostData is ', axiosPostData);
+    if (Array.isArray(axiosPostData)) {
+      state.arrayPosts = axiosPostData.map((post) => {
+        post.img_url = post.img_url ? Utils.getImgUrl(post.img_url) : null;
+        return post;
+      });
+    } else state.arrayPosts = [];
   },
   setTotalPosts(state, axiosTotalPosts) {
     state.totalPosts = axiosTotalPosts;

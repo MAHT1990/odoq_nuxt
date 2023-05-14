@@ -121,6 +121,7 @@ export default {
         return;
       }
       const formData = new FormData();
+      formData.append('type', 'normal');
       formData.append('title', this.postInput.title);
       formData.append('user', this.userInfo.userId);
       formData.append('content', this.postInput.content);

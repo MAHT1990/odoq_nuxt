@@ -119,9 +119,8 @@ export default {
     if (!this.question.solved_users.includes(this.userInfo.userId)) {
       this.$popup.showAlertPopup('정답 제출 이후 등록이 가능해요.');
       this.$router.replace('/');
-      return
     }
-    this.postInput.title = `[풀이][${this.question.code}]${this.userInfo.userName}님의 풀이`
+    this.postInput.title = `[${this.question.code}]${this.userInfo.userName}님의 풀이`
   },
   methods: {
     onBoxFocus(e) {
@@ -140,6 +139,7 @@ export default {
         return;
       }
       const formData = new FormData();
+      formData.append('type', `solution_${this.question.id}`);
       formData.append('title', this.postInput.title);
       formData.append('user', this.userInfo.userId);
       formData.append('content', this.postInput.content);
@@ -148,11 +148,6 @@ export default {
       if (this.postInput.image.file) {
         formData.append('img', this.postInput.image.file);
       }
-      // const formDataReform = {};
-      // for (const key of formData.keys()) {
-      //   formDataReform[key] = formData.get(key);
-      // }
-      // console.log('## PostContainer formDataReform', formDataReform);
       const res = await this.$store.dispatch(
         'post/postStore/createPost',
         formData,

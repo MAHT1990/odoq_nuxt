@@ -1,7 +1,13 @@
 import Vue from 'vue';
 
 const atob = (str) => Buffer.from(str, 'base64').toString('binary');
-
+const formDataToObj = (formData) => {
+  const obj = {};
+  for (const [key, value] of formData.entries()) {
+    obj[key] = value;
+  }
+  return obj;
+}
 const addCookie = (key, value, expires) => {
   if (typeof document === 'undefined') return;
   if (expires) {
@@ -113,6 +119,7 @@ const getReadPost = () => {
 
 const Utils = {
   atob,
+  formDataToObj,
   addCookie,
   getCookie,
   removeCookie,

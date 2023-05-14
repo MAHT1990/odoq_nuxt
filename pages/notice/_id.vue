@@ -1,6 +1,6 @@
 <template>
   <div class="post_detail_wrap">
-<!--    <odoq-tabs />-->
+    <!--    <odoq-tabs />-->
     <div class="post_detail_contents_wrap">
       <div class="title_box">
         <textarea name="" id="" cols="30" rows="10" v-html="post.title" readonly></textarea>
@@ -20,20 +20,20 @@
             <img src="@/assets/img/alert.png" alt="">신고
           </div>
         </div>
-<!--        <div>-->
-<!--          <span>수정</span>-->
-<!--          <span>삭제</span>-->
-<!--        </div>-->
+        <!--        <div>-->
+        <!--          <span>수정</span>-->
+        <!--          <span>삭제</span>-->
+        <!--        </div>-->
       </div>
       <div class="content_wrap">
         <div class="content" v-html="post.content"></div>
         <img v-if="post.img_url" class="image" :src="post.img_url" alt="load Error">
       </div>
-      <div class="recommend_btn" @click="likePost">
-        <img v-if="isLikedInPage" :src="require(`@/assets/img/recommend.png`)" id="likeSrc" alt="like">
-        <img v-else :src="require(`@/assets/img/like.png`)" id="likeSrc" alt="like">
-        <span>{{ post.like_count }}</span>
-      </div>
+<!--      <div class="recommend_btn" @click="likePost">-->
+<!--        <img v-if="isLikedInPage" :src="require(`@/assets/img/recommend.png`)" id="likeSrc" alt="like">-->
+<!--        <img v-else :src="require(`@/assets/img/like.png`)" id="likeSrc" alt="like">-->
+<!--        <span>{{ post.like_count }}</span>-->
+<!--      </div>-->
       <div class="ad_area">
         <img
           @click="moveToAd"
@@ -41,9 +41,9 @@
           alt="광고">
       </div>
       <div class="empty_line"></div>
-      <odoq-comments-list-container :comments="comments" />
+<!--      <odoq-comments-list-container :comments="comments" />-->
     </div>
-    <odoq-post-list-container/>
+<!--    <odoq-post-list-container/>-->
     <nuxt-link to="/" class="back_list_btn">목록으로</nuxt-link>
   </div>
 </template>
@@ -60,25 +60,22 @@ export default {
     if (Utils.getCookie(cookie, 'jwt')) {
       await store.dispatch('user/userAuthStore/checkLogin', cookie)
     }
-    // 게시글 정보 받아오기
-    const resPost = await store.dispatch('post/postStore/getPost', params.id);
-    if (resPost.result==='error') redirect('/');
-    // 댓글 정보 받아오기
-    await store.dispatch('post/postStore/getComments', params.id);
+    // 공지글 정보 받아오기
+    const resNotice = await store.dispatch('notice/noticeStore/getNotice', params.id);
+    if (resNotice.result==='error') redirect('/');
+    // // 댓글 정보 받아오기
+    // await store.dispatch('post/postStore/getComments', params.id);
   },
   data: () => ({
     open: false,
   }),
   computed: {
     ...mapGetters({
-      post: 'post/postStore/post',
+      notice: 'notice/noticeStore/notice',
       userInfo: 'user/userAuthStore/userInfo',
       isLogin: 'user/userAuthStore/isLogin',
-      comments: 'post/postStore/comments'
+      // comments: 'post/postStore/comments'
     }),
-    isLikedInPage() {
-      return this.post.liked_users.includes(this.userInfo.userId);
-    },
     isAuthor() {
       return this.post.user_id === this.userInfo.userId;
     },
@@ -129,18 +126,18 @@ export default {
     deletePost() {
       // console.log('way to delete Post');
       new this.$popup.PopConfirm({
-        propsData: {
-          title: '게시글을 삭제하시겠습니까?',
-          okCallback: async (params) => {
-            const res = await this.$store.dispatch('post/postStore/deletePost', {
-              postId: this.post.id,
-            });
-            this.$popup.showAlertPopup(res.message);
-            params.$destroy();
-            this.$router.replace('/');
+          propsData: {
+            title: '게시글을 삭제하시겠습니까?',
+            okCallback: async (params) => {
+              const res = await this.$store.dispatch('post/postStore/deletePost', {
+                postId: this.post.id,
+              });
+              this.$popup.showAlertPopup(res.message);
+              params.$destroy();
+              this.$router.replace('/');
+            },
           },
-        },
-      }
+        }
       ).$mount();
     },
     moveToAd() {
@@ -150,3 +147,4 @@ export default {
   },
 }
 </script>
+

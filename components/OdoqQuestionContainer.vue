@@ -74,7 +74,7 @@ export default {
       if (this.question.second_remain > 0) {
         this.secondRemain = this.question.second_remain;
         // Timer 시작.
-        this.intervalId = setInterval(() => {
+        this.intervalId = this.intervalId || setInterval(() => {
           this.secondRemain--
         }, 1000)
       } else {

@@ -37,11 +37,9 @@
         <div class="verticalLine2"></div>
         <div>{{ weekday }}</div>
       </div>
-      <div v-if="currentIdx === 0 || currentIdx === 1">
-        <odoq-notice-list
-          v-for="item in noticeList"
-          :item="item"
-          :key="item.title"
+      <div v-else-if="currentIdx === 1">
+        <odoq-notice-list-container
+          :notices="noticeList"
         />
       </div>
       <odoq-post-container v-if="currentIdx === 0"/>
