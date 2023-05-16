@@ -72,10 +72,10 @@ export default {
     //     : this.arrayPosts.filter(post => post.type !== `solution_${this.question.id}`);
     // },
   },
-  async created() {
+  async beforeMount() {
     // console.log(this.arrayPosts);
     await this.$store.dispatch('post/postStore/getPosts', {
-      pageNumber: 1,
+      pageNumber: this.$utils.getPageNumber() || 1,
       pageSize: 7,
       filteringFlag: this.filteringFlag,
       userId: this.userInfo.userId,
