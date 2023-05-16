@@ -86,7 +86,7 @@ export default {
       return [1, 2].includes(this.userInfo.userGrade);
     },
   },
-  async mounted() {
+  async beforeMount() {
     // 게시글 목록 받아오기
     await this.$store.dispatch('post/postStore/getPosts', {
       pageNumber: this.$utils.getPageNumber() || 1,
