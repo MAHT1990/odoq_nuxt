@@ -104,11 +104,12 @@ const getPageNumber = () => {
 
 const setReadPost = (postId) => {
   let readPost = localStorage.getItem('readPost')
-  if (readPost) readPost += ',' + postId
+  readPost = readPost.split(',').map((postId) => parseInt(postId, 10));
+  // 중복원소 제거
+  if (readPost) readPost.push(parseInt(postId, 10));
   else readPost = postId
+  readPost = [...new Set(readPost)].join(',');
   localStorage.setItem('readPost', readPost);
-  // sessionStorage.setItem('readPost', postId);
-  // I want to add postId to readPostList
 }
 
 const getReadPost = () => {
