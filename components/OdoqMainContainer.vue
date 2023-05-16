@@ -104,7 +104,29 @@ export default {
       this.weekday = new Date().getDay();
       await this.$store.dispatch('question/questionStore/getQuestion');
     },
-    onTab(idx) {
+    /**
+     * 탭 클릭시
+     * 탭 풀이 및 전체글로 이동시 store를 업데이트 해준 뒤에 이동 되도록
+     * @param idx
+     * @return {Promise<void>}
+     */
+    async onTab(idx) {
+      const payload = {
+        pageNumber: this.$utils.getPageNumber() || 1,
+        pageSize: 7,
+        filteringFlag: 'all',
+        userId: this.userInfo.userId,
+      };
+      if (idx === 0) {
+        await this.$store.dispatch('post/postStore/getPosts', {
+          ...payload, filteringFlag: 'all',
+        });
+      }
+      if (idx === 2)  {
+        await this.$store.dispatch('post/postStore/getPosts', {
+          ...payload, filteringFlag: 'solution',
+        });
+      }
       this.currentIdx = idx;
     },
     openTest() {
