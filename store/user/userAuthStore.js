@@ -47,7 +47,7 @@ const actions = {
    */
   async getUserInfo({commit}, data) {
     const res = await this.$axios.post('user/login/', data);
-    console.log('## userAuthStore > actions > getUserInfo > res is ', res.data);
+    // console.log('## userAuthStore > actions > getUserInfo > res is ', res.data);
     if (res.data.result === 'success') {
       // console.log('## userAuthStore > actions > getUserInfo > res.data is ', res.data);
       commit ('setUserInfo', res.data);
@@ -60,7 +60,7 @@ const actions = {
         userId: Utils.getUserId(cookie)
       }
     });
-    console.log('## userAuthStore > actions > checkLogin > res is ', res.data);
+    // console.log('## userAuthStore > actions > checkLogin > res is ', res.data);
     if (res.data.result === 'success') {
       commit ('checkLogin', cookie);
     } else {
