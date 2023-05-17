@@ -972,14 +972,6 @@ animation-fill-mode: forwards;
   top: 50%;
   transform: translateY(-50%);
 }
-.comment_line_user .grade {
-  background: #eee;
-  color: #0051c8;
-  font-size: 12px;
-  display: inline-block;
-  padding: 0 5px 1px;
-  line-height: 1.2;
-}
 .content_info_tools .updated_at {
   display : inline-block;
   font-size: 12px;
@@ -2005,16 +1997,10 @@ top:0;
   font-size: 12px;
   cursor: pointer;
 }
-.comments_wrap .user_info_box .level {
-  background: #eee;
-  font-size: 8px;
-  padding: 0 6px;
-  color: #0051c8;
-  margin: 3px 15px 0 0;
-}
 .comments_wrap .user_info_box .nick_name {
   font-size: 14px;
   font-weight: 600;
+  margin-top: -2px;
 }
 .comments_wrap .user_info_box .nick_name::before {
   display: none;
@@ -2097,4 +2083,40 @@ top:0;
 }
 .comments_wrap .write_comment_box .comment_regist_btn:active {
   background: rgba(0,41,100,255);
+}
+
+/* GRADE LEVEL COLOR*/
+.grade {
+  background: #eee;
+  color: #0051c8;
+  font-size: 12px;
+  display: inline-block;
+  min-width: 15px;
+  width: auto;
+  height: 15px;
+  line-height: 15px;
+  text-align: center;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  margin-right: 5px;
+  font-weight: 500;
+}
+.grade.black {
+  color: black;
+}
+.grade.blue {
+  color: blue;
+}
+.grade.green {
+  color: green;
+}
+.grade.red {
+  color: red;
+}
+.grade.pink {
+  color: pink;
+}
+.grade.king {
+  color: white;
+  background: #000;
 }
