@@ -87,7 +87,7 @@ export default {
     // 게시글 목록 받아오기
     await this.$store.dispatch('post/postStore/getPosts', {
       pageNumber: this.$utils.getPageNumber() || 1,
-      pageSize: 7,
+      pageSize: this.$store.state.post.postStore.defaultPageSize,
     });
     Utils.setReadPost(this.post.id);
     console.log('localStorage: ', localStorage);

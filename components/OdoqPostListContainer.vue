@@ -75,8 +75,8 @@ export default {
   async beforeMount() {
     // console.log(this.arrayPosts);
     await this.$store.dispatch('post/postStore/getPosts', {
-      pageNumber: this.$utils.getPageNumber() || 1,
-      pageSize: 7,
+      pageNumber: this.$route.path === '/' ? 1 : this.$utils.getPageNumber() || 1,
+      pageSize: this.$store.state.post.postStore.defaultPageSize,
       filteringFlag: this.filteringFlag,
       userId: this.userInfo.userId,
     });
@@ -118,7 +118,7 @@ export default {
       this.orderingFlag = orderingFlag;
       this.$store.dispatch('post/postStore/getPosts', {
         pageNumber: 1,
-        pageSize: 7,
+        pageSize: this.$store.state.post.postStore.defaultPageSize,
         filteringFlag: this.filteringFlag,
         orderingFlag: this.orderingFlag,
         userId: this.userInfo.userId,
@@ -128,7 +128,7 @@ export default {
       const pageNumber = this.currentPage === 1 ? this.currentPage : this.currentPage - 1;
       this.$store.dispatch('post/postStore/getPosts', {
         pageNumber,
-        pageSize: 7,
+        pageSize: this.$store.state.post.postStore.defaultPageSize,
         filteringFlag: this.filteringFlag,
         orderingFlag: this.orderingFlag,
         userId: this.userInfo.userId,
@@ -139,7 +139,7 @@ export default {
       const pageNumber = this.currentPage === this.totalPages ? this.currentPage : this.currentPage + 1;
       this.$store.dispatch('post/postStore/getPosts', {
         pageNumber,
-        pageSize: 7,
+        pageSize: this.$store.state.post.postStore.defaultPageSize,
         filteringFlag: this.filteringFlag,
         orderingFlag: this.orderingFlag,
         userId: this.userInfo.userId,

@@ -36,7 +36,7 @@ export default {
     // 게시글 받아오기
     await store.dispatch('post/postStore/getPosts', {
       pageNumber: 1,
-      pageSize: 7,
+      pageSize: store.state.post.postStore.defaultPageSize,
     });
     // 공지사항 받아오기
     await store.dispatch('notice/noticeStore/getNotices');

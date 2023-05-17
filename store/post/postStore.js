@@ -1,6 +1,7 @@
 import Utils from "@/plugins/utils";
 
 const state = () => ({
+  defaultPageSize: 15,
   arrayPosts: [],
   todayPosts: 0,
   totalPosts: 0,

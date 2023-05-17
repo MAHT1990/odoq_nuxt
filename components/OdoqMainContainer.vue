@@ -113,7 +113,7 @@ export default {
     async onTab(idx) {
       const payload = {
         pageNumber: this.$utils.getPageNumber() || 1,
-        pageSize: 7,
+        pageSize: this.$store.state.post.postStore.pageSize,
         filteringFlag: 'all',
         userId: this.userInfo.userId,
       };
