@@ -26,7 +26,7 @@
 <!--        </div>-->
       </div>
       <div class="content_wrap">
-        <div class="content" v-html="post.content"></div>
+        <pre class="content" v-html="post.content" :style="{ height: calculateHeight(post) + 'px' }"></pre>
         <img v-if="post.img_url" class="image" :src="post.img_url" alt="load Error">
       </div>
       <div class="recommend_btn" @click="likePost">
@@ -96,6 +96,14 @@ export default {
     console.log('localStorage: ', localStorage);
   },
   methods: {
+    calculateHeight() {
+      return (post) => {
+        const lineHeight = 'auto';
+        const lines = post.content.split('\n');
+        const lineCount = Math.max(lines.length, 1);
+        return lineHeight * lineCount;
+      };
+    },
     createdAt(post) {
       // return moment(post.created_at).format('YYYY-MM-DD HH:mm:ss');
       return moment(post.created_at).format('YYYY-MM-DD HH:mm:ss');
