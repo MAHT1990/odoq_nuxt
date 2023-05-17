@@ -2,7 +2,7 @@
   <li class="comment">
     <div class="user_info_box flex">
       <div class="flex">
-        <div class="level">{{ comment.user_level }}</div>
+        <div class="grade level" :class="getLevel(comment.user_level)">{{ comment.user_level }}</div>
         <div class="nick_name">{{ comment.user_name }}</div>
       </div>
       <div class="text_tool_box">
@@ -142,6 +142,21 @@ export default {
           },
         },
       }).$mount();
+    },
+    getLevel(getLevel) {
+      if(getLevel < 10) {
+        return 'black';
+      } else if (getLevel < 20) {
+        return 'blue';
+      } else if (getLevel < 40) {
+        return 'green';
+      } else if (getLevel < 70) {
+        return 'red';
+      } else if (getLevel < 100) {
+        return 'pink';
+      } else {
+        return 'king';
+      }
     },
   },
 }

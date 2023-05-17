@@ -25,7 +25,7 @@
       <div class="content_info_box">
         <div class="content_info_tools">
           <div class="comment_line_user">
-            <span class="grade">{{ post.user_level }}</span>
+            <span class="grade" :class="getLevel(post.user_level)">{{ post.user_level }}</span>
             <span class="nick_name">{{ post.user_name }}</span>
             <!--          <i v-if="post.user_grade" class="fa-solid fa-crown" style="color:rgba(255, 171, 0, 0.8);"></i>-->
           </div>
@@ -99,9 +99,24 @@ export default {
       return {
         fontWeight: this.isSolution ? 'bold' : 'normal',
       }
-    }
+    },
   },
   methods: {
+    getLevel(getLevel) {
+      if(getLevel < 10) {
+        return 'black';
+      } else if (getLevel < 20) {
+        return 'blue';
+      } else if (getLevel < 40) {
+        return 'green';
+      } else if (getLevel < 70) {
+        return 'red';
+      } else if (getLevel < 100) {
+        return 'pink';
+      } else {
+        return 'king';
+      }
+    },
     // toggleShowImg() {
     //   this.showImg = !this.showImg;
     // },
