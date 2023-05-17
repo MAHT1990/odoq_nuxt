@@ -21,9 +21,10 @@
             maxlength="100"
             placeholder="제목"
             cols="1"
+            @mouseover="disableMouseOver"
           />
           <div class="comment_input_box_charnumbs_and_button">
-            <div class="comment_input_box_charnumbs"><span>{{contentLength}}</span></div>
+            <div class="comment_input_box_charnumbs"><span></span></div>
             <div class="comment_input_box_buttons">
               <label for="image_file" class="comment_input_box_button">
                 <i class="fa-solid fa-image"></i>
@@ -44,10 +45,7 @@
             v-model="postInput.content"
             cols="40"
             rows="1"
-            maxlength="500"
             placeholder="내용을 입력하세요."
-            @blur="onBoxBlur"
-            @focus="onBoxFocus"
           />
         </div>
         <img
@@ -91,12 +89,6 @@ export default {
       userInfo: 'user/userAuthStore/userInfo',
       // todayPosts: 'post/postStore/todayPosts',
     }),
-    contentLength() {
-      if (this.postInput.content.length > 0) {
-        return `${this.postInput.content.length}/${this.$refs.textareaContent.maxLength}`;
-      }
-      return '';
-    },
   },
   mounted() {
     if (!this.isLogin) {
@@ -105,17 +97,18 @@ export default {
     };
   },
   methods: {
-    onBoxFocus(e) {
-      e.target.rows = 5;
-    },
-    onBoxBlur(e) {
-      setTimeout(() => {
-        if (e.target.value.length === 0) e.target.rows = 1;
-        // else e.target.style.border = '2px solid #e0e0e0';
-      }, 100);
+    disableMouseOver(e) {
+      // TODO: mouseover 됐을 때 밑줄쳐지는거 없애기
+      // console.log('event is ', e);
+      e.preventDefault();
+      e.stopPropagation();
     },
     async createPost() {
       // this.$refs.textareaContent.rows = 1;
+      if (this.postInput.title.length === 0) {
+        this.$popup.showAlertPopup('제목을 입력해주세요.');
+        return;
+      }
       if (this.postInput.content.length === 0) {
         this.$popup.showAlertPopup('내용을 입력해주세요.');
         return;
@@ -125,7 +118,7 @@ export default {
       formData.append('title', this.postInput.title);
       formData.append('user', this.userInfo.userId);
       formData.append('content', this.postInput.content);
-      formData.append('filteringFlag', this.filteringFlag);
+      // formData.append('filteringFlag', this.filteringFlag);
       // formData.append('orderingFlag', this.$refs.postListContainer.orderingFlag);
       if (this.postInput.image.file) {
         formData.append('img', this.postInput.image.file);
