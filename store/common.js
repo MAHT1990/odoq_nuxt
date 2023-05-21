@@ -1,6 +1,6 @@
 const state = () => ({
   availableDays: [1, 2, 3, 4, 5], // 화요일부터 토요일까지
-  uploadTime: '08:30:00',
+  uploadTime: '02:01:00',
 });
 
 const actions = {
