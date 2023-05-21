@@ -95,7 +95,7 @@ const mutations = {
    * @param axiosResData
    */
   updateQuestionAnswerStatus(state, axiosResData) {
-    console.log('questionStore > updateQuestionAnswerStatus > axiosResData is ', axiosResData);
+    // console.log('questionStore > updateQuestionAnswerStatus > axiosResData is ', axiosResData);
     state.question.answer_count = axiosResData.data.answer_count;
     state.question.solve_count = axiosResData.data.solve_count;
     state.question.can_answer_remain_time = axiosResData.data.can_answer_remain_time;

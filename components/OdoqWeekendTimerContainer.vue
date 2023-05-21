@@ -53,11 +53,14 @@ export default {
       // 한국은 월요일(1)이 첫 요일이다.
       // 주말은 6, 0이다.
       const now = moment();
-      console.log('## OdoqWeekendTimerContainer\'s calcRemainTime > now is ', now);
+      // console.log('## OdoqWeekendTimerContainer\'s calcRemainTime > now is ', now);
       const trgtDay = this.$store.getters['common/availableDays'][0];
+      const trgtTime = this.$store.getters['common/uploadTime'];
       const nextFirst = moment()
         .add((7 + (trgtDay - now.day()))%7, 'days')
-        .hour(0).minute(0).second(0);
+        .hour(trgtTime.split(':')[0])
+        .minute(trgtTime.split(':')[1])
+        .second(trgtTime.split(':')[2]);
       console.log('## OdoqWeekendTimerContainer\'s calcRemainTime > nextFirst is ', nextFirst);
       const remainTime = nextFirst.diff(now);
       return parseInt(remainTime / 1000);

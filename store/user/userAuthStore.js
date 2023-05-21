@@ -92,7 +92,7 @@ const mutations = {
    * @param resData - getUserInfo 에 의한 응답 data
    */
   setUserInfo(state, resData) {
-    console.log('userAuthStore > mutations > setUserInfo > resData is ', resData);
+    // console.log('userAuthStore > mutations > setUserInfo > resData is ', resData);
     if (resData.result === 'success') {
       Utils.addCookie('jwt', resData.data.token, 999999999999);
       state.isLogin = true;

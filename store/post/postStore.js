@@ -76,7 +76,7 @@ const actions = {
   async getPost({ commit }, postId) {
     const res = await this.$axios.get(`post/${postId}`);
     if (res.data.result === 'success') {
-      console.log('post is ', res.data.data.post);
+      // console.log('post is ', res.data.data.post);
       commit('setPost', res.data.data.post);
     }
     return res.data;
@@ -109,39 +109,39 @@ const actions = {
   async getComments({ commit }, postId) {
     const res = await this.$axios.get(`post/${postId}/comment`);
     if (res.data.result === 'success') {
-      console.log('comments is ', res.data.data.comments);
+      // console.log('comments is ', res.data.data.comments);
       commit('setComments', res.data.data.comments);
     }
   },
-  async createComment({ commit }, {postId, formData}) {
-    const res = await this.$axios.post(`post/${postId}/comment/`, formData);
+  async createComment({ commit }, {postOrNoticeId, formData}) {
+    const res = await this.$axios.post(`post/${postOrNoticeId}/comment/`, formData);
     if (res.data.result === 'success') commit('setComments', res.data.data.comments);
     return res.data
   },
   async editComment({ commit }, commentData) {
     // console.log('editComment path is here');
     commentData.flag = 'edit';
-    const res = await this.$axios.patch(`post/${commentData.postId}/comment/`, commentData);
+    const res = await this.$axios.patch(`post/${commentData.postOrNoticeId}/comment/`, commentData);
     if (res.data.result === 'success') commit('editComment', res.data.data);
     return res.data;
   },
   async blindComment({ commit }, commentData) {
     // console.log('blindPost path is here');
     commentData.flag = 'blind';
-    const res = await this.$axios.patch(`post/${commentData.postId}/comment/`, commentData);
+    const res = await this.$axios.patch(`post/${commentData.postOrNoticeId}/comment/`, commentData);
     // console.log('blindPost의 res.data는 ', res.data);
     if (res.data.result === 'success') commit('blindComment', res.data.data);
     return res.data;
   },
-  async createCocomment({ commit }, {postId, formData}) {
-    const res = await this.$axios.post(`post/${postId}/comment/`, formData);
+  async createCocomment({ commit }, {postOrNoticeId, formData}) {
+    const res = await this.$axios.post(`post/${postOrNoticeId}/comment/`, formData);
     if (res.data.result === 'success') commit('setComments', res.data.data.comments);
     return res.data
   },
   async editCocomment({ commit }, cocommentData) {
     // console.log('editCocomment path is here');
     cocommentData.flag = 'edit';
-    const res = await this.$axios.patch(`post/${cocommentData.postId}/comment/`, cocommentData);
+    const res = await this.$axios.patch(`post/${cocommentData.postOrNoticeId}/comment/`, cocommentData);
     if (res.data.result === 'success') {
       // console.log(res.data.data);
       commit('editCocomment', res.data.data);
@@ -151,7 +151,7 @@ const actions = {
   async blindCocomment({ commit }, cocommentData) {
     // console.log('blindPost path is here');
     cocommentData.flag = 'blind';
-    const res = await this.$axios.patch(`post/${cocommentData.postId}/comment/`, cocommentData);
+    const res = await this.$axios.patch(`post/${cocommentData.postOrNoticeId}/comment/`, cocommentData);
     // console.log('blindPost의 res.data는 ', res.data);
     if (res.data.result === 'success') commit('blindCocomment', res.data.data);
     return res.data;
@@ -160,7 +160,7 @@ const actions = {
 
 const mutations = {
   setArrayPosts(state, axiosPostData) {
-    console.log('axiosPostData is ', axiosPostData);
+    // console.log('axiosPostData is ', axiosPostData);
     if (Array.isArray(axiosPostData)) {
       state.arrayPosts = axiosPostData.map((post) => {
         post.img_url = post.img_url ? Utils.getImgUrl(post.img_url) : null;

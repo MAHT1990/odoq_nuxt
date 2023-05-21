@@ -94,27 +94,29 @@ const getImgUrl = (imgUrlWithoutDomain) => {
   return process.env.BASE_URL + imgUrlWithoutDomain
 }
 
-const setPageNumber = (pageNumber) => {
-  sessionStorage.setItem('pageNumber', pageNumber);
+const setPageNumber = (flag, pageNumber) => {
+  sessionStorage.setItem(`${flag}PageNumber`, pageNumber);
 }
 
-const getPageNumber = () => {
-  return parseInt(sessionStorage.getItem('pageNumber') || 1, 10) || 1;
+const getPageNumber = (flag) => {
+  return parseInt(sessionStorage.getItem(`${flag}PageNumber`) || 1, 10) || 1;
 }
 
-const setReadPost = (postId) => {
-  let readPost = localStorage.getItem('readPost')
-  readPost = readPost.split(',').map((postId) => parseInt(postId, 10));
+const setRead = (flag, id) => {
+  let readPost = localStorage.getItem(`${flag}Read`);
+  readPost = readPost
+    ? readPost.split(',').map((id) => parseInt(id, 10))
+    : []
   // 중복원소 제거
-  if (readPost) readPost.push(parseInt(postId, 10));
-  else readPost = postId
+  if (readPost) readPost.push(parseInt(id, 10));
+  else readPost = id
   readPost = [...new Set(readPost)].join(',');
-  localStorage.setItem('readPost', readPost);
+  localStorage.setItem(`${flag}Read`, readPost);
 }
 
-const getReadPost = () => {
-    return localStorage.getItem('readPost')
-      ? localStorage.getItem('readPost').split(',').map((postId) => parseInt(postId, 10))
+const getRead = (flag) => {
+    return localStorage.getItem(`${flag}Read`)
+      ? localStorage.getItem(`${flag}Read`).split(',').map((id) => parseInt(id, 10))
       : null;
 }
 
@@ -133,8 +135,8 @@ const Utils = {
   getImgUrl,
   setPageNumber,
   getPageNumber,
-  setReadPost,
-  getReadPost,
+  setRead,
+  getRead,
 };
 
 export default Utils;

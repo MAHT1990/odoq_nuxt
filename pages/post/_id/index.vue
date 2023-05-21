@@ -37,14 +37,14 @@
       <div class="ad_area">
         <img
           @click="moveToAd"
-          src="@/assets/img/banner1.png"
+          src="@/assets/img/banner2.png"
           alt="광고">
       </div>
       <div class="empty_line"></div>
       <odoq-comments-list-container :comments="comments" />
     </div>
     <odoq-post-list-container/>
-    <nuxt-link to="/" class="back_list_btn">목록으로</nuxt-link>
+    <nuxt-link to="/" class="back_list_btn">메인으로</nuxt-link>
   </div>
 </template>
 
@@ -89,10 +89,10 @@ export default {
   async beforeMount() {
     // 게시글 목록 받아오기
     await this.$store.dispatch('post/postStore/getPosts', {
-      pageNumber: this.$utils.getPageNumber() || 1,
+      pageNumber: this.$utils.getPageNumber('post') || 1,
       pageSize: this.$store.state.post.postStore.defaultPageSize,
     });
-    Utils.setReadPost(this.post.id);
+    Utils.setRead('post', this.post.id);
     console.log('localStorage: ', localStorage);
   },
   methods: {

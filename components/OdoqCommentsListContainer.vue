@@ -27,7 +27,11 @@ export default {
   computed: {
     userInfo() { return this.$store.getters['user/userAuthStore/userInfo'] },
     isLogin() { return this.$store.getters['user/userAuthStore/isLogin'] },
-    postId() { return this.$route.params.id },
+    postOrNoticeId() { return this.$route.params.id },
+    targetStore() {
+      const target = this.$route.path.split('/')[1];
+      return `${target}/${target}Store`
+    }
   },
   methods: {
     async createComment() {
@@ -42,24 +46,24 @@ export default {
       const formData = new FormData();
       formData.append('user', this.userInfo.userId);
       formData.append('content', this.commentInput.content);
-      formData.append('post', this.postId);
+
+      // Backend Validation 때문에 분기 처리해줘야함.
+      if (this.$route.name.includes('post')) formData.append('post', this.postOrNoticeId);
+      if (this.$route.name.includes('notice')) formData.append('notice', this.postOrNoticeId);
       // formData.append('filteringFlag', this.filteringFlag);
 
       // 이미지 추가시 사용
       // if (this.commentInput.image.file) {
       //   formData.append('img', this.commentInput.image.file);
       // }
-
-      // const formDataReform = {};
-      // for (const key of formData.keys()) {
-      //   formDataReform[key] = formData.get(key);
-      // }
-      // console.log('## PostContainer formDataReform', formDataReform);
       const res = await this.$store.dispatch(
-        'post/postStore/createComment', {
-          postId: this.postId, formData,
+        `${this.targetStore}/createComment`,
+        {
+          postOrNoticeId: this.postOrNoticeId,
+          formData
         }
       );
+
       if (res.result === 'success') {
         this.commentInput.content = '';
         // this.commentInput.image.file = null;

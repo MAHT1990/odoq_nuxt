@@ -48,7 +48,7 @@ export default Vue.extend({
     this.params.commentFlag = this.initValue.commentFlag;
     this.params.targetId = target.id;
     this.params.content = target.content;
-    this.params.postId = this.initValue.postId;
+    this.params.postOrNoticeId = this.initValue.postOrNoticeId;
 
   },
 });

@@ -1,17 +1,20 @@
 <template>
   <div class="comment_list_container">
-<!--    <div class="comment_list_filter">-->
-<!--      <button-->
-<!--        ref="buttonOrderAll"-->
-<!--        @click="orderPost('latest')"-->
-<!--      >최신순<i class="fa-solid fa-angle-down"></i>-->
-<!--      </button>-->
-<!--      <button-->
-<!--        ref="buttonOrderMy"-->
-<!--        @click="orderPost('likeCount')"-->
-<!--      >추천순<i class="fa-solid fa-angle-down"></i>-->
-<!--      </button>-->
-<!--    </div>-->
+    <div
+      v-if="hasFilter"
+      class="comment_list_filter"
+    >
+      <button
+        ref="buttonOrderAll"
+        @click="orderPost('latest')"
+      >최신순<i class="fa-solid fa-angle-down"></i>
+      </button>
+      <button
+        ref="buttonOrderMy"
+        @click="orderPost('likeCount')"
+      >추천순<i class="fa-solid fa-angle-down"></i>
+      </button>
+    </div>
 <!--    <div class="comment_list_filter_vertical_line"></div>-->
     <div class="comment_list_box">
       <OdoqPostLine
@@ -22,7 +25,10 @@
         :is-login="isLogin"
       />
     </div>
-    <div class="comment_list_navigator">
+    <div
+      v-if="hasNavigator"
+      class="comment_list_navigator"
+    >
       <button
         class="pagination_btn"
         id="comment_list_navigator_prev"
@@ -42,10 +48,18 @@
 import {mapGetters} from 'vuex';
 export default {
   props: {
+    hasFilter: {
+      type: Boolean,
+      default: false,
+    },
     filteringFlag: {
       type: String,
       default: 'all',
-    }
+    },
+    hasNavigator: {
+      type: Boolean,
+      default: true,
+    },
   },
   data () {
     return {
@@ -74,12 +88,14 @@ export default {
   },
   async beforeMount() {
     // console.log(this.arrayPosts);
+    const pageNumber = this.$route.path === '/' ? 1 : this.$utils.getPageNumber('post') || 1;
     await this.$store.dispatch('post/postStore/getPosts', {
-      pageNumber: this.$route.path === '/' ? 1 : this.$utils.getPageNumber() || 1,
+      pageNumber,
       pageSize: this.$store.state.post.postStore.defaultPageSize,
       filteringFlag: this.filteringFlag,
       userId: this.userInfo.userId,
     });
+    this.$utils.setPageNumber('post', pageNumber);
   },
   watch: {
     /**
@@ -133,7 +149,7 @@ export default {
         orderingFlag: this.orderingFlag,
         userId: this.userInfo.userId,
       });
-      this.$utils.setPageNumber(pageNumber);
+      this.$utils.setPageNumber('post', pageNumber);
     },
     nextPage() {
       const pageNumber = this.currentPage === this.totalPages ? this.currentPage : this.currentPage + 1;
@@ -144,7 +160,7 @@ export default {
         orderingFlag: this.orderingFlag,
         userId: this.userInfo.userId,
       });
-      this.$utils.setPageNumber(pageNumber);
+      this.$utils.setPageNumber('post', pageNumber);
     },
     // movePage() {
     //   const query = { id: post.id };

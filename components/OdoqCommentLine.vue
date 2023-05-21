@@ -53,12 +53,16 @@ export default {
       userInfo: 'user/userAuthStore/userInfo',
       isLogin: 'user/userAuthStore/isLogin',
     }),
-    postId() { return this.$route.params.id },
+    postOrNoticeId() { return this.$route.params.id },
     isAuthor() {
       return parseInt(this.userInfo.userId) === parseInt(this.comment.user_id)
     },
     isWriter() {
       return [1, 2].includes(parseInt(this.userInfo.userGrade, 10))
+    },
+    targetStore() {
+      const target = this.$route.path.split('/')[1];
+      return `${target}/${target}Store`
     }
   },
   methods: {
@@ -86,17 +90,13 @@ export default {
       //   formData.append('img', this.commentInput.image.file);
       // }
 
-      // const formDataReform = {};
-      // for (const key of formData.keys()) {
-      //   formDataReform[key] = formData.get(key);
-      // }
-      // console.log('## PostContainer formDataReform', formDataReform);
       const res = await this.$store.dispatch(
-        'post/postStore/createCocomment', {
-          postId: this.postId,
+        `${this.targetStore}/createCocomment`, {
+          postOrNoticeId: this.postOrNoticeId,
           formData,
         }
       );
+
       if (res.result === 'success') {
         this.cocommentInput.content = '';
         // this.commentInput.image.file = null;
@@ -110,11 +110,11 @@ export default {
           title: '댓글 수정',
           initValue: {
             commentFlag: 'comment',
-            postId: that.postId,
+            postOrNoticeId: that.postOrNoticeId,
             comment: that.comment,
           },
           okCallback: async (params) => {
-            const res = await this.$store.dispatch('post/postStore/editComment', params);
+            const res = await this.$store.dispatch(`${that.targetStore}/editComment`, params);
             this.$popup.showAlertPopup(res.message);
             params.$destroy();
           },
@@ -130,9 +130,9 @@ export default {
           okCallback: async (params) => {
             // console.log('okCallback');
             // console.log('현재 댓글에 대한 정보를 보내 블라인드 처리한다.', this.initValue.post);
-            const res = await this.$store.dispatch('post/postStore/blindComment', {
+            const res = await this.$store.dispatch(`${that.targetStore}/blindComment`, {
               commentFlag: 'comment',
-              postId: that.postId,
+              postOrNoticeId: that.postOrNoticeId,
               targetId: that.comment.id,
               userGrade: that.userInfo.userGrade,
             });

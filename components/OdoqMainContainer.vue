@@ -35,14 +35,13 @@
           @nextQuestionLoadEvent="loadNext"
         />
         <div class="verticalLine2"></div>
-        <div>{{ weekday }}</div>
       </div>
-      <div v-else-if="currentIdx === 1">
-        <odoq-notice-list-container
-          :notices="noticeList"
-        />
-      </div>
-      <odoq-post-container v-if="currentIdx === 0"/>
+      <odoq-post-container
+        v-if="currentIdx === 0"
+      />
+      <odoq-notice-list-container
+        v-if="currentIdx === 1"
+      />
       <odoq-post-list-container
         v-if="currentIdx === 2"
         :filtering-flag="'solution'"
@@ -54,46 +53,37 @@
 
 <script>
 import {mapGetters} from "vuex";
+import moment from "moment";
 
 export default {
   data() {
     return {
-      weekday: null,
+      now: null,
       onOffSeason: true,
       content: 0,
       tabs: ['전체글', '공지', '풀이', '인기글'],
       currentIdx: 0,
-      noticeList: [
-        {
-          title: '오독 4월 이벤트 담청자',
-          content: '',
-          updated_at: '2023-04-20',
-          id: 5,
-          img_url: null,
-          user_id: 1,
-          user_name: '운영자',
-        },
-        {
-          title: '오독 출제진 모집!',
-          content: '',
-          updated_at: '2023-04-20',
-          id: 5,
-          img_url: null,
-          user_id: 1,
-          user_name: '운영자',
-        },
-      ],
     }
   },
   computed: {
     ...mapGetters({
       availableDays: 'common/availableDays',
+      uploadTime: 'common/uploadTime',
       userInfo: 'user/userAuthStore/userInfo',
       isLogin: 'user/userAuthStore/isLogin',
       question: 'question/questionStore/question',
     }),
     isAvailable() {
-      return this.availableDays.includes(this.weekday);
+      // 이번주 월요일 8:30 부터 금요일 24:00 까지
+      const start = moment().startOf('isoWeek')
+        .add(this.uploadTime.split(':')[0], 'hours')
+        .add(this.uploadTime.split(':')[1], 'minutes');
+      const end = moment().startOf('isoWeek')
+        .add(4, 'days')
+        .add(24, 'hours');
+      // console.log('start, end, now ', start, end, now);
+      const now = moment(this.now);
+      return now.isBetween(start, end);
     },
     isWriter() {
       return [1, 2].includes(parseInt(this.userInfo.userGrade), 10);
@@ -101,7 +91,7 @@ export default {
   },
   methods: {
     async loadNext() {
-      this.weekday = new Date().getDay();
+      this.now = moment();
       await this.$store.dispatch('question/questionStore/getQuestion');
     },
     /**
@@ -112,7 +102,7 @@ export default {
      */
     async onTab(idx) {
       const payload = {
-        pageNumber: this.$utils.getPageNumber() || 1,
+        pageNumber: this.$utils.getPageNumber('post') || 1,
         pageSize: this.$store.state.post.postStore.pageSize,
         filteringFlag: 'all',
         userId: this.userInfo.userId,
@@ -148,9 +138,9 @@ export default {
         // document.getElementById('questionContainer').style.padding = '0 20px 20px';
       }
     },
+    beforeMount() {
+      this.now = moment();
+    }
   },
-  created() {
-    this.weekday = new Date().getDay();
-  }
 }
 </script>

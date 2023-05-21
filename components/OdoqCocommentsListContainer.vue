@@ -41,9 +41,13 @@ export default {
       userInfo: 'user/userAuthStore/userInfo',
       isLogin: 'user/userAuthStore/isLogin',
     }),
-    postId() { return this.$route.params.id },
+    postOrNoticeId() { return this.$route.params.id },
     isWriter() {
       return [1, 2].includes(parseInt(this.userInfo.userGrade, 10))
+    },
+    targetStore() {
+      const target = this.$route.path.split('/')[1];
+      return `${target}/${target}Store`
     }
   },
   methods: {
@@ -61,11 +65,11 @@ export default {
           title: '댓글 수정',
           initValue: {
             commentFlag: 'cocomment',
-            postId: that.postId,
+            postOrNoticeId: that.postOrNoticeId,
             cocomment,
           },
           okCallback: async (params) => {
-            const res = await this.$store.dispatch('post/postStore/editCocomment', params);
+            const res = await this.$store.dispatch(`${that.targetStore}/editCocomment`, params);
             this.$popup.showAlertPopup(res.message);
             params.$destroy();
           },
@@ -74,15 +78,16 @@ export default {
     },
     blindCocomment(cocomment) {
       // console.log('postBlind');
+      const that = this;
       new this.$popup.PopConfirm({
         propsData: {
           title: '답글을 블라인드 처리/취소하시겠습니까?',
           okCallback: async (params) => {
             // console.log('okCallback');
             // console.log('현재 댓글에 대한 정보를 보내 블라인드 처리한다.', this.initValue.post);
-            const res = await this.$store.dispatch('post/postStore/blindCocomment', {
+            const res = await this.$store.dispatch(`${that.targetStore}/blindCocomment`, {
               commentFlag: 'cocomment',
-              postId: this.postId,
+              postOrNoticeId: this.postOrNoticeId,
               targetId: cocomment.id,
               userGrade: this.userInfo.userGrade,
             });

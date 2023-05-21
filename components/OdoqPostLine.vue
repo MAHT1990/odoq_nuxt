@@ -11,7 +11,7 @@
           @mouseover="underline"
           @mouseleave="removeUnderline"
           :style="titleStyle"
-        >{{ post.title }}</span>&nbsp;&nbsp;&nbsp;<i v-if="post.img_url" class="fa-solid fa-image"></i></div>
+        >{{post.title}}</span>&nbsp;&nbsp;<i v-if="post.img_url" class="fa-solid fa-image"></i></div>
       </div>
       <!--    <div v-if="post.img_url && !post.blind" class="comment_line_image">-->
       <!--      <button @click="toggleShowImg">-->
@@ -31,16 +31,16 @@
           </div>
           <div class="updated_at">{{ formattedUpdatedTime.split(' ')[0] }}</div>
           <div class="hits">조회수 {{ post.hit_count }}</div>
-          <div class="comment_line_cocomment_and_like">
-            <button class="comment_line_open_cocomment">
-              <!--        <i class="fa-solid fa-caret-down"></i>답글 (댓글 개수)-->
-            </button>
-            <button class="comment_like">
-              <i v-if="isLiked" class="fa-solid fa-thumbs-up"></i>
-              <i v-else class="fa-regular fa-thumbs-up"></i>
-              <span>{{ post.like_count }}</span>
-            </button>
-          </div>
+<!--          <div class="comment_line_cocomment_and_like">-->
+<!--            <button class="comment_line_open_cocomment">-->
+<!--              &lt;!&ndash;        <i class="fa-solid fa-caret-down"></i>답글 (댓글 개수)&ndash;&gt;-->
+<!--            </button>-->
+<!--            <button class="comment_like">-->
+<!--              <i v-if="isLiked" class="fa-solid fa-thumbs-up"></i>-->
+<!--              <i v-else class="fa-regular fa-thumbs-up"></i>-->
+<!--              <span>{{ post.like_count }}</span>-->
+<!--            </button>-->
+<!--          </div>-->
         </div>
         <!--      <div class="comment_line_tool_box_btn_and_box">-->
         <!--        <button-->
@@ -83,7 +83,6 @@ export default {
   computed: {
     isWriter() {
       return parseInt(this.userInfo.userId, 10) === parseInt(this.post.user_id, 10) || parseInt(this.userInfo.userGrade, 10) === 2;
-      // code above is too long, so I changed it to below:
     },
     formattedUpdatedTime() { return moment(this.post.created_at).format('YYYY-MM-DD HH:mm'); },
     isLiked() { return this.post.liked_users.includes(this.userInfo.userId); },
@@ -95,11 +94,7 @@ export default {
         color: this.isRead || this.currentPost ? this.readColor : this.defaultColor,
       }
     },
-    titleStyle() {
-      return {
-        fontWeight: this.isSolution ? 'bold' : 'normal',
-      }
-    },
+    titleStyle() { return { fontWeight: this.isSolution ? 'bold' : 'normal' }},
   },
   methods: {
     getLevel(getLevel) {
@@ -133,7 +128,7 @@ export default {
     }
   },
   beforeMount() {
-    this.isRead = Utils.getReadPost() ? Utils.getReadPost().includes(this.post.id) : false;
+    this.isRead = Utils.getRead('post') ? Utils.getRead('post').includes(this.post.id) : false;
     this.currentPost = parseInt(this.$route.params.id, 10) === parseInt(this.post.id, 10);
   }
 }

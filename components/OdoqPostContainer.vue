@@ -59,9 +59,11 @@
 <!--        </div>-->
 <!--      </div>-->
 <!--    </div>-->
-<!--    <OdoqNoticeListContainer-->
-<!--      ref="noticeListContainer"-->
-<!--    />-->
+    <OdoqNoticeListContainer
+      ref="noticeListContainer"
+      :head-only="true"
+      :has-navigator="false"
+    />
     <OdoqPostListContainer
       ref="postListContainer"
       :filtering-flag="filteringFlag"
