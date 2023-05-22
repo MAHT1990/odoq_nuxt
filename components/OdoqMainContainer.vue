@@ -58,7 +58,6 @@ import moment from "moment";
 export default {
   data() {
     return {
-      now: null,
       onOffSeason: true,
       content: 0,
       tabs: ['전체글', '공지', '풀이', '인기글'],
@@ -81,8 +80,7 @@ export default {
       const end = moment().startOf('isoWeek')
         .add(4, 'days')
         .add(24, 'hours');
-      // console.log('start, end, now ', start, end, now);
-      const now = moment(this.now);
+      const now = moment();
       return now.isBetween(start, end);
     },
     isWriter() {
@@ -138,9 +136,6 @@ export default {
         // document.getElementById('questionContainer').style.padding = '0 20px 20px';
       }
     },
-    beforeMount() {
-      this.now = moment();
-    }
   },
 }
 </script>
