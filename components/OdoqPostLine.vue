@@ -7,11 +7,15 @@
       <div
         class="comment_line_content">
         <div class="title">
-          <i v-if="isSolution" class="fa-solid fa-pen">&nbsp;</i><span
-          @mouseover="underline"
-          @mouseleave="removeUnderline"
-          :style="titleStyle"
-        >{{post.title}}</span>&nbsp;&nbsp;<i v-if="post.img_url" class="fa-solid fa-image"></i></div>
+          <div><i v-if="isSolution" class="fa-solid fa-pen"></i></div>
+          <div><span
+            class="title_text"
+            @mouseover="underline"
+            @mouseleave="removeUnderline"
+            :style="titleStyle"
+          >{{ post.title }}</span></div>
+          <div><i v-if="post.img_url" class="fa-solid fa-image"></i></div>
+        </div>
       </div>
       <!--    <div v-if="post.img_url && !post.blind" class="comment_line_image">-->
       <!--      <button @click="toggleShowImg">-->
