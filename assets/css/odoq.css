@@ -446,6 +446,14 @@ header{
   background: #fff;
   font-size: 16px;
   font-weight: 500;
+  cursor: pointer;
+}
+@media screen and (max-width: 380px) {
+  .main_container .tab_wrap .tab_btn,
+  .post_detail_wrap .tab_wrap .tab_btn {
+    width: 70px;
+    font-size: 14px;
+  }
 }
 .main_container .tab_wrap .tab_btn.on,
 .post_detail_wrap .tab_wrap .tab_btn.on {
@@ -700,6 +708,10 @@ animation-fill-mode: forwards;
   font-size: 14px;
   font-weight: 600;
   text-indent: 10px;
+}
+.notice_wrap span {
+  display: inline;
+  cursor: pointer;
 }
 
 /* WRITE */
@@ -1227,10 +1239,20 @@ animation-fill-mode: forwards;
   position: relative;
   padding-left: 15px;
   font-size: 14px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+  display: inline-flex;
   /*width: 500px;*/
+}
+.comment_line_content .title .title_text {
+  margin: 0 5px;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  min-width: 153px;
+  height: 20px;
+  overflow: hidden;
+  display: inline;
 }
 .comment_line_content .title:before {
   content: '';
@@ -1238,7 +1260,7 @@ animation-fill-mode: forwards;
   /*background-image: url("data:image/svg+xml,%3Csvg width='3' height='3' viewBox='0 0 3 3' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1.5' cy='1.5' r='1.5' fill='%230051C8'/%3E%3C/svg%3E%0A");*/
   width: 5px;
   height: 5px;
-  left: 0;
+  left: 1px;
   top: 50%;
   background: #0051c8;
   margin-top: 2px;
