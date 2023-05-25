@@ -1,6 +1,8 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Abel&family=Abril+Fatface&family=Fjalla+One&family=Nanum+Gothic&display=swap');*/
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+/*NotoSans*/
+/*@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');*/
 /*@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800;900&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
 @keyframes blink {
   0% {
     opacity: 1;
@@ -40,8 +42,9 @@
 }
 
 * {
-  font-family: 'Noto Sans KR', sans-serif;
+  /*font-family: 'Noto Sans KR', sans-serif;*/
   /*font-family: 'Gothic A1', sans-serif;*/
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: inherit;
 }
 ul {
@@ -705,9 +708,9 @@ animation-fill-mode: forwards;
   border-bottom: 1px solid #ccc;
 }
 .notice_wrap ul li {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  text-indent: 10px;
+  text-indent: 12px;
 }
 .notice_wrap span {
   display: inline;
@@ -941,7 +944,7 @@ animation-fill-mode: forwards;
 
 /* POSTLINE - COMMENTLINE */
 .comment_line_box {
-  padding : 15px 0;
+  padding : 8px 0;
   border-bottom: 1px solid #ccc;
   display: flex;
   justify-content: space-between;
@@ -961,13 +964,13 @@ animation-fill-mode: forwards;
 .content_info_tools{
   width: 100%;
   display : flex;
-  padding : 0 10px 0 10px;
+  padding : 0 12px 0 12px;
 }
 .comment_line_user {
   display : inline-block;
-  font-size : 12px;
+  font-size : 11px;
   color : rgba(49, 49, 49, 0.8);
-  margin-top: 10px;
+  margin-top: 8px;
 }
 .comment_line_user .nick_name {
   padding-right: 10px;
@@ -986,7 +989,7 @@ animation-fill-mode: forwards;
 }
 .content_info_tools .updated_at {
   display : inline-block;
-  font-size: 12px;
+  font-size: 11px;
   color : #9d9d9d;
   margin-top: 10px;
   padding: 0 10px;
@@ -1004,14 +1007,14 @@ animation-fill-mode: forwards;
 }
 .content_info_tools .hits {
   display : inline-block;
-  font-size: 12px;
+  font-size: 11px;
   color : #9d9d9d;
   margin-top: 10px;
   padding-left: 10px;
 }
 .comment_line_box .comment_count_box {
   box-sizing: border-box;
-  margin-right: 10px;
+  margin-right: 12px;
   min-width: 23px;
 }
 .comment_line_box .comment_count_box .comment_count {
@@ -1039,7 +1042,7 @@ animation-fill-mode: forwards;
   bottom: -5px;
 }
 .comment_line_box .comment_count_box span {
-  font-size: 12px;
+  font-size: 11px;
   color: #9d9d9d;
 }
   /*.cocomment_line {*/
@@ -1231,14 +1234,14 @@ animation-fill-mode: forwards;
 
 .comment_line_content {
     font-size: 1rem;
-    padding : 0 10px;
+    padding : 0 12px;
     word-break :break-all;
     white-space : pre-wrap;
 }
 .comment_line_content .title {
   position: relative;
   padding-left: 15px;
-  font-size: 14px;
+  font-size: 13px;
   display: inline-flex;
   /*width: 500px;*/
 }
@@ -1258,8 +1261,8 @@ animation-fill-mode: forwards;
   content: '';
   position: absolute;
   /*background-image: url("data:image/svg+xml,%3Csvg width='3' height='3' viewBox='0 0 3 3' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1.5' cy='1.5' r='1.5' fill='%230051C8'/%3E%3C/svg%3E%0A");*/
-  width: 5px;
-  height: 5px;
+  width: 4.5px;
+  height: 4.5px;
   left: 1px;
   top: 50%;
   background: #0051c8;
@@ -1775,7 +1778,7 @@ top:0;
   border: none;
   outline: none;
   resize: none;
-  font-weight: 500;
+  font-weight: 600;
 }
 .post_detail_contents_wrap .post_info_box {
   color: #9d9d9d;
@@ -1789,6 +1792,9 @@ top:0;
   padding: 0 6px;
   color: #0051c8;
   margin-right: 3px;
+}
+.post_detail_contents_wrap .nick_name {
+  padding: 0 8px;
 }
 .post_detail_contents_wrap .nick_name,
 .post_detail_contents_wrap .date {
@@ -1864,7 +1870,7 @@ top:0;
   margin: 20px 10px 50px;
 }
 .post_detail_contents_wrap .content_wrap .content {
-  font-size: 16px;
+  font-size: 13px;
   width: 100%;
   box-sizing: border-box;
   /*height: 100%;*/
@@ -1993,7 +1999,7 @@ top:0;
 .dockbar_list >div span {
   display: block;
   text-align: center;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   margin-top: 3px;
   color: #0051c8;
@@ -2020,9 +2026,9 @@ top:0;
   cursor: pointer;
 }
 .comments_wrap .user_info_box .nick_name {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
-  margin-top: -2px;
+  /*margin-top: -2px;*/
 }
 .comments_wrap .user_info_box .nick_name::before {
   display: none;
@@ -2034,7 +2040,7 @@ top:0;
   /*height: auto;*/
   /*box-sizing: border-box;*/
   margin-top: 10px;
-  font-size: 16px;
+  font-size: 13px;
 }
 .comments_wrap .content_info_box {
   margin-top: 5px;
@@ -2042,14 +2048,13 @@ top:0;
   font-size: 11px;
   color: #9d9d9d;
 }
-.comments_wrap .content_info_box .date {
-  margin-right: 5px;
-}
+/*.comments_wrap .content_info_box .date {*/
+/*  margin-right: 5px;*/
+/*}*/
 .comments_wrap .content_info_box .reply_btn {
   border: 0;
   font-size: 11px;
   color: #0051c8;
-  text-decoration: underline;
   background: #fff;
   cursor: pointer;
 }
@@ -2111,17 +2116,17 @@ top:0;
 .grade {
   background: #eee;
   color: #0051c8;
-  font-size: 12px;
+  font-size: 10px;
   display: inline-block;
-  min-width: 15px;
+  min-width: 16px;
   width: auto;
-  height: 15px;
+  height: 14px;
   line-height: 15px;
   text-align: center;
-  border: 1px solid #aaa;
+  border: 1px solid #fff;
   border-radius: 2px;
-  margin-right: 5px;
-  font-weight: 500;
+  margin-right: 0px;
+  font-weight: 300;
 }
 .grade.black {
   color: black;

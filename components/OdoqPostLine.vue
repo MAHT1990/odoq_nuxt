@@ -98,7 +98,7 @@ export default {
         color: this.isRead || this.currentPost ? this.readColor : this.defaultColor,
       }
     },
-    titleStyle() { return { fontWeight: this.isSolution ? 'bold' : 'normal' }},
+    // titleStyle() { return { fontWeight: this.isSolution ? 'bold' : 'normal' }},
   },
   methods: {
     getLevel(getLevel) {

@@ -5,7 +5,7 @@
       <div class="title_box">
         <textarea name="" id="" cols="30" rows="10" v-html="notice.title" readonly></textarea>
         <div class="post_info_box">
-          <span class="level">{{ notice.user_level }}</span>
+          <span class="grade">{{ notice.user_level }}</span>
           <span class="nick_name">{{ notice.user_name }}</span>
           <span class="date">{{ createdAt(notice) }}</span>
           <span class="hits">조회수 {{ notice.hit_count }}</span>
