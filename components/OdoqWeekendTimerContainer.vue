@@ -54,8 +54,8 @@ export default {
       // 주말은 6, 0이다.
       const now = moment();
       // console.log('## OdoqWeekendTimerContainer\'s calcRemainTime > now is ', now);
-      const trgtDay = this.$store.getters['common/availableDays'][0];
-      const trgtTime = this.$store.getters['common/uploadTime'];
+      const trgtDay = this.$store.getters['question/questionStore/availableDays'][0];
+      const trgtTime = this.$store.getters['question/questionStore/uploadTime'];
       const nextFirst = moment()
         .add((7 + (trgtDay - now.day()))%7, 'days')
         .hour(trgtTime.split(':')[0])

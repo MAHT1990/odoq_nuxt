@@ -66,8 +66,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      availableDays: 'common/availableDays',
-      uploadTime: 'common/uploadTime',
+      availableDays: 'question/questionStore/availableDays',
+      uploadTime: 'question/questionStore/uploadTime',
       userInfo: 'user/userAuthStore/userInfo',
       isLogin: 'user/userAuthStore/isLogin',
       question: 'question/questionStore/question',

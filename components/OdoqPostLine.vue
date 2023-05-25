@@ -67,6 +67,9 @@ import moment from 'moment';
 import Utils from "@/plugins/utils";
 export default {
   props: {
+    question: {
+      type: Object
+    },
     post: {
       type: Object
     },
@@ -98,7 +101,7 @@ export default {
         color: this.isRead || this.currentPost ? this.readColor : this.defaultColor,
       }
     },
-    // titleStyle() { return { fontWeight: this.isSolution ? 'bold' : 'normal' }},
+    titleStyle() { return { fontWeight: this.isSolution ? 'bold' : 'normal' }},
   },
   methods: {
     getLevel(getLevel) {
@@ -120,9 +123,36 @@ export default {
     //   this.showImg = !this.showImg;
     // },
     movePostDetail() {
-      this.$router.push({
-        path: `/post/${this.post.id}`,
-      });
+      const that = this;
+      const move = () => { this.$router.push({ path: `/post/${this.post.id}`})};
+      // 풀이글에 대하여.
+      if (this.isSolution) {
+        // 로그인 안했으면
+        if (!this.isLogin) return this.$popup.showAlertPopup('풀이글은 로그인후 열람 가능합니다.');
+        // 이전 문항이면
+        if (!this.post.type.includes((this.question.id).toString())) return move()
+        // 이미 cheating 했으면,
+        if (this.question.cheated_users.includes(this.userInfo.userId)) return move();
+        // 정답 제출 안됐으면,
+        if (!this.question.solved_users.includes(this.userInfo.userId)) {
+          new this.$popup.PopConfirm({
+            propsData: {
+              title: '먼저보기',
+              subTitle: '풀이를 먼저보시면 답안통계가 반영되지않습니다.',
+              message: '풀이를 먼저보시면 답안통계가 반영되지않습니다.',
+              okCallback: async (params) => {
+                const res = await that.$store.dispatch('question/questionStore/cheatAnswer', {
+                  userId: that.userInfo.userId,
+                  questionId: that.question.id,
+                });
+                if (res.result === 'success') move()
+                else that.$popup.showAlertPopup('열람 오류.');
+                params.$destroy();
+              }
+            },
+          }).$mount();
+        } else move(); // 문항을 풀었으면,
+      } else move(); // 풀이글이 아니면,
     },
     underline(e) {
       e.target.style.textDecoration = 'underline';

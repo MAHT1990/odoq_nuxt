@@ -60,6 +60,8 @@ export default {
     if (Utils.getCookie(cookie, 'jwt')) {
       await store.dispatch('user/userAuthStore/checkLogin', cookie)
     }
+    // 문항 정보 받아오기
+    await store.dispatch('question/questionStore/getQuestion');
     // 게시글 정보 받아오기
     const resPost = await store.dispatch('post/postStore/getPost', params.id);
     if (resPost.result==='error') redirect('/');
@@ -71,6 +73,7 @@ export default {
   }),
   computed: {
     ...mapGetters({
+      question: 'question/questionStore/question',
       post: 'post/postStore/post',
       userInfo: 'user/userAuthStore/userInfo',
       isLogin: 'user/userAuthStore/isLogin',
@@ -85,15 +88,32 @@ export default {
     isWriter() {
       return [1, 2].includes(this.userInfo.userGrade);
     },
+    isSolutionForToday() {
+      return this.post.type.includes((this.question.id).toString());
+    },
+    isSolved() {
+      return this.question.solved_users.includes(this.userInfo.userId);
+    },
+    isCheated() {
+      return this.question.cheated_users.includes(this.userInfo.userId);
+    },
+    isUnaccepted() {
+      return this.isSolutionForToday && !this.isCheated && !this.isSolved
+    },
   },
   async beforeMount() {
+    // 먼저보기 사용안했는데 정답 안맞춘 학생은 redirect
+    if (this.isUnaccepted) {
+      this.$popup.showAlertPopup('잘못된 접근입니다.');
+      return this.$router.push('/')
+    }
     // 게시글 목록 받아오기
     await this.$store.dispatch('post/postStore/getPosts', {
       pageNumber: this.$utils.getPageNumber('post') || 1,
       pageSize: this.$store.state.post.postStore.defaultPageSize,
     });
     Utils.setRead('post', this.post.id);
-    console.log('localStorage: ', localStorage);
+    // console.log('localStorage: ', localStorage);
   },
   methods: {
     calculateHeight() {

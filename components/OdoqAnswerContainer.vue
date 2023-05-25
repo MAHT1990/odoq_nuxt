@@ -102,32 +102,19 @@ export default {
           answer: this.inputAnswer,
           userId: this.userInfo.userId,
         }
-      )
-      if (this.inputAnswer === this.question.answer) {
-        new this.$popup.PopAnswerPost({
-          propsData: {
-            title: '정답입니다!!',
-            initValue: {
-              question: this.question
-            },
-            okCallback: (params) => {
-              params.$destroy();
-            }
+      );
+      new this.$popup.PopAnswerPost({
+        propsData: {
+          initValue: {
+            question: this.question,
+            answer: this.inputAnswer,
+            userInfo: this.userInfo,
+          },
+          okCallback: (params) => {
+            params.$destroy();
           }
-        }).$mount()
-      } else {
-        new this.$popup.PopAnswerPost({
-          propsData: {
-            title: '오답입니다!!',
-            initValue: {
-              question: this.question
-            },
-            okCallback: (params) => {
-              params.$destroy();
-            }
-          }
-        }).$mount()
-      }
+        }
+      }).$mount()
     },
     hideIcon: function (event) {
       const thisDom = event.target;
@@ -142,8 +129,11 @@ export default {
         console.log('## OdoqAnswerContainer > timerStarter', this.question.can_answer_remain_time);
         this.canAnswersecondRemain = this.question.can_answer_remain_time;
         // Timer 시작.
+        if (this.canAnswerintervalId) {
+          clearInterval(this.canAnswerintervalId);
+        }
         this.canAnswerintervalId = setInterval(() => {
-          this.canAnswersecondRemain--
+            this.canAnswersecondRemain--
         }, 1000)
       } else {
         this.canAnswersecondRemain = 0;

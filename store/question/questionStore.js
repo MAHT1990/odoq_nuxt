@@ -1,6 +1,8 @@
 import Utils from "@/plugins/utils";
 
 const state = () => ({
+  availableDays: [1, 2, 3, 4, 5], // 화요일부터 토요일까지
+  uploadTime: '08:30:00',
   question: {
     id: 0,
     code: '',
@@ -10,6 +12,7 @@ const state = () => ({
     answer_count: 0,
     solve_count: 0,
     solved_users: [],
+    cheated_users: [],
     can_answer_remain_time: 0,
   },
   answerLive: {
@@ -45,6 +48,12 @@ const actions = {
       });
     // console.log('questionStore > getAnswerLive > res.data is ', res.data);
     commit('setAnswerLive', res.data);
+  },
+  async cheatAnswer({ commit }, data) {
+    const res = await this.$axios.patch('question/', data);
+    if (res.data.result === 'success') commit('updateQuestionCheatedUsers', res.data);
+    console.log('cheated_users: ', res.data.data.cheated_users);
+    return res.data;
   },
   async postAnswer({ commit }, data) {
     const res = await this.$axios.post('question/', data);
@@ -89,6 +98,9 @@ const mutations = {
     });
     state.answerLive.solveCount = solveCount;
   },
+  updateQuestionCheatedUsers(state, axiosResData) {
+    state.question.cheated_users = axiosResData.data.cheated_users;
+  },
   /**
    * 답변을 등록하고, 답변수와 해결수를 업데이트
    * @param state
@@ -104,6 +116,8 @@ const mutations = {
 }
 
 const getters = {
+  availableDays: (state) => (state.availableDays),
+  uploadTime: (state) => (state.uploadTime),
   question: (state) => (state.question),
   answerLive: (state) => (state.answerLive),
 }

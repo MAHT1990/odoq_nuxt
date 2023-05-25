@@ -20,6 +20,7 @@
       <OdoqPostLine
         v-for="post in arrayPosts"
         :key="post.id"
+        :question="question"
         :post="post"
         :user-info="userInfo"
         :is-login="isLogin"
