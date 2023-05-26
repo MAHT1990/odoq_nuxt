@@ -15,11 +15,7 @@ const state = () => ({
     cheated_users: [],
     can_answer_remain_time: 0,
   },
-  answerLive: {
-    answers: [],
-    answerCount: 0,
-    solveCount: 0,
-  }
+  // answerLive
 });
 
 const actions = {
@@ -39,16 +35,7 @@ const actions = {
     commit('setAnswerHistory', res.data);
     return res.data;
   },
-  async getAnswerLive({ commit }, query) {
-    const res = await this.$axios.get('question/answer_live/',
-      {
-        params: {
-          ...query
-        }
-      });
-    // console.log('questionStore > getAnswerLive > res.data is ', res.data);
-    commit('setAnswerLive', res.data);
-  },
+  // getAnswerLive
   async cheatAnswer({ commit }, data) {
     const res = await this.$axios.patch('question/', data);
     if (res.data.result === 'success') commit('updateQuestionCheatedUsers', res.data);
@@ -87,17 +74,7 @@ const mutations = {
   setAnswerHistory(state, axiosResData) {
     state.question.can_answer_remain_time = axiosResData.data.can_answer_remain_time;
   },
-  setAnswerLive(state, axiosResData) {
-    state.answerLive.answers = axiosResData.data.answers;
-    state.answerLive.answerCount = axiosResData.data.answers.length;
-    let solveCount = 0;
-    axiosResData.data.answers.forEach((answer) => {
-      if (answer.is_solved) {
-        solveCount++;
-      }
-    });
-    state.answerLive.solveCount = solveCount;
-  },
+  // setAnswerLive
   updateQuestionCheatedUsers(state, axiosResData) {
     state.question.cheated_users = axiosResData.data.cheated_users;
   },
@@ -118,8 +95,7 @@ const mutations = {
 const getters = {
   availableDays: (state) => (state.availableDays),
   uploadTime: (state) => (state.uploadTime),
-  question: (state) => (state.question),
-  answerLive: (state) => (state.answerLive),
+  question: (state) => (state.question)
 }
 
 export default {

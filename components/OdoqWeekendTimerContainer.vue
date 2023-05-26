@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     timerStarter() {
-      this.intervalId = setInterval(() => {
+      this.intervalId = this.intervalId || setInterval(() => {
         this.secondRemain --;
       }, 1000);
     },
