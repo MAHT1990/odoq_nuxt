@@ -1930,6 +1930,16 @@ top:0;
 .post_detail_contents_wrap .content_wrap {
   margin: 20px 10px 50px;
 }
+.post_detail_contents_wrap .content_wrap .download {
+  color: #0051c8;
+  font-size: 17px;
+  text-align: right;
+  margin-bottom: 10px;
+}
+.post_detail_contents_wrap .content_wrap .download a {
+  font-size: 13px;
+  cursor: pointer;
+}
 .post_detail_contents_wrap .content_wrap .content {
   font-size: 13px;
   width: 100%;

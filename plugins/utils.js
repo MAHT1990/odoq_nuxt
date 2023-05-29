@@ -94,6 +94,10 @@ const getImgUrl = (imgUrlWithoutDomain) => {
   return process.env.BASE_URL + imgUrlWithoutDomain
 }
 
+const getDownloadUrl = (downloadUrlWithoutDomain) => {
+  return process.env.BASE_API_URL + '/download?path=' + downloadUrlWithoutDomain
+}
+
 const setPageNumber = (flag, pageNumber) => {
   sessionStorage.setItem(`${flag}PageNumber`, pageNumber);
 }
@@ -133,6 +137,7 @@ const Utils = {
   getUserGrade,
   getUserGradeByJwt,
   getImgUrl,
+  getDownloadUrl,
   setPageNumber,
   getPageNumber,
   setRead,

@@ -54,7 +54,6 @@ const actions = {
   async getComments({ commit }, noticeId) {
     const res = await this.$axios.get(`notice/${noticeId}/comment`);
     if (res.data.result === 'success') {
-      console.log('comments is ', res.data.data.comments);
       commit('setComments', res.data.data.comments);
     }
   },

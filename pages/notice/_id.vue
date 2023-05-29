@@ -20,12 +20,9 @@
             <img src="@/assets/img/alert.png" alt="">신고
           </div>
         </div>
-        <!--        <div>-->
-        <!--          <span>수정</span>-->
-        <!--          <span>삭제</span>-->
-        <!--        </div>-->
       </div>
       <div class="content_wrap">
+        <div class="download"><i class="fa-solid fa-file-pdf"></i><a @click="downloadFile">{{notice.file_name.split('/')[1]}}</a></div>
         <div class="content" v-html="notice.content"></div>
         <img v-if="notice.img_url" class="image" :src="notice.img_url" alt="load Error">
       </div>
@@ -63,7 +60,7 @@ export default {
     // 공지글 정보 받아오기
     const resNotice = await store.dispatch('notice/noticeStore/getNotice', params.id);
     if (resNotice.result==='error') redirect('/');
-    // // 댓글 정보 받아오기
+    // 댓글 정보 받아오기
     await store.dispatch('notice/noticeStore/getComments', params.id);
   },
   data: () => ({
@@ -76,6 +73,9 @@ export default {
       isLogin: 'user/userAuthStore/isLogin',
       comments: 'notice/noticeStore/comments'
     }),
+    downloadUrl() {
+      return this.$utils.getDownloadUrl(this.notice.file_name);
+    },
     isAuthor() {
       return this.notice.user_id === this.userInfo.userId;
     },
@@ -90,7 +90,7 @@ export default {
       pageSize: this.$store.state.notice.noticeStore.defaultPageSize,
     });
     Utils.setRead('notice', this.notice.id);
-    console.log('localStorage: ', localStorage);
+    // console.log('localStorage: ', localStorage);
   },
   methods: {
     createdAt(post) {
@@ -117,6 +117,25 @@ export default {
         list.style.display = 'block';
       } else {
         list.style.display = 'none';
+      }
+    },
+    async downloadFile() {
+      // console.log('downloadFile');
+      // console.log('this.notice.file_url: ', this.notice.file_url);
+      // console.log('this.downloadUrl: ', this.downloadUrl);
+      try {
+        const res = await this.$axios.$get(this.downloadUrl, {
+          responseType: 'blob',
+        });
+        const url = window.URL.createObjectURL(new Blob([res]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', this.notice.file_name.split('/')[1]);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } catch (err) {
+        console.log('파일 다운로드에 실패했습니다.', err);
       }
     },
     editPost() {
