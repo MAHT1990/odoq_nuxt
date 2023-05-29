@@ -18,13 +18,16 @@
 }
 
 @media screen and (max-width : 575px) {
-    .weekend_timer_box{
-        font-size : 2.5em;
-        /* padding : 30px 30px 30px 30px; */
-        text-align : center;
-        margin : 0;
-        font-family: 'Kdam Thmor Pro', sans-serif;
-    }
+  .weekend_timer_box{
+      font-size : 2.5em;
+      /* padding : 30px 30px 30px 30px; */
+      text-align : center;
+      margin : 0;
+      font-family: 'Kdam Thmor Pro', sans-serif;
+  }
+  .answer_live_container{
+    margin: 20px 10px;
+  }
 }
 
 @media screen and (max-width : 420px) {

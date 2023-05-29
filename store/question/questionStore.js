@@ -16,6 +16,7 @@ const state = () => ({
     can_answer_remain_time: 0,
   },
   // answerLive
+  answerLive: {},
 });
 
 const actions = {
@@ -31,15 +32,24 @@ const actions = {
           ...query
         }
       });
-    // console.log('questionStore > getAnswerHistory > res.data is ', res.data);
+    console.log('questionStore > getAnswerHistory > res.data is ', res.data);
     commit('setAnswerHistory', res.data);
     return res.data;
   },
   // getAnswerLive
+  async getAnswerLive({ commit }, query) {
+    const res = await this.$axios.get('question/answer_live', {
+      params: {
+        ...query
+      },
+    });
+    commit('setAnswerLive', res.data);
+  },
+
   async cheatAnswer({ commit }, data) {
     const res = await this.$axios.patch('question/', data);
     if (res.data.result === 'success') commit('updateQuestionCheatedUsers', res.data);
-    console.log('cheated_users: ', res.data.data.cheated_users);
+    // console.log('cheated_users: ', res.data.data.cheated_users);
     return res.data;
   },
   async postAnswer({ commit }, data) {
@@ -75,6 +85,11 @@ const mutations = {
     state.question.can_answer_remain_time = axiosResData.data.can_answer_remain_time;
   },
   // setAnswerLive
+  setAnswerLive(state, res) {
+    state.answerLive = res.data;
+    // console.log(state.answerLive);
+  },
+
   updateQuestionCheatedUsers(state, axiosResData) {
     state.question.cheated_users = axiosResData.data.cheated_users;
   },
@@ -95,7 +110,8 @@ const mutations = {
 const getters = {
   availableDays: (state) => (state.availableDays),
   uploadTime: (state) => (state.uploadTime),
-  question: (state) => (state.question)
+  question: (state) => (state.question),
+  answerLive: (state) => (state.answerLive),
 }
 
 export default {

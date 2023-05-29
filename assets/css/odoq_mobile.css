@@ -6,6 +6,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Abel&family=Abril+Fatface&family=Fjalla+One&family=Nanum+Gothic&display=swap');
 
+@media screen and (max-width : 490px) {
+  .asnwer_live_title_and_count {
+    display: block;
+  }
+  .answer_search {
+    margin-top: 10px;
+  }
+}
 @media screen and (max-width : 420px) {
 
     nav {
