@@ -22,7 +22,10 @@
         </div>
       </div>
       <div class="content_wrap">
-        <div class="download"><i class="fa-solid fa-file-pdf"></i><a @click="downloadFile">{{notice.file_name.split('/')[1]}}</a></div>
+        <div
+          v-if="notice.file_name"
+          class="download"
+        ><i class="fa-solid fa-file-pdf"></i><a @click="downloadFile">{{notice.file_name?.split('/')[1]}}</a></div>
         <div class="content" v-html="notice.content"></div>
         <img v-if="notice.img_url" class="image" :src="notice.img_url" alt="load Error">
       </div>
