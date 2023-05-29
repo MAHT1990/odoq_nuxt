@@ -36,6 +36,10 @@
         />
         <div class="verticalLine2"></div>
       </div>
+      <odoq-answer-live
+        v-if="currentIdx === 0 || currentIdx === 2"
+        :question="question"
+      />
       <odoq-post-container
         v-if="currentIdx === 0"
       />

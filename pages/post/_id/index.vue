@@ -3,7 +3,7 @@
 <!--    <odoq-tabs />-->
     <div class="post_detail_contents_wrap">
       <div class="title_box">
-        <textarea name="" id="" cols="30" rows="10" v-html="post.title" readonly></textarea>
+        <pre name="" id="" cols="30" rows="10" v-html="post.title" readonly></pre>
         <div class="post_info_box">
           <span class="grade">{{ post.user_level }}</span>
           <span class="nick_name">{{ post.user_name }}</span>

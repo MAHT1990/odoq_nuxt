@@ -617,25 +617,83 @@ animation-fill-mode: forwards;
 {
   display: flex;
   flex-direction: column;
-  border: 1px solid grey;
+  border: 2px solid #0051c8;
   font-size: 1rem;
   height: 10rem;
+  margin: 20px 0;
 }
-
+.answer_live_title span:first-child {
+  font-weight: 900;
+}.answer_live_title span:last-child {
+  color: red;
+}
 .asnwer_live_title_and_count {
   display: flex;
   justify-content: space-between;
   padding: 0.5rem;
-  border-bottom: 1px solid grey;
+  border-bottom: 2px solid #0051c8;
+}
+.answer_live_title {
+  margin-top: 2px;
 }
 
+.answer_search {
+  font-size: 16px;
+  display: flex;
+}
+.answer_search label {
+  margin-right: 5px;
+}
+.answer_search input[type=text] {
+  border: 0;
+  border-bottom: 1px solid #9d9d9d;
+  margin-right: 5px;
+  height: 70%;
+}
+.answer_search button {
+  padding: 0;
+  border: 0;
+  background: #fff;
+}
 .answer_live_box {
   overflow-y: auto;
+  padding: 0 10px;
 }
 
 .answer_live_box_content
 {
   display: flex;
+  padding: 5px 0;
+}
+.answer_live_box_content .rank {
+  margin-right: 10px;
+  min-width: 50px;
+  color: #9d9d9d;
+  font-weight: 800;
+}
+.answer_live_box_content:first-child .rank {
+  color: #0051c8;
+}
+.answer_live_box_content .rank span {
+  font-size: 12px;
+  display: inline-block;
+  vertical-align: text-top;
+}
+.answer_live_box_content:nth-child(2) .rank,
+.answer_live_box_content:nth-child(3) .rank {
+  color: #434343;
+}
+.answer_live_box_content .grade {
+  margin-right: 5px;
+}
+.answer_live_box_content .answer_live_box_content_user_name {
+  font-size: 14px;
+  color: #9d9d9d;
+  font-weight: 600;
+  min-width: 100px;
+}
+.answer_live_box_content .answer_live_box_content_created_at {
+  font-size: 14px;
 }
 /*.comment_input_box {*/
 /*  border: 0.5px solid grey;*/
@@ -1766,19 +1824,22 @@ top:0;
   margin-top: 13px;
 }
 .post_detail_contents_wrap .title_box {
-  height: 70px;
+  /*height: 70px;*/
   border-bottom: 1px solid #e5e5e5;
   padding: 10px;
 }
-.post_detail_contents_wrap .title_box textarea {
+.post_detail_contents_wrap .title_box pre {
   font-size: 18px;
   width: 100%;
-  height: 50%;
+  /*height: 50%;*/
   box-sizing: border-box;
   border: none;
   outline: none;
   resize: none;
   font-weight: 600;
+  /* height: 100%; */
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 .post_detail_contents_wrap .post_info_box {
   color: #9d9d9d;
