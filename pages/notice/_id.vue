@@ -126,6 +126,7 @@ export default {
       // console.log('downloadFile');
       // console.log('this.notice.file_url: ', this.notice.file_url);
       // console.log('this.downloadUrl: ', this.downloadUrl);
+      if (!this.isLogin) return this.$popup.showAlertPopup('로그인이 필요한 서비스입니다.');
       try {
         const res = await this.$axios.$get(this.downloadUrl, {
           responseType: 'blob',
