@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <div class="popup_mask">
-      <div class="popup_wrapper pop_confirm_wrap">
+      <div class="popup_wrapper pop_confirm_wrap pop_comment_edit">
         <div class="popup_container">
 
           <div class="popup_wrap">
