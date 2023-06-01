@@ -6,7 +6,7 @@
 
           <div class="popup_wrap">
             <h1 class="popup_title text-center">{{title}}</h1>
-            <div  v-if="message" class="popup_text_wrap">{{message}}</div>
+            <div v-if="message" class="popup_text_wrap">{{message}}</div>
           </div>
           <div class="popup_btn_wrap">
             <button class="gray_line_but" @click="cancel">취소</button>
