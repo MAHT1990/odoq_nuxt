@@ -38,13 +38,10 @@ export default Vue.extend({
     };
   },
   created() {
-    console.log('## PopCommentEdit > this.initValue', this.initValue);
+    // console.log('## PopCommentEdit > this.initValue', this.initValue);
     const target = this.initValue.commentFlag === 'cocomment'
       ? this.initValue.cocomment
       : this.initValue.comment;
-
-    console.log('## PopCommentEdit > target', target);
-
     this.params.commentFlag = this.initValue.commentFlag;
     this.params.targetId = target.id;
     this.params.content = target.content;

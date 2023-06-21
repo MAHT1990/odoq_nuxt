@@ -103,6 +103,12 @@ export default {
           userId: this.userInfo.userId,
         }
       );
+      await this.$store.dispatch(
+        'question/questionStore/getAnswerHistory', {
+          questionId: this.question.id,
+          userId: this.userInfo.userId,
+        }
+      )
       new this.$popup.PopAnswerPost({
         propsData: {
           initValue: {
@@ -126,7 +132,7 @@ export default {
     },
     timerStarter() {
       if (this.question.can_answer_remain_time > 0) {
-        console.log('## OdoqAnswerContainer > timerStarter', this.question.can_answer_remain_time);
+        // console.log('## OdoqAnswerContainer > timerStarter', this.question.can_answer_remain_time);
         this.canAnswersecondRemain = this.question.can_answer_remain_time;
         // Timer 시작.
         if (this.canAnswerintervalId) {

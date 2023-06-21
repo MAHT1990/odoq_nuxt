@@ -51,7 +51,7 @@ export default {
         });
 
         if (res.result === 'success') {
-          console.log('## this.isAcceptSms: ', this.isAcceptSms);
+          // console.log('## this.isAcceptSms: ', this.isAcceptSms);
           this.$popup.showAlertPopup('SMS 알림이 ' + (this.isAcceptSms ? '설정' : '해제') + '되었습니다.');
         }
       }

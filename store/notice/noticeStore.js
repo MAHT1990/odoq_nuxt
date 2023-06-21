@@ -40,13 +40,13 @@ const actions = {
     const res = await this.$axios.get('notice/');
     if (res.data.result === 'success') {
       commit('setNotices', res.data.data);
-      console.log('noticeStore > getNotices > res.data is ', res.data);
+      // console.log('noticeStore > getNotices > res.data is ', res.data);
     }
   },
   async getNotice({ commit }, noticeId) {
     const res = await this.$axios.get(`notice/${noticeId}`);
     if (res.data.result === 'success') {
-      console.log('notice is ', res.data.data.notice);
+      // console.log('notice is ', res.data.data.notice);
       commit('setNotice', res.data.data.notice);
     }
     return res.data;

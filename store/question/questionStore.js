@@ -13,10 +13,25 @@ const state = () => ({
     solve_count: 0,
     solved_users: [],
     cheated_users: [],
-    can_answer_remain_time: 0,
+    can_answer_remain_time: 0, // getAnswerHistory에서 계산
+    has_solved_in_limit: false, // getAnswerHistory에서 계산
+    wrong_answer_count: 0, // getAnswerHistory에서 계산
+    wrong_answer_history: [], // getAnswerHistory에서 계산
   },
   // answerLive
-  answerLive: {},
+  answerLive: {
+    answers: [
+      {
+        user_name: '',
+        user_level: 0,
+        answer: 0,
+        is_solved: false,
+        created_at: '',
+        over_limit: false,
+        rank: 1, // FE에서 계산
+      }
+    ]
+  },
 });
 
 const actions = {
@@ -32,7 +47,7 @@ const actions = {
           ...query
         }
       });
-    console.log('questionStore > getAnswerHistory > res.data is ', res.data);
+    // console.log('questionStore > getAnswerHistory > res.data is ', res.data);
     commit('setAnswerHistory', res.data);
     return res.data;
   },
@@ -43,6 +58,7 @@ const actions = {
         ...query
       },
     });
+    // console.log('questionStore > getAnswerLive > res.data is ', res.data);
     commit('setAnswerLive', res.data);
   },
 
@@ -83,13 +99,14 @@ const mutations = {
   },
   setAnswerHistory(state, axiosResData) {
     state.question.can_answer_remain_time = axiosResData.data.can_answer_remain_time;
+    state.question.has_solved_in_limit = axiosResData.data.has_solved_in_limit;
+    state.question.wrong_answer_count = axiosResData.data.wrong_answer_count;
+    state.question.wrong_answer_history = axiosResData.data.wrong_answer_history;
   },
   // setAnswerLive
   setAnswerLive(state, res) {
     state.answerLive = res.data;
-    // console.log(state.answerLive);
   },
-
   updateQuestionCheatedUsers(state, axiosResData) {
     state.question.cheated_users = axiosResData.data.cheated_users;
   },
