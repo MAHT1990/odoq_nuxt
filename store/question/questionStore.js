@@ -16,7 +16,7 @@ const state = () => ({
     can_answer_remain_time: 0, // getAnswerHistory에서 계산
     has_solved_in_limit: false, // getAnswerHistory에서 계산
     wrong_answer_count: 0, // getAnswerHistory에서 계산
-    wrong_answer_history: [], // getAnswerHistory에서 계산
+    answer_history: [], // getAnswerHistory에서 계산
   },
   // answerLive
   answerLive: {
@@ -101,7 +101,7 @@ const mutations = {
     state.question.can_answer_remain_time = axiosResData.data.can_answer_remain_time;
     state.question.has_solved_in_limit = axiosResData.data.has_solved_in_limit;
     state.question.wrong_answer_count = axiosResData.data.wrong_answer_count;
-    state.question.wrong_answer_history = axiosResData.data.wrong_answer_history;
+    state.question.answer_history = axiosResData.data.answer_history;
   },
   // setAnswerLive
   setAnswerLive(state, res) {

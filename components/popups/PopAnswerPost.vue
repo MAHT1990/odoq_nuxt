@@ -47,7 +47,8 @@ export default Vue.extend({
       return this.initValue.question.answer === this.initValue.answer;
     },
     hasSolvedInLimit() {
-      return this.initValue.question.has_solved_in_limit;
+      return this.initValue.question.has_solved_in_limit
+        && this.initValue.question.answer_history?.filter((answr) => answr.isSolved).length > 1;
     },
     isOverLimit() {
       return this.initValue.question.wrong_answer_count >= 5;
