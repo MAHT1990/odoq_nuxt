@@ -8,7 +8,7 @@
             <div class="popup_title text-center">
               {{ isSolved ? correctMessage.main : wrongMessage.main }}
             </div>
-            <div v-if="isSolved && !isOverLimit" class="popup_text_wrap">
+            <div v-if="isSolved" class="popup_text_wrap">
               {{initValue.question.solve_count}}명이 답을 맞추셨습니다.
             </div>
             <div
