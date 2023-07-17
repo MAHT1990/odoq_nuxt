@@ -5,7 +5,7 @@
       <div class="title_box">
         <pre name="" id="" cols="30" rows="10" v-html="post.title" readonly></pre>
         <div class="post_info_box">
-          <span class="grade">{{ post.user_level }}</span>
+          <span class="grade" :class="userLabel.userClass">{{ userLabel.content }}</span>
           <span class="nick_name">{{ post.user_name }}</span>
           <span class="date">{{ createdAt(post) }}</span>
           <span class="hits">조회수 {{ post.hit_count }}</span>
@@ -100,6 +100,9 @@ export default {
     isUnaccepted() {
       return this.isSolutionForToday && !this.isCheated && !this.isSolved
     },
+    userLabel() {
+      return this.$utils.getUserLabel(this.post);
+    }
   },
   async beforeMount() {
     // 먼저보기 사용안했는데 정답 안맞춘 학생은 redirect

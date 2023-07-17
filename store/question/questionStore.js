@@ -23,6 +23,7 @@ const state = () => ({
     answers: [
       {
         user_name: '',
+        user_grade: 0,
         user_level: 0,
         answer: 0,
         is_solved: false,
@@ -106,6 +107,7 @@ const mutations = {
   // setAnswerLive
   setAnswerLive(state, res) {
     state.answerLive = res.data;
+    console.log('questionStore > setAnswerLive > state.answerLive is ', state.answerLive);
   },
   updateQuestionCheatedUsers(state, axiosResData) {
     state.question.cheated_users = axiosResData.data.cheated_users;

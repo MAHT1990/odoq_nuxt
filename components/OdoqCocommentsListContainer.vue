@@ -3,7 +3,7 @@
     <li class="cocomment" v-for="cocomment in cocomments" :key="cocomment.id">
       <div class="user_info_box flex">
         <div class="flex">
-          <div class="grade level" :class="getLevel(cocomment.user_level)">{{ cocomment.user_level }}</div>
+          <div class="grade level" :class="$utils.getUserLabel(cocomment).userClass">{{ $utils.getUserLabel(cocomment).content }}</div>
           <div class="nick_name">{{ cocomment.user_name }}</div>
         </div>
         <div class="text_tool_box">
@@ -96,21 +96,6 @@ export default {
           },
         },
       }).$mount();
-    },
-    getLevel(getLevel) {
-      if(getLevel < 10) {
-        return 'black';
-      } else if (getLevel < 20) {
-        return 'blue';
-      } else if (getLevel < 40) {
-        return 'green';
-      } else if (getLevel < 70) {
-        return 'red';
-      } else if (getLevel < 100) {
-        return 'pink';
-      } else {
-        return 'king';
-      }
     },
   }
 }

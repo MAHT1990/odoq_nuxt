@@ -15,7 +15,6 @@
             alt="">
         </button>
       </form>
-      <!--      <div class="answer_live_count">{{answerLive.solveCount}} {{answerLive.answerCount}}</div>-->
     </div>
     <div class="answer_live_box">
       <div
@@ -30,11 +29,9 @@
           <span v-if="answr.rank === 3">rd.</span>
         </div>
         <div class="flex">
-          <div class="grade" :class="getLevel(answr.user_level)">{{ answr.user_level }}</div>
+          <div class="grade" :class="$utils.getUserLabel(answr).userClass">{{ $utils.getUserLabel(answr).content }}</div>
           <div class="answer_live_box_content_user_name">{{ answr.user_name }}</div>
         </div>
-        <!--        <div class="answer_live_box_content_answer">&nbsp;&nbsp;&nbsp;&nbsp;{{ answr.answer }}</div>-->
-        <!--        <div class="answer_live_box_content_is_solved">&nbsp;&nbsp;&nbsp;&nbsp;{{ isSolved(answr) }}</div>-->
         <div class="answer_live_box_content_created_at">&nbsp;&nbsp;&nbsp;&nbsp;{{ createdAt(answr) }}</div>
       </div>
     </div>
@@ -55,7 +52,6 @@ export default {
     return {
       answersLives: [],
       filteredAnswersLives: [],
-      intervalId: null,
     }
   },
   computed: {
@@ -66,15 +62,11 @@ export default {
       return this.filteredAnswersLives.length > 0
         ? this.filteredAnswersLives
         : this.answersLives;
-    }
-    // make answr.is_solved to '맞음' or '틀림'
+    },
   },
   mounted() {
     this.getAnswerLive();
-    this.intervalId = setInterval(this.getAnswerLive, 10000);
-  },
-  destroyed() {
-    clearInterval(this.intervalId);
+    // this.intervalId = setInterval(this.getAnswerLive, 10000);
   },
   methods: {
     /**
@@ -91,9 +83,7 @@ export default {
           .filter((e) => e.is_solved === true)
           .reduce((acc, cur) => {
             const isExist = acc.find((e) => e.user_name === cur.user_name);
-            if (!isExist) {
-              acc.push(cur)
-            }
+            if (!isExist) { acc.push(cur) }
             return acc;
           }, [])
           .sort((a, b) => {
@@ -106,7 +96,6 @@ export default {
         });
         // 같은 user_name 의 중복을 제거한다.
       }
-      // console.log('## OdoqAnswerLive > getAnswerLive: ', this.answerLive);
     },
     searchUser(e) {
       this.filteredAnswersLives = this.answersLives.filter((answer) => answer.user_name.includes(e.target.value));
@@ -115,23 +104,7 @@ export default {
       return answr.is_solved ? '맞음' : '틀림';
     },
     createdAt(answr) {
-      // return moment(answr.created_at).format('YYYY-MM-DD HH:mm:ss');
       return moment(answr.created_at).format('HH:mm:ss');
-    },
-    getLevel(getLevel) {
-      if (getLevel < 10) {
-        return 'black';
-      } else if (getLevel < 20) {
-        return 'blue';
-      } else if (getLevel < 40) {
-        return 'green';
-      } else if (getLevel < 70) {
-        return 'red';
-      } else if (getLevel < 100) {
-        return 'pink';
-      } else {
-        return 'king';
-      }
     },
   }
 }

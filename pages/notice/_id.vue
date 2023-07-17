@@ -5,7 +5,7 @@
       <div class="title_box">
         <pre name="" id="" cols="30" rows="10" v-html="notice.title" readonly></pre>
         <div class="post_info_box">
-          <span class="grade">{{ notice.user_level }}</span>
+          <span class="grade" :class="userLabel.userClass">{{ userLabel.content }}</span>
           <span class="nick_name">{{ notice.user_name }}</span>
           <span class="date">{{ createdAt(notice) }}</span>
           <span class="hits">조회수 {{ notice.hit_count }}</span>
@@ -85,6 +85,9 @@ export default {
     isWriter() {
       return [1, 2].includes(this.userInfo.userGrade);
     },
+    userLabel() {
+      return this.$utils.getUserLabel(this.notice);
+    }
   },
   async beforeMount() {
     // 게시글 목록 받아오기

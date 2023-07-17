@@ -124,6 +124,42 @@ const getRead = (flag) => {
       : null;
 }
 
+/**
+ * 레벨 계산
+ *
+ * @param obj: { user_grade: number, user_level: number }
+ * @returns obj: { userClass: string, content: string }
+ */
+const getUserLabel = (obj) => {
+  if (isNaN(obj.user_grade) || isNaN(obj.user_level)) { return { userClass: 'black', content: '??' }; }
+  if (obj.user_grade === null || obj.user_level === null) { return { userClass: 'black', content: '??' }; }
+  let userClass, content;
+  switch (obj.user_grade) {
+    case 2:
+      userClass = 'admin';
+      content = 'M';
+      break;
+    case 1:
+      userClass = 'writer';
+      content = 'm';
+      break;
+    case 0:
+      content = obj.user_level
+      if (obj.user_level < 10) userClass = 'black';
+      else if (obj.user_level < 20) userClass = 'blue';
+      else if (obj.user_level < 40) userClass = 'green';
+      else if (obj.user_level < 70) userClass = 'red';
+      else if (obj.user_level < 100) userClass = 'pink';
+      else userClass = 'king';
+      break;
+    default:
+      userClass = 'black';
+      content = '??';
+      break;
+  }
+  return { userClass, content };
+}
+
 const Utils = {
   atob,
   formDataToObj,
@@ -142,6 +178,7 @@ const Utils = {
   getPageNumber,
   setRead,
   getRead,
+  getUserLabel,
 };
 
 export default Utils;

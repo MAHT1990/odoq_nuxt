@@ -2203,12 +2203,17 @@ top:0;
   min-width: 16px;
   width: auto;
   height: 14px;
-  line-height: 15px;
+  line-height: 14px;
   text-align: center;
   border: 1px solid #fff;
   border-radius: 2px;
   margin-right: 0px;
   font-weight: 300;
+}
+@keyframes gradeBackgroundAnimation {
+  0% { background-color: #000155; }
+  50% { background-color: #3737ff; }
+  100% { background-color: #000155; }
 }
 .grade.black {
   color: black;
@@ -2228,4 +2233,14 @@ top:0;
 .grade.king {
   color: white;
   background: #000;
+}
+.grade.admin {
+  color: white;
+  animation: gradeBackgroundAnimation 3s infinite;
+  font-weight: bold;
+}
+.grade.writer {
+  color: white;
+  background: #811717;
+  font-weight: bold;
 }
