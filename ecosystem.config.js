@@ -22,8 +22,10 @@ module.exports = {
 				PORT: 3000,
 				NODE_ENV: 'production'
 			},
-			output: './logs/console.log',
-			error:'./logs/consoleError.log'
+			out_file: './logs/console.log',
+			error_file:'./logs/consoleError.log',
+      log_date_format: 'YYYY-MM-DD HH:mm:ss',
+      time: true,
 		}
 	]
 }
