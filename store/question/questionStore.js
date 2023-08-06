@@ -42,7 +42,7 @@ const actions = {
     commit('setQuestion', res.data);
   },
   async getAnswerHistory({ commit }, query) {
-    const res = await this.$axios.get('question/answer_history',
+    const res = await this.$axios.get('question/answer/history',
       {
         params: {
           ...query
@@ -54,7 +54,7 @@ const actions = {
   },
   // getAnswerLive
   async getAnswerLive({ commit }, query) {
-    const res = await this.$axios.get('question/answer_live', {
+    const res = await this.$axios.get('question/answer/live', {
       params: {
         ...query
       },
@@ -64,13 +64,13 @@ const actions = {
   },
 
   async cheatAnswer({ commit }, data) {
-    const res = await this.$axios.patch('question/', data);
+    const res = await this.$axios.patch('question/answer', data);
     if (res.data.result === 'success') commit('updateQuestionCheatedUsers', res.data);
     // console.log('cheated_users: ', res.data.data.cheated_users);
     return res.data;
   },
   async postAnswer({ commit }, data) {
-    const res = await this.$axios.post('question/', data);
+    const res = await this.$axios.post('question/answer', data);
     commit('updateQuestionAnswerStatus', res.data);
   }
 }
