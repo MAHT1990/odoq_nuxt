@@ -140,6 +140,7 @@ export default {
       if (this.postInput.image.file) {
         formData.append('img', this.postInput.image.file);
       }
+      // console.log('this.postInput.image.file', this.postInput.image.file);
       const res = await this.$store.dispatch(
         'post/postStore/createPost',
         formData,

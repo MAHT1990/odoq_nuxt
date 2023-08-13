@@ -33,7 +33,7 @@ export default Vue.extend({
       params: {
         targetId: null,
         content: '',
-        postId: null,
+        postOrNoticeId: null,
       },
     };
   },

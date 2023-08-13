@@ -76,7 +76,7 @@ const actions = {
   async getPost({ commit }, postId) {
     const res = await this.$axios.get(`post/${postId}`);
     if (res.data.result === 'success') {
-      // console.log('post is ', res.data.data.post);
+      // console.log('post is ', res.data);
       commit('setPost', res.data.data.post);
     }
     return res.data;
@@ -85,6 +85,7 @@ const actions = {
     // console.log('createPost path is here');
     const res = await this.$axios.post('post/', postData);
     if (res.data.result === 'success') {
+      // console.log('res.data is ', res.data);
       commit('setArrayPosts', res.data.data.posts);
       commit('setTotalPosts', res.data.data.total_posts);
       commit('setTodayPosts', res.data.data.today_posts);
@@ -103,33 +104,38 @@ const actions = {
   async deletePost({ commit }, postData) {
     // console.log('deletePost path is here');
     const res = await this.$axios.delete(`post/${postData.postId}/`);
+    console.log('deletePost의 res.data는 ', res.data);
     if (res.data.result === 'success') commit('modifyPostLike', res.data.data);
     return res.data;
   },
   async getComments({ commit }, postId) {
-    const res = await this.$axios.get(`post/${postId}/comment`);
+    const res = await this.$axios.get(`post/${postId}/comment/`);
     if (res.data.result === 'success') {
-      // console.log('comments is ', res.data.data.comments);
+      // console.log('comments is ', res.data.data);
       commit('setComments', res.data.data.comments);
     }
   },
   async createComment({ commit }, {postOrNoticeId, formData}) {
     const res = await this.$axios.post(`post/${postOrNoticeId}/comment/`, formData);
     if (res.data.result === 'success') commit('setComments', res.data.data.comments);
+    console.log('createComment의 res.data는 ', res.data);
     return res.data
   },
   async editComment({ commit }, commentData) {
     // console.log('editComment path is here');
     commentData.flag = 'edit';
+    console.log('commentData is ', commentData);
     const res = await this.$axios.patch(`post/${commentData.postOrNoticeId}/comment/`, commentData);
     if (res.data.result === 'success') commit('editComment', res.data.data);
+    console.log('editComment의 res.data는 ', res.data);
     return res.data;
   },
   async blindComment({ commit }, commentData) {
     // console.log('blindPost path is here');
     commentData.flag = 'blind';
+    console.log('commentData is ', commentData);
     const res = await this.$axios.patch(`post/${commentData.postOrNoticeId}/comment/`, commentData);
-    // console.log('blindPost의 res.data는 ', res.data);
+    console.log('blindPost의 res.data는 ', res.data);
     if (res.data.result === 'success') commit('blindComment', res.data.data);
     return res.data;
   },
