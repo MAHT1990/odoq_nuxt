@@ -11,6 +11,7 @@ const state = () => ({
     answer: 0,
     answer_count: 0,
     solve_count: 0,
+    second_remain: 0,
     solved_users: [],
     cheated_users: [],
     can_answer_remain_time: 0, // getAnswerHistory에서 계산
@@ -102,6 +103,7 @@ const mutations = {
     state.question.answer = resData?.answer;
     state.question.answer_count = resData?.answer_count;
     state.question.solve_count = resData?.solve_count;
+    state.question.second_remain = resData?.second_remain;
     state.question.solved_users = resData?.solved_users;
     state.question.cheated_users = resData?.cheated_users;
     // console.log('questionStore > setQuestion > state.question is ', state.question);
