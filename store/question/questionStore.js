@@ -107,7 +107,7 @@ const mutations = {
   // setAnswerLive
   setAnswerLive(state, res) {
     state.answerLive = res.data;
-    console.log('questionStore > setAnswerLive > state.answerLive is ', state.answerLive);
+    // console.log('questionStore > setAnswerLive > state.answerLive is ', state.answerLive);
   },
   updateQuestionCheatedUsers(state, axiosResData) {
     state.question.cheated_users = axiosResData.data.cheated_users;

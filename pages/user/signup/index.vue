@@ -76,7 +76,7 @@
           name="phone"
           @input="validationCheck"
         >
-        <a @click="sendSMSAuth" class="code_btn">인증번호 받기</a>
+        <a @click="sendSMSAuth" class="code_btn">인증번호받기</a>
       </div>
     </div>
     <span v-if="userInfo.phone.message">{{ userInfo.phone.message }}</span>
