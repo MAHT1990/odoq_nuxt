@@ -85,7 +85,7 @@ const mutations = {
    * @param axiosResData - axios의 Response의 data
    */
   setQuestion(state, axiosResData) {
-    // console.log('axiosResData is ', axiosResData);
+    console.log('axiosResData is ', axiosResData);
     let resData;
     if (Object.keys(axiosResData.data).length === 0) {
       resData = {};
