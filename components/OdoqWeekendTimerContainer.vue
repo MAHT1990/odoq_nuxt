@@ -61,7 +61,7 @@ export default {
         .hour(trgtTime.split(':')[0])
         .minute(trgtTime.split(':')[1])
         .second(trgtTime.split(':')[2]);
-      console.log('## OdoqWeekendTimerContainer\'s calcRemainTime > nextFirst is ', nextFirst);
+      // console.log('## OdoqWeekendTimerContainer\'s calcRemainTime > nextFirst is ', nextFirst);
       const remainTime = nextFirst.diff(now);
       return parseInt(remainTime / 1000);
     }

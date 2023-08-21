@@ -146,7 +146,7 @@ export default {
   beforeMount() {
     this.isRead = Utils.getRead('post') ? Utils.getRead('post').includes(this.post.id) : false;
     this.currentPost = parseInt(this.$route.params.id, 10) === parseInt(this.post.id, 10);
-    console.log(this.post);
+    // console.log(this.post);
   }
 }
 </script>
