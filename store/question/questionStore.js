@@ -95,7 +95,15 @@ const mutations = {
         img_url: Utils.getImgUrl(axiosResData.data.img_url)
       }
     }
-    state.question = resData;
+    state.question.id = resData?.id;
+    state.question.code = resData?.code;
+    state.question.season = resData?.season;
+    state.question.img_url = resData?.img_url;
+    state.question.answer = resData?.answer;
+    state.question.answer_count = resData?.answer_count;
+    state.question.solve_count = resData?.solve_count;
+    state.question.solved_users = resData?.solved_users;
+    state.question.cheated_users = resData?.cheated_users;
     // console.log('questionStore > setQuestion > state.question is ', state.question);
   },
   setAnswerHistory(state, axiosResData) {
