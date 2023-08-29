@@ -98,7 +98,24 @@ export default {
       this.$router.push('/user/signup/')
     },
     linkToMyPage() {
-      this.$popup.showAlertPopup('준비중입니다.');
+      const that = this;
+      new this.$popup.PopMyPage({
+        propsData: {
+          initValue: {
+            userInfo: this.userInfo,
+          },
+          okCallback: async (params) => {
+            const data = {
+              userId: that.userInfo.userId,
+              userName: params.userInfo.name.value,
+              password: params.userInfo.password.value,
+            }
+            const res = await that.$store.dispatch(`user/userAuthStore/editUserInfo`, data);
+            that.$popup.showAlertPopup(res.message);
+            params.$destroy();
+          },
+        }
+      }).$mount();
     },
     logout() {
       this.$utils.removeCookie('jwt');

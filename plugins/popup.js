@@ -7,7 +7,8 @@ import PopLeaveReason from '@/components/popups/PopLeaveReason'; // 회원 탈�
 import PopToolBox from '@/components/popups/PopToolBox'; // 툴박스 팝업
 import PopNotice from '@/components/popups/PopNotice.vue'; // 공지 팝업
 import PopAnswerPost from '@/components/popups/PopAnswerPost.vue'; // 답안 확인 팝업
-import PopCommentEdit from "@/components/popups/PopCommentEdit.vue";
+import PopCommentEdit from "@/components/popups/PopCommentEdit.vue"; // 댓글 수정 팝업
+import PopMyPage from "@/components/popups/PopMyPage.vue"; // 마이페이지 팝업
 
 
 const Popup = {
@@ -29,6 +30,7 @@ const Popup = {
   PopNotice,
   PopAnswerPost,
   PopCommentEdit,
+  PopMyPage,
 };
 export default Popup
 Vue.prototype.$popup = Popup;

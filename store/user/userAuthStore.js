@@ -54,6 +54,15 @@ const actions = {
     }
     return res.data;
   },
+  async editUserInfo({commit}, data) {
+    const res = await this.$axios.patch('user/', data);
+    // console.log('## userAuthStore > actions > getUserInfo > res is ', res.data);
+    if (res.data.result === 'success') {
+      // console.log('## userAuthStore > actions > getUserInfo > res.data is ', res.data);
+      commit ('editUserInfo', data.userName);
+      return res.data;
+    }
+  },
   async checkLogin({commit}, cookie) {
     const res = await this.$axios.get('user/login/', {
       params: {
@@ -103,6 +112,9 @@ const mutations = {
     // console.log('userAuthStore > mutations > setUserInfo > state is ', state);
     if (resData.result === 'error') Utils.removeCookie('csrf');
   },
+  editUserInfo(state, userName) {
+    state.userInfo.userName = userName;
+  },
   /**
    * 어플을 다시 켰을 때, 자동 로그인 : JWT 세팅 돼있는지 확인 후,
    * state.isLogin, 유저 정보 state에 반영.
@@ -116,8 +128,9 @@ const mutations = {
     state.userInfo.userId = cookie ? (parseInt(Utils.getUserId(cookie), 10) || 0 ) : 0;
     state.userInfo.userName = cookie ? Utils.getUserName(cookie) : '';
     state.userInfo.userGrade = cookie ? (parseInt(Utils.getUserGrade(cookie), 10) || 0 ) : 0;
-    // console.log('## userAuthStore > mutations > checkLogin > state is ', state);
-    // console.log('## userAuthStore > mutations > checkLogin > cookie is ', cookie);
+    console.log('## userAuthStore > mutations > checkLogin > state is ', state);
+    console.log('## userAuthStore > mutations > checkLogin > cookie is ', cookie);
+    console.log('## userAuthStore > mutations > checkLogin > Utils.getUserName(cookie) is ', Utils.getUserName(cookie));
     // console.log('## userAuthStore > mutations > checkLogin > isLogin is ', isLogin);
     // console.log('## userAuthStore > mutations > checkLogin > userId is ', Utils.getUserId(cookie));
   },
