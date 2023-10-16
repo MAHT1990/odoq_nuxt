@@ -50,9 +50,11 @@ const state = () => ({
 });
 
 const actions = {
-  async getNotices({ commit }) {
+  async getNotices({ commit }, queryObj) {
     // console.log('action to getNotice is here');
-    const res = await this.$axios.get('notice/');
+    const res = await this.$axios.get('notice/',{
+      params: queryObj,
+    });
     if (res.data.result === 'success') {
       commit('setNotices', res.data.data);
       // console.log('noticeStore > getNotices > res.data is ', res.data);

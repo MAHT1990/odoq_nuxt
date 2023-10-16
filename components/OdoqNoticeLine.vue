@@ -9,7 +9,10 @@
             @mouseover="underline"
             @mouseleave="removeUnderline"
             :style="titleStyle"
-          >{{ notice.title }}</span><i v-if="notice.img_url" class="fa-solid fa-image"></i></li>
+          >{{ notice.title }}</span>
+            <i v-if="notice.img_url" class="fa-solid fa-image"></i>
+            <i v-if="hasDisplayIcon" class="fa-solid fa-eye"></i>
+          </li>
         </ul>
     </div>
 </template>
@@ -21,6 +24,10 @@ import Utils from "@/plugins/utils";
 export default {
   props: {
     notice: Object,
+    headOnly: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -39,6 +46,13 @@ export default {
         color: this.isRead || this.currentPost ? this.readColor : this.defaultColor,
       }
     },
+    hasDisplayIcon() {
+      /*
+      * 전체글의 Header가 아닌, 공지사항 목록일 때,
+      * is_display가 true인 공지사항에만 눈 아이콘이 표시되도록 한다.
+      * */
+      return !this.headOnly && this.notice.is_display;
+    }
   },
   methods: {
     moveNoticeDetail() {

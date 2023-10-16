@@ -39,7 +39,10 @@ export default {
       pageSize: store.state.post.postStore.defaultPageSize,
     });
     // 공지사항 받아오기
-    await store.dispatch('notice/noticeStore/getNotices');
+    await store.dispatch('notice/noticeStore/getNotices', {
+      pageNumber: 1,
+      pageSize: store.state.notice.noticeStore.defaultPageSize,
+    });
 
   },
   mounted() {

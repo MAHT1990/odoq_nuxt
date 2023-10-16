@@ -2,13 +2,9 @@
   <div class="notice_list_container">
     <div>
       <odoq-notice-line
-        v-for="notice in headNotices"
+        v-for="notice in exposedNotices"
         :notice="notice"
-        :key="notice.id"
-      />
-      <odoq-notice-line
-        v-for="notice in expiredNotices"
-        :notice="notice"
+        :head-only="headOnly"
         :key="notice.id"
       />
     </div>
@@ -59,6 +55,9 @@ export default {
         ? []
         : this.notices.filter(notice => !notice.is_display)
     },
+    exposedNotices() {
+      return this.headOnly ? this.headNotices : this.notices;
+    }
   },
   methods: {
     prevPage() {

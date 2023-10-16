@@ -1,7 +1,6 @@
 <template>
   <div class="main_container">
     <div class="tab_wrap">
-<!--      <span id="line"></span>-->
       <button @click="onTab(idx)" class="tab_btn"
               :id="item" v-for="(item, idx) in tabs"
               :key="item"
@@ -9,7 +8,6 @@
       >{{item}}
       </button>
     </div>
-<!--    <odoq-tabs @onTab="currentIdx = $event" />-->
     <div class="open_label" id="openLabel" @click="openTest" v-if="currentIdx === 0">
       <img src="data:image/svg+xml,%3Csvg width='45' height='68' viewBox='0 0 45 68' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.000419178 0H44.9085V38.1914L45 67.3638L22.4542 49.3991L22.4546 49.3989H22.4235L22.4474 49.412L0 67.362L0.0172961 49.3989H0.000419178V0Z' fill='%230051C8'/%3E%3C/svg%3E%0A" alt="문제접기">
       <div id="labelText">문제<br>접기</div>
@@ -77,7 +75,7 @@ export default {
       question: 'question/questionStore/question',
     }),
     isAvailable() {
-      // 이번주 월요일 8:30 부터 금요일 24:00 까지
+      // 이번주 월요일 8:00 부터 금요일 24:00 까지
       const start = moment().startOf('isoWeek')
         .add(this.uploadTime.split(':')[0], 'hours')
         .add(this.uploadTime.split(':')[1], 'minutes');
@@ -103,20 +101,28 @@ export default {
      * @return {Promise<void>}
      */
     async onTab(idx) {
-      const payload = {
+      const queries = {
         pageNumber: this.$utils.getPageNumber('post') || 1,
         pageSize: this.$store.state.post.postStore.pageSize,
-        filteringFlag: 'all',
-        userId: this.userInfo.userId,
       };
-      if (idx === 0) {
+      if (idx === 0) { /* 전체글  */
         await this.$store.dispatch('post/postStore/getPosts', {
-          ...payload, filteringFlag: 'all',
+          ...queries,
+          filteringFlag: 'all',
+          userId: this.userInfo.userId,
         });
       }
-      if (idx === 2)  {
+      if (idx === 1)  { /* 공지  */
+        await this.$store.dispatch('notice/noticeStore/getNotices', {
+          pageNumber: 1,
+          pageSize: this.$store.state.notice.noticeStore.defaultPageSize,
+        });
+      }
+      if (idx === 2)  { /* 풀이  */
         await this.$store.dispatch('post/postStore/getPosts', {
-          ...payload, filteringFlag: 'solution',
+          ...queries,
+          filteringFlag: 'solution',
+          userId: this.userInfo.userId,
         });
       }
       this.currentIdx = idx;
